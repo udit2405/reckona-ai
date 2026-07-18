@@ -641,6 +641,17 @@ blockquote{border-left:3px solid var(--accent);padding-left:18px;font-size:1.05r
 </footer>
 
 <script>
+/* ---------- Config ---------- */
+/* Paste your deployed Google Apps Script Web App URL below (ends in /exec).
+   See lead-capture.gs in this repo for the script + setup steps. */
+const CONFIG={SHEET_WEBHOOK_URL:"PASTE_YOUR_APPS_SCRIPT_EXEC_URL_HERE"};
+
+function sendToSheet(type,data){
+  if(!CONFIG.SHEET_WEBHOOK_URL||CONFIG.SHEET_WEBHOOK_URL.indexOf('PASTE_')===0)return;
+  fetch(CONFIG.SHEET_WEBHOOK_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},
+    body:JSON.stringify({type,...data,page:location.hash||'#home',ts:new Date().toISOString()})}).catch(()=>{});
+}
+
 /* ---------- Router ---------- */
 const pages=['home','services','industries','work','pricing','tools','resources','about','audit','book'];
 function go(p){location.hash=p}
@@ -738,12 +749,15 @@ function budgetCalc(e){e.preventDefault();
 
 /* ---------- Forms (demo handlers) ---------- */
 function leadForm(e){e.preventDefault();
+  sendToSheet('audit_request',{name:lf1.value,email:lf2.value,website:lf3.value,whatsapp:lf4.value,auditType:lf5.value,goal:lf6.value});
   lfRes.innerHTML=`<p><b style="color:var(--ink)">Thanks, ${lf1.value.split(' ')[0]}!</b> Your ${lf5.value} is queued. You'll hear from us within 4 working hours at ${lf2.value}. Meanwhile, try the <a href="#tools">free tools</a>.</p>`;
   lfRes.classList.add('show');e.target.reset();return false}
 function bookForm(e){e.preventDefault();
+  sendToSheet('booking',{name:bk1.value,email:bk2.value,company:bk3.value,prepFor:bk4.value,preferredTime:bk5.value});
   bkRes.innerHTML=`<p><b style="color:var(--ink)">Slot requested.</b> We'll confirm ${bk5.value||'a time'} by email to ${bk2.value} within 4 working hours, with a short prep note on ${bk4.value.toLowerCase()}.</p>`;
   bkRes.classList.add('show');e.target.reset();return false}
 function subscribe(e){e.preventDefault();
+  sendToSheet('newsletter',{email:nlEmail.value});
   nlMsg.textContent=`✓ Subscribed — first issue of Applied Intelligence lands in ${nlEmail.value.split('@')[0]}'s inbox this fortnight.`;
   e.target.reset();return false}
 
