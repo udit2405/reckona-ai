@@ -232,6 +232,12 @@ blockquote{border-left:2px solid var(--brand);padding-left:20px;font-family:Frau
   .hero{padding:150px 0 80px}
   .stat{border-left:none;padding:4px 24px 4px 0}
 }
+/* RESOURCE CARDS (links to standalone article pages) */
+a.res-card{display:block;color:inherit}
+a.res-card:hover{text-decoration:none}
+a.res-card h3{color:var(--ink)}
+.res-read{display:inline-block;margin-top:12px;font-size:.86rem;font-weight:600;color:var(--brand)}
+a.res-card:hover .res-read{text-decoration:underline;text-underline-offset:3px}
 /* WORK / PROJECTS */
 @property --wk-ang{syntax:'<angle>';initial-value:0deg;inherits:false}
 .wk-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:44px}
@@ -726,12 +732,12 @@ blockquote{border-left:2px solid var(--brand);padding-left:20px;font-family:Frau
       <h1>Resources</h1>
       <p class="lead" style="margin-top:14px;max-width:620px">Practical, numbers-first writing on AI-era growth. New essays fortnightly in <b>Applied Intelligence</b>, our newsletter.</p>
       <div class="grid g3" style="margin-top:34px">
-        <div class="card"><span class="pill">GEO · Pillar guide</span><h3 style="margin-top:10px">The Complete Guide to Generative Engine Optimization (2026)</h3><p>What GEO is, how AI engines choose which brands to recommend, and the 90-day playbook we run for clients. 4,800 words.</p></div>
-        <div class="card"><span class="pill">GEO</span><h3 style="margin-top:10px">We asked ChatGPT about 50 Indian brands. 34 were invisible.</h3><p>Our study of AI visibility across Indian mid-market leaders — the data behind the "State of AI Visibility: India 2026" report.</p></div>
-        <div class="card"><span class="pill">Automation</span><h3 style="margin-top:10px">The ₹40-lakh spreadsheet: what manual ops really cost an SME</h3><p>A cost model you can copy, plus the 5 automations with the fastest payback we've deployed.</p></div>
-        <div class="card"><span class="pill">SEO</span><h3 style="margin-top:10px">SEO isn't dying. It's splitting in two.</h3><p>Why rankings and retrievability are now different games, and how to budget between them.</p></div>
-        <div class="card"><span class="pill">WhatsApp</span><h3 style="margin-top:10px">The WhatsApp Business Automation Guide for India</h3><p>Verified API setup, flow library, compliance, and 12 revenue flows with benchmarks. 3,900 words.</p></div>
-        <div class="card"><span class="pill">Leadership</span><h3 style="margin-top:10px">An executive's guide to AI agents (without the hype)</h3><p>What agents can actually do in 2026, where they fail, and the governance checklist before you deploy one.</p></div>
+        <a class="card res-card" href="resources/generative-engine-optimization-guide/"><span class="pill">GEO · Pillar guide</span><h3 style="margin-top:10px">The Complete Guide to Generative Engine Optimization (2026)</h3><p>What GEO is, how AI engines choose which brands to recommend, and the 90-day playbook we run for clients.</p><span class="res-read">Read the guide →</span></a>
+        <a class="card res-card" href="resources/ai-visibility-indian-brands-study/"><span class="pill">GEO</span><h3 style="margin-top:10px">We asked ChatGPT about 50 Indian brands. 34 were invisible.</h3><p>Our study of AI visibility across Indian mid-market leaders — the data behind the "State of AI Visibility: India 2026" report.</p><span class="res-read">Read the study →</span></a>
+        <a class="card res-card" href="resources/cost-of-manual-operations-sme/"><span class="pill">Automation</span><h3 style="margin-top:10px">The ₹40-lakh spreadsheet: what manual ops really cost an SME</h3><p>A cost model you can copy, plus the 5 automations with the fastest payback we've deployed.</p><span class="res-read">Read the article →</span></a>
+        <a class="card res-card" href="resources/seo-vs-geo-strategy/"><span class="pill">SEO</span><h3 style="margin-top:10px">SEO isn't dying. It's splitting in two.</h3><p>Why rankings and retrievability are now different games, and how to budget between them.</p><span class="res-read">Read the article →</span></a>
+        <a class="card res-card" href="resources/whatsapp-business-automation-guide-india/"><span class="pill">WhatsApp</span><h3 style="margin-top:10px">The WhatsApp Business Automation Guide for India</h3><p>Verified API setup, flow library, compliance, and 12 revenue flows with benchmarks.</p><span class="res-read">Read the guide →</span></a>
+        <a class="card res-card" href="resources/executive-guide-ai-agents/"><span class="pill">Leadership</span><h3 style="margin-top:10px">An executive's guide to AI agents (without the hype)</h3><p>What agents can actually do in 2026, where they fail, and the governance checklist before you deploy one.</p><span class="res-read">Read the guide →</span></a>
       </div>
       <div class="card" style="margin-top:26px;display:flex;gap:20px;align-items:center;flex-wrap:wrap">
         <div style="flex:1;min-width:260px"><h3>Applied Intelligence — the newsletter</h3><p style="font-size:.92rem">One AI-growth play, explained with real numbers, every two weeks. 5,000+ founders and CMOs read it.</p></div>
