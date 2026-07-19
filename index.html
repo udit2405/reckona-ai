@@ -119,6 +119,23 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--ink)}
 .tool-result{margin-top:20px;padding:20px 22px;border-radius:14px;background:var(--surface2);border:1px solid var(--border);display:none}
 .tool-result.show{display:block;animation:rise .3s ease-out}
 .score-big{font-family:Fraunces,serif;font-weight:500;font-size:2.7rem;color:var(--ink)}
+/* INDUSTRIES */
+.ind-tag{font-family:Fraunces,serif;font-style:italic;font-size:1.05rem;color:var(--ink);margin:2px 0 4px}
+.fixlist{list-style:none;margin:14px 0 6px}
+.fixlist li{padding:6px 0;font-size:.89rem;color:var(--ink2);border-bottom:1px solid var(--border)}
+.fixlist li:last-child{border-bottom:none}
+.fixlist li::before{content:"→  ";color:var(--brand);font-weight:600}
+.fixlabel{font-size:.71rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink2);margin-top:18px}
+.ind-price{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:16px;padding-top:14px;border-top:1px solid var(--border)}
+.ind-price .mono{color:var(--ink);font-size:.88rem}
+.ind-price a{font-size:.86rem;font-weight:600;white-space:nowrap}
+.inc-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0;margin:40px 0 8px;border:1px solid var(--border);border-radius:18px;overflow:hidden;background:var(--surface)}
+.inc-strip>div{padding:24px 26px;border-left:1px solid var(--border)}
+.inc-strip>div:first-child{border-left:none}
+.inc-strip b{display:block;font-size:.95rem;color:var(--ink);margin-bottom:4px}
+.inc-strip .mono{font-size:.72rem;color:var(--brand);letter-spacing:.1em}
+.inc-strip p{font-size:.86rem;line-height:1.55}
+@media(max-width:820px){.inc-strip>div{border-left:none;border-top:1px solid var(--border)}.inc-strip>div:first-child{border-top:none}}
 /* MISC */
 .reveal{opacity:0;transform:translateY(12px);transition:opacity .6s,transform .6s}
 .reveal.in{opacity:1;transform:none}
@@ -351,9 +368,24 @@ blockquote{border-left:2px solid var(--brand);padding-left:20px;font-family:Frau
   <div class="container">
     <div class="crumb">Home / Industries</div>
     <section style="padding-top:28px">
-      <h1>Industries</h1>
-      <p class="lead" style="max-width:620px;margin-top:14px">Fixed-scope packages that solve each industry's three most expensive digital problems. Setup + monthly, ex-GST.</p>
-      <div class="grid g3" style="margin-top:34px" id="industryGrid"></div>
+      <div class="eyebrow">Ten sectors, fixed scope</div>
+      <h1>Built for how your<br>industry <em>actually</em> buys.</h1>
+      <p class="lead" style="max-width:640px;margin-top:18px">Generic marketing retainers fail because every industry leaks revenue differently. Each package below names the three most expensive problems in its sector and ships a fixed-scope system to fix them. Setup + monthly, ex-GST, 90-day minimum.</p>
+
+      <div class="inc-strip reveal">
+        <div><span class="mono">01</span><b>Named problems</b><p>Every package targets its sector's three costliest leaks — not a generic checklist.</p></div>
+        <div><span class="mono">02</span><b>Fixed scope & price</b><p>Published setup + monthly. No discovery-call pricing games, no scope drift.</p></div>
+        <div><span class="mono">03</span><b>14-day first ship</b><p>Working software or live campaigns inside two weeks of kickoff.</p></div>
+        <div><span class="mono">04</span><b>Your accounts, your IP</b><p>Ad accounts, analytics, and code are created in your name from day one.</p></div>
+      </div>
+
+      <div class="grid g2" style="margin-top:40px" id="industryGrid"></div>
+
+      <div class="banner reveal" style="margin-top:56px">
+        <h2>Not sure which package fits?</h2>
+        <p style="max-width:520px;margin:12px auto 26px">Start with the free audit — we'll tell you which of the three problems in your sector is costing you most, and whether a package or a custom scope fits better.</p>
+        <a class="btn" href="#audit">Get my free audit</a>
+      </div>
     </section>
   </div>
 </div>
@@ -714,18 +746,43 @@ function reveal(){document.querySelectorAll('.reveal:not(.in)').forEach(el=>io.o
 
 /* ---------- Industries data ---------- */
 const industries=[
- ["Restaurant / QSR","Local SEO + Zomato/Swiggy optimization, reels engine, WhatsApp ordering & feedback bot, review automation.","₹1.5L setup · ₹60K/mo"],
- ["Hospital / Clinic","Medical-grade website, doctor-profile SEO, appointment WhatsApp bot, reputation management, compliant content engine.","₹3L setup · ₹1L/mo"],
- ["Manufacturing / B2B","Corporate site + catalog, LinkedIn ABM, export SEO, RFQ-to-CRM automation, sales deck system.","₹3.5L setup · ₹1.2L/mo"],
- ["Education / Coaching","Admission funnel (ads + landing + WhatsApp), counselor CRM automation, YouTube engine, parent-comms bot.","₹2.5L setup · ₹1L/mo"],
- ["Real Estate","Project microsites, lead engine, site-visit scheduler, stale-lead revival AI, RERA-compliant creatives.","₹3L setup · ₹1.25L/mo"],
- ["Retail / D2C","Shopify build/rescue, performance ads, lifecycle flows, marketplace SEO, UGC engine.","₹4L setup · ₹1.5L/mo"],
- ["Finance / BFSI","Compliance-reviewed content, LinkedIn authority, lead scoring + KYC document AI.","₹4L setup · ₹1.75L/mo"],
- ["Startup (Series A–C)","Brand + site + pitch assets, founder LinkedIn, growth experiments squad, investor-update automation.","₹3L setup · ₹1.5L/mo"],
- ["SME Digital Starter","Website, Google Business Profile, 1 social channel, WhatsApp catalog + auto-replies.","₹1L setup · ₹40K/mo"],
- ["Enterprise AI Kickstart","AI readiness audit, 2 pilot automations, governance framework, executive training.","₹8L setup · ₹2L/mo"]];
+ {name:"Restaurant / QSR",tag:"Fill tables and take back your delivery margins.",
+  fixes:["Invisible in ‘near me’ and map-pack searches","Zomato/Swiggy commissions with no direct-order channel","Reviews and complaints handled ad hoc"],
+  stack:["Local SEO","Reels engine","WhatsApp ordering","Review automation"],price:"₹1.5L setup · ₹60K/mo"},
+ {name:"Hospital / Clinic",tag:"Fill OPD slots without buying every click.",
+  fixes:["Doctors invisible when patients search by symptom or specialty","Front desk drowning in appointment calls and WhatsApp","Reputation shaped by a handful of unanswered reviews"],
+  stack:["Medical-grade website","Doctor-profile SEO","Appointment bot","Reputation management"],price:"₹3L setup · ₹1L/mo"},
+ {name:"Manufacturing / B2B",tag:"Turn a catalog PDF into an inbound RFQ engine.",
+  fixes:["Buyers and importers can't find you in search or AI answers","RFQs arriving by email and dying in inboxes","Sales collateral inconsistent across reps"],
+  stack:["Corporate site + catalog","Export SEO","LinkedIn ABM","RFQ-to-CRM automation"],price:"₹3.5L setup · ₹1.2L/mo"},
+ {name:"Education / Coaching",tag:"Lower your cost per admission, not your standards.",
+  fixes:["Ad spend rising while cost per admission climbs every season","Counselors losing leads between calls, sheets and WhatsApp","Parents expect updates you don't have bandwidth to send"],
+  stack:["Admission funnel","Counselor CRM automation","YouTube engine","Parent-comms bot"],price:"₹2.5L setup · ₹1L/mo"},
+ {name:"Real Estate",tag:"More site visits from the same ad spend.",
+  fixes:["Leads leaking between portals, brokers and sales teams","No follow-up system — stale leads never revisited","Creatives that flirt with RERA compliance"],
+  stack:["Project microsites","Lead engine","Site-visit scheduler","Stale-lead revival AI"],price:"₹3L setup · ₹1.25L/mo"},
+ {name:"Retail / D2C",tag:"Profitable growth after the ROAS plateau.",
+  fixes:["ROAS plateaued — scaling spend erodes contribution margin","First-time buyers never return; no lifecycle engine","Store conversion stuck below 1.5%"],
+  stack:["Shopify build / rescue","Performance ads","Lifecycle flows","Marketplace SEO"],price:"₹4L setup · ₹1.5L/mo"},
+ {name:"Finance / BFSI",tag:"Grow the book without a compliance headache.",
+  fixes:["Every content piece needs compliance review — so nothing ships","Advisors invisible on LinkedIn, where clients actually research","KYC and onboarding documents processed by hand"],
+  stack:["Compliance-reviewed content","LinkedIn authority","Lead scoring","KYC document AI"],price:"₹4L setup · ₹1.75L/mo"},
+ {name:"Startup (Series A–C)",tag:"Look fundable. Grow measurable.",
+  fixes:["Brand and site don't match the stage you're raising for","Founder silent in the market you sell to","Growth experiments run ad hoc, without a system"],
+  stack:["Brand + site + pitch assets","Founder LinkedIn","Growth experiments squad","Investor-update automation"],price:"₹3L setup · ₹1.5L/mo"},
+ {name:"SME Digital Starter",tag:"Your first serious digital presence — done right.",
+  fixes:["No website, or one that embarrasses the business","Google Business Profile unclaimed or unmanaged","Enquiries missed on WhatsApp after hours"],
+  stack:["Website","Google Business Profile","1 social channel","WhatsApp catalog + auto-replies"],price:"₹1L setup · ₹40K/mo"},
+ {name:"Enterprise AI Kickstart",tag:"From board-level AI intent to two working pilots.",
+  fixes:["AI mandate from the board, no roadmap on the ground","Pilot ideas everywhere, governance nowhere","Teams anxious about AI instead of trained on it"],
+  stack:["AI readiness audit","2 pilot automations","Governance framework","Executive training"],price:"₹8L setup · ₹2L/mo"}];
 document.getElementById('industryGrid').innerHTML=industries.map((i,idx)=>
- `<div class="card reveal"><span class="ic ic-num">${String(idx+1).padStart(2,'0')}</span><h3>${i[0]}</h3><p style="font-size:.93rem">${i[1]}</p><p class="mono" style="margin-top:12px;color:var(--accent);font-size:.9rem">${i[2]}</p></div>`).join('');
+ `<div class="card reveal"><span class="ic ic-num">${String(idx+1).padStart(2,'0')}</span>
+  <h3>${i.name}</h3><p class="ind-tag">${i.tag}</p>
+  <p class="fixlabel">What we fix</p>
+  <ul class="fixlist">${i.fixes.map(f=>`<li>${f}</li>`).join('')}</ul>
+  <p style="margin-top:12px">${i.stack.map(s=>`<span class="pill">${s}</span>`).join('')}</p>
+  <div class="ind-price"><span class="mono">${i.price}</span><a href="#audit">Start with a free audit →</a></div></div>`).join('');
 
 /* ---------- Tools ---------- */
 const inr=n=>'₹'+Math.round(n).toLocaleString('en-IN');
