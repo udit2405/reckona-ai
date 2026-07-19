@@ -232,6 +232,29 @@ blockquote{border-left:2px solid var(--brand);padding-left:20px;font-family:Frau
   .hero{padding:150px 0 80px}
   .stat{border-left:none;padding:4px 24px 4px 0}
 }
+/* FLOATING VIDEO SHOWCASE */
+#vw{position:fixed;right:22px;bottom:22px;z-index:220;width:158px;transition:width .45s cubic-bezier(.22,1,.36,1),right .45s cubic-bezier(.22,1,.36,1),bottom .45s,transform .45s cubic-bezier(.22,1,.36,1),opacity .35s}
+#vw.in{transform:translateY(calc(100% + 40px));opacity:0;pointer-events:none}
+#vw.big{right:50%;bottom:4vh;transform:translateX(50%);width:min(48vh,86vw)}
+.vw-frame{position:relative;aspect-ratio:9/16;border-radius:18px;overflow:hidden;background:#000;
+  border:1px solid var(--border);box-shadow:0 8px 20px rgba(22,21,15,.18),0 24px 60px rgba(22,21,15,.22);cursor:pointer}
+#vw video{width:100%;height:100%;object-fit:cover;display:block;transform:scale(var(--vz,1));transition:transform .35s;transform-origin:center}
+.vw-x{position:absolute;top:8px;right:8px;z-index:2;width:26px;height:26px;border-radius:999px;border:none;cursor:pointer;
+  background:rgba(0,0,0,.55);color:#fff;font-size:.8rem;line-height:1;display:grid;place-items:center;opacity:0;transition:opacity .2s}
+.vw-tag{position:absolute;top:8px;left:8px;z-index:2;font-size:.6rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  background:rgba(0,0,0,.55);color:#fff;padding:3px 9px;border-radius:999px;opacity:0;transition:opacity .2s;pointer-events:none}
+.vw-ctrl{position:absolute;bottom:8px;left:0;right:0;z-index:2;display:flex;gap:6px;justify-content:center;opacity:0;transition:opacity .2s}
+.vw-frame:hover .vw-x,.vw-frame:hover .vw-tag,.vw-frame:hover .vw-ctrl,#vw.big .vw-x,#vw.big .vw-ctrl{opacity:1}
+.vw-ctrl button{min-width:30px;height:30px;padding:0 8px;border-radius:999px;border:none;cursor:pointer;
+  background:rgba(0,0,0,.55);backdrop-filter:blur(6px);color:#fff;font-size:.78rem;line-height:1;display:grid;place-items:center}
+.vw-ctrl button:hover{background:rgba(0,0,0,.75)}
+#vwBg{position:fixed;inset:0;z-index:210;background:rgba(0,0,0,.45);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  opacity:0;pointer-events:none;transition:opacity .35s}
+#vwBg.on{opacity:1;pointer-events:auto}
+#vwChip{position:fixed;right:22px;bottom:22px;z-index:200;width:46px;height:46px;border-radius:999px;border:1px solid var(--border);
+  background:var(--ink);color:var(--bg);font-size:1rem;cursor:pointer;display:none;place-items:center;box-shadow:var(--shadow)}
+#vwChip.on{display:grid}
+@media(max-width:640px){#vw{width:122px;right:14px;bottom:14px}#vw.big{width:min(44vh,88vw)}}
 /* RESOURCE CARDS (links to standalone article pages) */
 a.res-card{display:block;color:inherit}
 a.res-card:hover{text-decoration:none}
@@ -861,6 +884,23 @@ a.res-card:hover .res-read{text-decoration:underline;text-underline-offset:3px}
   </div>
 </footer>
 
+<!-- ══════════ FLOATING VIDEO SHOWCASE ══════════ -->
+<div id="vwBg" onclick="vwEnlarge(false)"></div>
+<div id="vw" class="in" aria-label="Yukti showcase video">
+  <div class="vw-frame" onclick="vwPlay()">
+    <span class="vw-tag">Yukti in 40s</span>
+    <button class="vw-x" onclick="event.stopPropagation();vwHide()" aria-label="Close video">✕</button>
+    <video id="vwV" src="assets/yukti-showcase.mp4" muted loop playsinline preload="metadata"></video>
+    <div class="vw-ctrl" onclick="event.stopPropagation()">
+      <button id="vwPlayBtn" onclick="vwPlay()" aria-label="Play or pause">▶</button>
+      <button id="vwZoomBtn" onclick="vwZoom()" aria-label="Zoom video">1×</button>
+      <button id="vwBigBtn" onclick="vwEnlarge()" aria-label="Enlarge video">⤢</button>
+      <button id="vwMuteBtn" onclick="vwMute()" aria-label="Mute or unmute">🔇</button>
+    </div>
+  </div>
+</div>
+<button id="vwChip" onclick="vwShow()" aria-label="Open showcase video">▶</button>
+
 <script>
 /* ---------- Config ---------- */
 /* Paste the deployed Google Apps Script Web App URL below (it ends in
@@ -1258,6 +1298,28 @@ function subscribe(e){e.preventDefault();
   sendToSheet('newsletter',{email:nlEmail.value});
   nlMsg.textContent=`✓ Subscribed — first issue of Applied Intelligence lands in ${nlEmail.value.split('@')[0]}'s inbox this fortnight.`;
   e.target.reset();return false}
+
+/* ---------- Floating video showcase ---------- */
+const vwEl=document.getElementById('vw'),vwV=document.getElementById('vwV'),vwBgEl=document.getElementById('vwBg');
+const vwZooms=[1,1.5,2];let vwZi=0;
+function vwSync(){document.getElementById('vwPlayBtn').textContent=vwV.paused?'▶':'⏸';
+  document.getElementById('vwMuteBtn').textContent=vwV.muted?'🔇':'🔊'}
+function vwPlay(){if(vwV.paused){const t=vwV.play();if(t&&t.catch)t.catch(()=>{})}else vwV.pause();vwSync()}
+function vwZoom(){vwZi=(vwZi+1)%vwZooms.length;const z=vwZooms[vwZi];
+  vwV.style.setProperty('--vz',z);document.getElementById('vwZoomBtn').textContent=z+'×'}
+function vwEnlarge(on){const big=on===undefined?!vwEl.classList.contains('big'):on;
+  vwEl.classList.toggle('big',big);vwBgEl.classList.toggle('on',big);
+  document.getElementById('vwBigBtn').textContent=big?'⤡':'⤢'}
+function vwHide(){vwV.pause();vwEnlarge(false);vwEl.classList.add('in');
+  document.getElementById('vwChip').classList.add('on');vwSync()}
+function vwShow(){vwEl.classList.remove('in');document.getElementById('vwChip').classList.remove('on');
+  const t=vwV.play();if(t&&t.catch)t.catch(()=>{});vwSync()}
+vwV.addEventListener('play',vwSync);vwV.addEventListener('pause',vwSync);
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&vwEl.classList.contains('big'))vwEnlarge(false)});
+/* slide in after a moment; respect reduced motion (no autoplay there) */
+setTimeout(()=>{vwEl.classList.remove('in');
+  if(!matchMedia('(prefers-reduced-motion:reduce)').matches){const t=vwV.play();if(t&&t.catch)t.catch(()=>{})}
+  vwSync()},1400);
 
 /* ---------- Work / Projects ---------- */
 const WK=[
