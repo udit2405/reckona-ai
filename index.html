@@ -74,6 +74,7 @@ nav a.nl:hover,nav a.nl.active{color:var(--ink);background:var(--surface2)}
 .card .ic{width:40px;height:40px;display:grid;place-items:center;font-size:1.15rem;margin-bottom:14px;
   background:rgba(79,70,229,.08);border:1px solid rgba(79,70,229,.14);border-radius:10px}
 [data-theme="dark"] .card .ic{background:rgba(129,140,248,.10);border-color:rgba(129,140,248,.18)}
+.card .ic.ic-num{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:.82rem;color:var(--brand)}
 .pill{display:inline-block;font-size:.75rem;font-weight:600;padding:3px 10px;border-radius:999px;background:var(--surface2);color:var(--ink2);margin:2px 4px 2px 0}
 .pill.up{background:rgba(5,150,105,.10);color:var(--signal)}
 /* PRICING */
@@ -697,18 +698,18 @@ function reveal(){document.querySelectorAll('.reveal:not(.in)').forEach(el=>io.o
 
 /* ---------- Industries data ---------- */
 const industries=[
- ["🍽️","Restaurant / QSR","Local SEO + Zomato/Swiggy optimization, reels engine, WhatsApp ordering & feedback bot, review automation.","₹1.5L setup · ₹60K/mo"],
- ["🏥","Hospital / Clinic","Medical-grade website, doctor-profile SEO, appointment WhatsApp bot, reputation management, compliant content engine.","₹3L setup · ₹1L/mo"],
- ["🏭","Manufacturing / B2B","Corporate site + catalog, LinkedIn ABM, export SEO, RFQ-to-CRM automation, sales deck system.","₹3.5L setup · ₹1.2L/mo"],
- ["🎓","Education / Coaching","Admission funnel (ads + landing + WhatsApp), counselor CRM automation, YouTube engine, parent-comms bot.","₹2.5L setup · ₹1L/mo"],
- ["🏗️","Real Estate","Project microsites, lead engine, site-visit scheduler, stale-lead revival AI, RERA-compliant creatives.","₹3L setup · ₹1.25L/mo"],
- ["🛍️","Retail / D2C","Shopify build/rescue, performance ads, lifecycle flows, marketplace SEO, UGC engine.","₹4L setup · ₹1.5L/mo"],
- ["🏦","Finance / BFSI","Compliance-reviewed content, LinkedIn authority, lead scoring + KYC document AI.","₹4L setup · ₹1.75L/mo"],
- ["🚀","Startup (Series A–C)","Brand + site + pitch assets, founder LinkedIn, growth experiments squad, investor-update automation.","₹3L setup · ₹1.5L/mo"],
- ["🏪","SME Digital Starter","Website, Google Business Profile, 1 social channel, WhatsApp catalog + auto-replies.","₹1L setup · ₹40K/mo"],
- ["🏢","Enterprise AI Kickstart","AI readiness audit, 2 pilot automations, governance framework, executive training.","₹8L setup · ₹2L/mo"]];
-document.getElementById('industryGrid').innerHTML=industries.map(i=>
- `<div class="card reveal"><span class="ic">${i[0]}</span><h3>${i[1]}</h3><p style="font-size:.93rem">${i[2]}</p><p class="mono" style="margin-top:12px;color:var(--accent);font-size:.9rem">${i[3]}</p></div>`).join('');
+ ["Restaurant / QSR","Local SEO + Zomato/Swiggy optimization, reels engine, WhatsApp ordering & feedback bot, review automation.","₹1.5L setup · ₹60K/mo"],
+ ["Hospital / Clinic","Medical-grade website, doctor-profile SEO, appointment WhatsApp bot, reputation management, compliant content engine.","₹3L setup · ₹1L/mo"],
+ ["Manufacturing / B2B","Corporate site + catalog, LinkedIn ABM, export SEO, RFQ-to-CRM automation, sales deck system.","₹3.5L setup · ₹1.2L/mo"],
+ ["Education / Coaching","Admission funnel (ads + landing + WhatsApp), counselor CRM automation, YouTube engine, parent-comms bot.","₹2.5L setup · ₹1L/mo"],
+ ["Real Estate","Project microsites, lead engine, site-visit scheduler, stale-lead revival AI, RERA-compliant creatives.","₹3L setup · ₹1.25L/mo"],
+ ["Retail / D2C","Shopify build/rescue, performance ads, lifecycle flows, marketplace SEO, UGC engine.","₹4L setup · ₹1.5L/mo"],
+ ["Finance / BFSI","Compliance-reviewed content, LinkedIn authority, lead scoring + KYC document AI.","₹4L setup · ₹1.75L/mo"],
+ ["Startup (Series A–C)","Brand + site + pitch assets, founder LinkedIn, growth experiments squad, investor-update automation.","₹3L setup · ₹1.5L/mo"],
+ ["SME Digital Starter","Website, Google Business Profile, 1 social channel, WhatsApp catalog + auto-replies.","₹1L setup · ₹40K/mo"],
+ ["Enterprise AI Kickstart","AI readiness audit, 2 pilot automations, governance framework, executive training.","₹8L setup · ₹2L/mo"]];
+document.getElementById('industryGrid').innerHTML=industries.map((i,idx)=>
+ `<div class="card reveal"><span class="ic ic-num">${String(idx+1).padStart(2,'0')}</span><h3>${i[0]}</h3><p style="font-size:.93rem">${i[1]}</p><p class="mono" style="margin-top:12px;color:var(--accent);font-size:.9rem">${i[2]}</p></div>`).join('');
 
 /* ---------- Tools ---------- */
 const inr=n=>'₹'+Math.round(n).toLocaleString('en-IN');
