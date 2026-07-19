@@ -275,10 +275,21 @@ blockquote{border-left:2px solid var(--brand);padding-left:20px;font-family:Frau
   <div class="container">
     <div class="crumb">Home / Services</div>
     <section style="padding-top:28px">
-      <h1>Services</h1>
-      <p class="lead" style="max-width:640px;margin-top:14px">Every service below has a documented SOP, a fixed scope, published pricing, and a named pod lead. Prices ex-GST. Full detail in our <a href="#pricing">pricing</a>.</p>
+      <div class="eyebrow">Eight practices, published pricing</div>
+      <h1>Everything we ship,<br>with the <em>price on the tag</em>.</h1>
+      <p class="lead" style="max-width:660px;margin-top:18px">Most agencies make you sit through a discovery call to hear a number. Every service below has a documented SOP, a fixed scope, a published starting price, and a named lead accountable for it. Prices ex-GST; tier bundles in <a href="#pricing">pricing</a>.</p>
 
-      <div class="svc-head"><span class="cat">01</span><h2>Web — Design & Engineering</h2></div>
+      <div class="inc-strip reveal">
+        <div><span class="mono">01</span><b>Published pricing</b><p>Every line has a number. If it changes, the scope changed — and you approved it first.</p></div>
+        <div><span class="mono">02</span><b>Fixed scope</b><p>You know what ships, when, and what it costs before work begins. No drift.</p></div>
+        <div><span class="mono">03</span><b>One pod, not silos</b><p>Web, search, content and automation run as one team against one number.</p></div>
+        <div><span class="mono">04</span><b>Weekly demos</b><p>Working output shown every Friday. Progress you can see, not status decks.</p></div>
+      </div>
+
+      <p style="margin-top:34px" id="svcNav"></p>
+
+      <div class="svc-head" id="svc-01"><span class="cat">01</span><h2>Web — Design & Engineering</h2></div>
+      <p class="ind-tag">Your site is your hardest-working salesperson — or your most expensive brochure.</p>
       <p class="svc-sub">Sites built to convert, not just to exist. Every build ships with analytics, SEO foundations, and a CMS your team can run.</p>
       <table><tr><th>Service</th><th>What you get</th><th>Timeline</th><th>From</th></tr>
       <tr><td><b>Website Design & Development</b></td><td>Conversion-focused site on Next.js/Framer, CMS, analytics, 90+ PageSpeed</td><td>4–6 wks</td><td>₹2.5L</td></tr>
@@ -288,7 +299,8 @@ blockquote{border-left:2px solid var(--brand);padding-left:20px;font-family:Frau
       <tr><td><b>Maintenance & Hosting</b></td><td>8 change-hrs/mo, backups, 99.9% uptime, monthly report</td><td>ongoing</td><td>₹15K/mo</td></tr>
       <tr><td><b>Migration / Speed / Accessibility</b></td><td>Zero-SEO-loss migrations, Core Web Vitals to green, WCAG 2.2 AA</td><td>2–4 wks</td><td>₹60K</td></tr></table>
 
-      <div class="svc-head"><span class="cat">02</span><h2>SEO — Search Visibility</h2></div>
+      <div class="svc-head" id="svc-02"><span class="cat">02</span><h2>SEO — Search Visibility</h2></div>
+      <p class="ind-tag">Compounding traffic you own, not rented reach.</p>
       <p class="svc-sub">Compounding organic growth: technical health, content that matches intent, and authority that earns rankings.</p>
       <table><tr><th>Service</th><th>What you get</th><th>Timeline</th><th>From</th></tr>
       <tr><td><b>SEO Audit</b></td><td>120-point audit + prioritized 90-day roadmap (credited against retainer)</td><td>1 wk</td><td>₹50K</td></tr>
@@ -298,7 +310,8 @@ blockquote{border-left:2px solid var(--brand);padding-left:20px;font-family:Frau
       <tr><td><b>Enterprise SEO</b></td><td>10K+ page programs, log-file analysis, board reporting</td><td>monthly</td><td>₹2L/mo</td></tr>
       <tr><td><b>Link Building / Digital PR</b></td><td>6–15 DR-40+ placements/mo</td><td>monthly</td><td>₹50K/mo</td></tr></table>
 
-      <div class="svc-head"><span class="cat">03</span><h2>GEO — Generative Engine Optimization</h2><span class="pill up">Flagship</span></div>
+      <div class="svc-head" id="svc-03"><span class="cat">03</span><h2>GEO — Generative Engine Optimization</h2><span class="pill up">Flagship</span></div>
+      <p class="ind-tag">When buyers ask AI, be the answer it gives.</p>
       <p class="svc-sub">Getting you cited, recommended, and correctly described inside ChatGPT, Gemini, Claude, Perplexity and Google AI Overviews. Measured monthly with a 40-prompt visibility panel.</p>
       <table><tr><th>Service</th><th>What you get</th><th>Timeline</th><th>From</th></tr>
       <tr><td><b>GEO Audit & AI Visibility Score</b></td><td>40-prompt matrix × 4 engines, competitor share-of-voice, gap map</td><td>1–2 wks</td><td>₹75K</td></tr>
@@ -308,7 +321,8 @@ blockquote{border-left:2px solid var(--brand);padding-left:20px;font-family:Frau
       <tr><td><b>AI Monitoring & Reputation</b></td><td>Monthly re-score, hallucination alerts, correction playbooks</td><td>monthly</td><td>₹40K/mo</td></tr>
       <tr><td><b>AI Search Strategy (Advisory)</b></td><td>Executive roadmap + quarterly board reviews</td><td>3 wks</td><td>₹2.5L</td></tr></table>
 
-      <div class="svc-head"><span class="cat">04</span><h2>Social — Content & Community</h2></div>
+      <div class="svc-head" id="svc-04"><span class="cat">04</span><h2>Social — Content & Community</h2></div>
+      <p class="ind-tag">Authority built in public, on a calendar.</p>
       <p class="svc-sub">Authority-building content engines, run on a calendar your team approves once a month.</p>
       <table><tr><th>Service</th><th>What you get</th><th>From</th></tr>
       <tr><td><b>LinkedIn Engine</b></td><td>12–16 posts/mo, founder ghostwriting, carousels, engagement ops</td><td>₹50K/mo</td></tr>
@@ -316,7 +330,8 @@ blockquote{border-left:2px solid var(--brand);padding-left:20px;font-family:Frau
       <tr><td><b>YouTube Engine</b></td><td>2–4 edited videos/mo, thumbnails, SEO, shorts repurposing</td><td>₹60K/mo</td></tr>
       <tr><td><b>Full-stack Social</b></td><td>IG + LinkedIn + X/Threads + FB, unified calendar, 30+ assets/mo</td><td>₹1L/mo</td></tr></table>
 
-      <div class="svc-head"><span class="cat">05</span><h2>Performance — Paid Acquisition</h2></div>
+      <div class="svc-head" id="svc-05"><span class="cat">05</span><h2>Performance — Paid Acquisition</h2></div>
+      <p class="ind-tag">Every rupee of spend reports to revenue.</p>
       <p class="svc-sub">Full-funnel paid media with creative included, tracked to revenue — never to vanity clicks. You always own the ad accounts.</p>
       <table><tr><th>Service</th><th>What you get</th><th>Fee</th></tr>
       <tr><td><b>Google Ads</b></td><td>Search/PMax/YouTube, weekly optimization, call tracking</td><td>₹40K/mo + % of spend</td></tr>
@@ -325,7 +340,8 @@ blockquote{border-left:2px solid var(--brand);padding-left:20px;font-family:Frau
       <tr><td><b>Lead Gen System</b></td><td>Ads + landing + WhatsApp/CRM routing + nurture, one system</td><td>₹1.5L + ₹75K/mo</td></tr>
       <tr><td><b>CRO Program</b></td><td>Heatmaps, 2–4 A/B tests/mo, landing iterations</td><td>₹60K/mo</td></tr></table>
 
-      <div class="svc-head"><span class="cat">06</span><h2>Branding — Identity & Sales Assets</h2></div>
+      <div class="svc-head" id="svc-06"><span class="cat">06</span><h2>Branding — Identity & Sales Assets</h2></div>
+      <p class="ind-tag">Look like the company you're becoming.</p>
       <p class="svc-sub">Identity systems and sales assets that make the next conversation easier to win.</p>
       <table><tr><th>Service</th><th>What you get</th><th>From</th></tr>
       <tr><td><b>Logo & Identity</b></td><td>3 concepts, final marks, usage rules</td><td>₹1L</td></tr>
@@ -333,7 +349,8 @@ blockquote{border-left:2px solid var(--brand);padding-left:20px;font-family:Frau
       <tr><td><b>Pitch / Sales / Corporate Decks</b></td><td>Narrative + design, objection handling, leave-behind</td><td>₹80K</td></tr>
       <tr><td><b>Company Profile</b></td><td>8–12 pg print + digital</td><td>₹50K</td></tr></table>
 
-      <div class="svc-head"><span class="cat">07</span><h2>AI Automation — The Core Practice</h2></div>
+      <div class="svc-head" id="svc-07"><span class="cat">07</span><h2>AI Automation — The Core Practice</h2></div>
+      <p class="ind-tag">Hire software for the work no one should be doing.</p>
       <p class="svc-sub">Assistants and agents deployed to your cloud, documented, and handed over — with your team trained to run them.</p>
       <table><tr><th>Service</th><th>What you get</th><th>Timeline</th><th>From</th></tr>
       <tr><td><b>AI Readiness Audit</b></td><td>Process inventory, opportunity matrix with ₹ savings, 12-mo roadmap</td><td>2–3 wks</td><td>₹1.5L</td></tr>
@@ -344,8 +361,9 @@ blockquote{border-left:2px solid var(--brand);padding-left:20px;font-family:Frau
       <tr><td><b>Executive Dashboards</b></td><td>Live KPI cockpit + AI weekly commentary</td><td>3–5 wks</td><td>₹2L</td></tr>
       <tr><td><b>AI Employees (bundle)</b></td><td>3+ assistants, shared memory, SSO, audit logs, training</td><td>8–12 wks</td><td>₹10L</td></tr></table>
 
-      <div class="svc-head"><span class="cat">08</span><h2>Business — Consulting & Enablement</h2></div>
-      <p class="svc-sub">Strategy that ends in shipped systems, not shelfware decks.</p>
+      <div class="svc-head" id="svc-08"><span class="cat">08</span><h2>Business — Consulting & Enablement</h2></div>
+      <p class="ind-tag">Strategy that ends in shipped systems, not shelfware decks.</p>
+      <p class="svc-sub">Roadmaps, fractional AI leadership, and training that de-risk the transition — priced as projects, not open-ended consulting.</p>
       <table><tr><th>Service</th><th>What you get</th><th>From</th></tr>
       <tr><td><b>Digital Transformation Roadmap</b></td><td>Current-state audit, 18-mo roadmap, business case</td><td>₹3L</td></tr>
       <tr><td><b>AI Consulting Retainer</b></td><td>Fractional AI officer: strategy, vendor eval, governance</td><td>₹1.5L/mo</td></tr>
@@ -358,6 +376,12 @@ blockquote{border-left:2px solid var(--brand);padding-left:20px;font-family:Frau
         <details><summary>Who owns the code, accounts, and IP?</summary><p>You do. Full IP transfer on final payment; ad and analytics accounts are always created in your name.</p></details>
         <details><summary>How do you handle our data?</summary><p>Client-cloud deployment for AI systems, DPDP Act 2023-aligned handling, signed DPA, no training on your data, model costs passed through at actuals with a monthly cap.</p></details>
         <details><summary>What's the minimum engagement?</summary><p>Projects from ₹1L; retainers from ₹40K/mo (industry packages) with a 90-day minimum, 30-day notice after.</p></details>
+      </div>
+
+      <div class="banner reveal" style="margin-top:64px">
+        <h2>Want a scoped proposal in 48 hours?</h2>
+        <p style="max-width:520px;margin:12px auto 26px">Book a 30-minute call. You'll get three options at fixed prices — take one, or take the recommendations and run.</p>
+        <a class="btn" href="#book">Book a strategy call</a>
       </div>
     </section>
   </div>
@@ -852,6 +876,10 @@ function subscribe(e){e.preventDefault();
   sendToSheet('newsletter',{email:nlEmail.value});
   nlMsg.textContent=`✓ Subscribed — first issue of Applied Intelligence lands in ${nlEmail.value.split('@')[0]}'s inbox this fortnight.`;
   e.target.reset();return false}
+
+const svcNames=[["01","Web"],["02","SEO"],["03","GEO"],["04","Social"],["05","Performance"],["06","Branding"],["07","AI Automation"],["08","Consulting"]];
+document.getElementById('svcNav').innerHTML=svcNames.map(n=>
+ `<a class="pill" style="cursor:pointer" onclick="document.getElementById('svc-${n[0]}').scrollIntoView({behavior:'smooth',block:'start'})">${n[0]} · ${n[1]}</a>`).join('');
 
 route();
 </script>
