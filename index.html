@@ -232,9 +232,72 @@ blockquote{border-left:2px solid var(--brand);padding-left:20px;font-family:Frau
   .hero{padding:150px 0 80px}
   .stat{border-left:none;padding:4px 24px 4px 0}
 }
+/* WORK / PROJECTS */
+@property --wk-ang{syntax:'<angle>';initial-value:0deg;inherits:false}
+.wk-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:44px}
+.wk-stat{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px 22px;box-shadow:var(--shadow)}
+.wk-stat b{display:block;font-family:Fraunces,serif;font-weight:500;font-size:2.1rem;line-height:1.15;color:var(--ink)}
+.wk-stat span{font-size:.8rem;color:var(--ink2);line-height:1.4;display:block;margin-top:2px}
+.wk-filters{display:flex;flex-wrap:wrap;gap:8px;margin:38px 0 24px}
+.wk-filter{font-family:inherit;font-size:.84rem;font-weight:600;padding:8px 16px;border-radius:999px;border:1px solid var(--border);background:var(--surface);color:var(--ink2);cursor:pointer;transition:color .2s,background .2s,border-color .2s,transform .2s}
+.wk-filter:hover{border-color:var(--ink2);color:var(--ink);transform:translateY(-1px)}
+.wk-filter.on{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.wk-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;align-items:start}
+.wk-card{position:relative;background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:28px;box-shadow:var(--shadow);cursor:pointer;
+  transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(var(--ty,0px));
+  transition:transform .3s cubic-bezier(.22,1,.36,1),box-shadow .3s,opacity .3s}
+.wk-card:hover{--ty:-5px;box-shadow:0 2px 4px rgba(22,21,15,.04),0 24px 48px rgba(22,21,15,.10)}
+.wk-card.out{opacity:0;transform:scale(.94);pointer-events:none}
+.wk-card.open{grid-column:1/-1;cursor:default;--rx:0deg;--ry:0deg;--ty:0px}
+/* mouse-follow glow */
+.wk-card::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .3s;
+  background:radial-gradient(340px circle at var(--mx,50%) var(--my,50%),color-mix(in srgb,var(--brand) 9%,transparent),transparent 65%)}
+.wk-card:hover::before,.wk-card.open::before{opacity:1}
+/* animated conic border */
+.wk-card::after{content:"";position:absolute;inset:-1px;border-radius:21px;padding:1.5px;pointer-events:none;opacity:0;transition:opacity .35s;
+  background:conic-gradient(from var(--wk-ang),transparent 0 30%,var(--brand) 50%,transparent 70% 100%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;
+  animation:wkSpin 3.6s linear infinite}
+.wk-card:hover::after,.wk-card.open::after{opacity:.9}
+@keyframes wkSpin{to{--wk-ang:360deg}}
+.wk-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+.wk-top .ic{margin-bottom:0}
+.wk-x{width:36px;height:36px;border-radius:999px;border:1px solid var(--border);background:var(--surface2);color:var(--ink);font-size:1.15rem;line-height:1;cursor:pointer;display:grid;place-items:center;flex:none;transition:transform .35s,background .2s,color .2s}
+.wk-card:hover .wk-x{border-color:var(--ink2)}
+.wk-card.open .wk-x{transform:rotate(45deg);background:var(--ink);color:var(--bg)}
+.wk-impact{font-size:.95rem;margin:4px 0 14px}
+.wk-chips{margin-bottom:14px}
+.wk-chips .pill{font-family:'JetBrains Mono',monospace;font-size:.66rem;padding:3px 10px}
+.wk-outcome{font-size:.87rem;color:var(--signal);font-weight:600}
+.wk-detail{display:grid;grid-template-rows:0fr;transition:grid-template-rows .55s cubic-bezier(.22,1,.36,1)}
+.wk-card.open .wk-detail{grid-template-rows:1fr}
+.wk-detail>div{overflow:hidden}
+.wk-block{opacity:0;transform:translateY(14px);transition:opacity .4s,transform .4s;padding-top:18px}
+.wk-card.open .wk-block{opacity:1;transform:none}
+.wk-block h4{font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--brand);margin-bottom:6px}
+.wk-block p{font-size:.93rem}
+.wk-arrow{text-align:center;color:var(--ink2);font-size:.85rem;padding-top:12px;opacity:0;transition:opacity .4s}
+.wk-card.open .wk-arrow{opacity:.55}
+.wk-metrics{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+.wk-metric{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:10px 16px;font-size:.82rem;color:var(--ink2)}
+.wk-metric b{display:block;font-family:Fraunces,serif;font-size:1.25rem;font-weight:500;color:var(--ink)}
+.wk-mock{border:1px solid var(--border);border-radius:14px;overflow:hidden;background:var(--bg);margin-top:6px}
+.wk-mock .mbar{display:flex;gap:6px;padding:10px 14px;border-bottom:1px solid var(--border)}
+.wk-mock .mbar i{width:9px;height:9px;border-radius:99px;background:var(--border)}
+.wk-mock .mbody{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:10px;padding:16px}
+.wk-mock .blk{border-radius:8px;background:linear-gradient(100deg,var(--surface2) 30%,var(--border) 50%,var(--surface2) 70%);background-size:200% 100%;animation:wkShimmer 2.4s linear infinite}
+@keyframes wkShimmer{to{background-position:-200% 0}}
+.wk-tl{display:flex;flex-wrap:wrap;margin-top:8px}
+.wk-tl div{flex:1;min-width:140px;padding:10px 18px 0 0;border-top:2px solid var(--border);font-size:.8rem;color:var(--ink2);position:relative;opacity:0;transform:translateX(-12px);transition:opacity .45s,transform .45s}
+.wk-card.open .wk-tl div{opacity:1;transform:none}
+.wk-tl div::before{content:"";position:absolute;top:-5px;left:0;width:8px;height:8px;border-radius:99px;background:var(--brand)}
+.wk-tl b{display:block;color:var(--ink);font-size:.8rem;margin-bottom:2px}
+@media(max-width:900px){.wk-grid{grid-template-columns:1fr}.wk-stats{grid-template-columns:repeat(2,1fr)}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}
   .hero-media video,.pagehead-media video{display:none}
-  .reveal{opacity:1;transform:none}}
+  .reveal{opacity:1;transform:none}
+  .wk-card{transform:none}
+  .wk-card:not(.open) .wk-detail{display:none}}
 </style>
 </head>
 <body>
@@ -266,7 +329,7 @@ blockquote{border-left:2px solid var(--brand);padding-left:20px;font-family:Frau
       <a class="btn" href="#tools" onclick="setTimeout(()=>document.getElementById('geo-tool')?.scrollIntoView(),80)">Check your AI Visibility Score — free</a>
       <a class="btn ghost" href="#book" style="margin-left:10px">Book a strategy call</a>
       <div class="stat-row">
-        <div class="stat"><b>99%</b><span>accuracy — automated certificate generation (SKF Bearings)</span></div>
+        <div class="stat"><b>99%</b><span>accuracy — automated certificate generation (Fortune 500 manufacturer)</span></div>
         <div class="stat"><b>5</b><span>client websites shipped</span></div>
         <div class="stat"><b>Daily</b><span>ops reporting automated in Power BI</span></div>
         <div class="stat"><b>100%</b><span>founder-reviewed — every project, no hand-offs</span></div>
@@ -318,7 +381,7 @@ blockquote{border-left:2px solid var(--brand);padding-left:20px;font-family:Frau
       <div class="eyebrow">Proof</div>
       <h2>What we've actually shipped</h2>
       <div class="grid g3" style="margin-top:26px">
-        <div class="card reveal"><span class="pill">Manufacturing · SKF Bearings</span><h3 style="margin-top:10px">99% accurate certificate automation</h3><p>Replaced manual test & warranty certificate creation with an automated generation pipeline — 99% accuracy, hours of clerical work removed per batch.</p></div>
+        <div class="card reveal"><span class="pill">Manufacturing · Fortune 500 Client</span><h3 style="margin-top:10px">99% accurate certificate automation</h3><p>Replaced manual test & warranty certificate creation with an automated generation pipeline — 99% accuracy, hours of clerical work removed per batch.</p></div>
         <div class="card reveal"><span class="pill">Operations · Internal</span><h3 style="margin-top:10px">Daily ops reporting, automated</h3><p>Built a Power BI report that pulls day-to-day operational data automatically — no more manual spreadsheet compilation for daily updates.</p></div>
         <div class="card reveal"><span class="pill">Web · 5 clients</span><h3 style="margin-top:10px">Client websites shipped</h3><p>Designed and built production websites end-to-end for small business clients — design, build, deploy.</p></div>
       </div>
@@ -501,50 +564,24 @@ blockquote{border-left:2px solid var(--brand);padding-left:20px;font-family:Frau
   </div>
 </div>
 
-<!-- ══════════ WORK / CASE STUDIES ══════════ -->
+<!-- ══════════ WORK / PROJECTS ══════════ -->
 <div class="page" id="p-work">
   <div class="container">
-    <div class="crumb">Home / Case Studies</div>
+    <div class="crumb">Home / Work</div>
     <section style="padding-top:28px">
-      <h1>Real work & what we can build</h1>
+      <div class="eyebrow">Work</div>
+      <h1>Systems that pay<br>for themselves.</h1>
+      <p class="lead" style="max-width:640px;margin-top:14px">AI platforms, automations and digital products — built to remove cost, save hours and grow revenue. Click any project to see the problem, the build, and the business impact.</p>
 
-      <h2 style="margin-top:8px">Real work</h2>
-      <div class="grid g2" style="margin-top:20px">
-        <div class="card"><span class="pill">Manufacturing · SKF Bearings</span><h3 style="margin-top:10px">Automated certificate generation</h3>
-          <p><b>Problem:</b> test and warranty certificates generated manually per batch — slow, error-prone clerical work.<br>
-          <b>Approach:</b> built an automated generation pipeline that produces both certificate types directly from batch data.<br>
-          <b>Result:</b> 99% accuracy, hours of manual work removed per batch.</p></div>
-        <div class="card"><span class="pill">Operations · Internal</span><h3 style="margin-top:10px">Automated Power BI reporting</h3>
-          <p><b>Problem:</b> day-to-day operational updates were compiled manually into spreadsheets.<br>
-          <b>Approach:</b> built a Power BI report that automatically pulls and refreshes the underlying data.<br>
-          <b>Result:</b> daily updates with no manual compilation.</p></div>
-        <div class="card"><span class="pill">Web · Small business clients</span><h3 style="margin-top:10px">Client websites, design to deploy</h3>
-          <p><b>Problem:</b> small businesses needed a professional web presence with no in-house dev team.<br>
-          <b>Approach:</b> designed, built, and deployed production sites end-to-end.<br>
-          <b>Result:</b> 4–5 client websites shipped.</p></div>
+      <div class="wk-stats reveal">
+        <div class="wk-stat"><b data-n="20" data-suf="+">0</b><span>Projects shipped</span></div>
+        <div class="wk-stat"><b data-n="50" data-suf="+">0</b><span>Automations built</span></div>
+        <div class="wk-stat"><b data-n="1000" data-suf="+">0</b><span>Hours saved for clients</span></div>
+        <div class="wk-stat"><b data-n="10" data-suf="+">0</b><span>Industries served</span></div>
       </div>
 
-      <h2 style="margin-top:52px">What we can build</h2>
-      <p class="lead" style="max-width:640px;margin-top:10px">Illustrative examples of how we'd approach common growth/automation problems in each industry. These are capability demonstrations, not completed client engagements — the numbers below are realistic targets for the approach, not reported results.</p>
-      <div class="grid g2" style="margin-top:24px">
-        <div class="card"><span class="pill">Illustrative · D2C / Wellness</span><h3 style="margin-top:10px">Fixing a stalled Shopify store</h3>
-          <p><b>Typical problem:</b> ROAS stuck under 2, low repeat-purchase rate, founder still running ads manually.<br>
-          <b>Our approach:</b> CRO-focused store rebuild, creative-matrix Meta ads, WhatsApp + email lifecycle flows, review engine.<br>
-          <b>What "good" looks like:</b> ROAS 4+, repeat rate above 25%, CAC down 30–40% within 2–3 quarters.</p></div>
-        <div class="card"><span class="pill">Illustrative · B2B Manufacturing</span><h3 style="margin-top:10px">Getting cited in AI answers</h3>
-          <p><b>Typical problem:</b> a manufacturer or exporter invisible when buyers ask ChatGPT/Perplexity for suppliers.<br>
-          <b>Our approach:</b> GEO program — entity & knowledge-graph build, citable data assets, digital PR to AI-crawled trade sources.<br>
-          <b>What "good" looks like:</b> citations across most category prompts within 2 quarters, measurable RFQ lift.</p></div>
-        <div class="card"><span class="pill">Illustrative · Healthcare</span><h3 style="margin-top:10px">Automating patient WhatsApp + pre-auth</h3>
-          <p><b>Typical problem:</b> high daily WhatsApp query volume handled manually, slow insurance pre-auth turnaround.<br>
-          <b>Our approach:</b> appointment + triage WhatsApp agent with human handoff, document AI for pre-auth extraction.<br>
-          <b>What "good" looks like:</b> response time down from hours to minutes, pre-auth turnaround cut from days to hours.</p></div>
-        <div class="card"><span class="pill">Illustrative · Real Estate</span><h3 style="margin-top:10px">Unifying a leaky lead funnel</h3>
-          <p><b>Typical problem:</b> ad spend leaking across portals, brokers, and sales teams with no single view of cost-per-visit.<br>
-          <b>Our approach:</b> project microsites, CRM routing with AI scoring, WhatsApp site-visit scheduler, stale-lead revival agent.<br>
-          <b>What "good" looks like:</b> meaningfully lower cost-per-site-visit, full attribution from lead to sale.</p></div>
-      </div>
-      <p class="notice">"Real work" reflects actual completed projects. "What we can build" is illustrative — not real client names, figures, or testimonials.</p>
+      <div class="wk-filters" id="wkFilters" role="tablist" aria-label="Filter projects"></div>
+      <div class="wk-grid" id="wkGrid"></div>
     </section>
   </div>
 </div>
@@ -961,7 +998,7 @@ const indExtra={
   ["Web",[["Enterprise Corporate Site","Product catalogue, certifications, plant capability — the site buyers audit before contacting you","₹8L"],["Website Design & Development","Leaner build for single-plant and mid-size manufacturers","₹2.5L"],["Migration / Speed / Accessibility","Fix a slow or outdated site without losing existing Google standing","₹60K"]]],
   ["Search & AI visibility",[["Technical SEO","Crawl, schema and architecture fixes so your catalogue can rank at all","₹1L"],["Content SEO","Specification, application and comparison pages that match how buyers search","₹60K/mo"],["GEO Audit & AI Visibility Score","See whether AI names you when buyers ask for suppliers in your category","₹75K"],["Entity & Knowledge Graph","Make your company machine-legible so AI engines cite you correctly","₹1.5L"],["AI Citation Strategy","Publish citable data and specs that AI engines quote back to buyers","₹1L/mo"]]],
   ["Content & demand",[["LinkedIn Engine","Founder and company authority where procurement heads actually research","₹50K/mo"],["LinkedIn Ads","Account-based targeting of specific buyer titles and companies","₹50K/mo + % spend"]]],
-  ["Automation",[["Document Processing","Test certificates, warranty documents and QC paperwork generated automatically — the work we delivered for SKF Bearings at 99% accuracy","₹2.5L"],["Sales Assistant","RFQ capture, qualification and CRM routing so enquiries stop dying in inboxes","₹2L–₹7L"],["Executive Dashboards","Live production, dispatch and enquiry reporting","₹2L"]]],
+  ["Automation",[["Document Processing","Test certificates, warranty documents and QC paperwork generated automatically — the work we delivered for a Fortune 500 manufacturing client at 99% accuracy","₹2.5L"],["Sales Assistant","RFQ capture, qualification and CRM routing so enquiries stop dying in inboxes","₹2L–₹7L"],["Executive Dashboards","Live production, dispatch and enquiry reporting","₹2L"]]],
   ["Sales assets",[["Company Profile","The credibility document for tenders, exports and distributor onboarding","₹50K"],["Pitch / Sales / Corporate Decks","Consistent, persuasive collateral across every rep","₹80K"]]]],
  outcomes:["Found by buyers in both Google and AI answers","RFQs captured, qualified and routed automatically","Certificate and QC paperwork generated instead of typed","Consistent sales collateral across the team"],
  plan:[["Days 1–14","Technical SEO fixes, GEO baseline scored, RFQ capture wired to CRM."],["Days 15–45","Catalogue and specification pages published, entity build underway, LinkedIn engine live."],["Days 46–90","Document automation in production, citation assets published, AI visibility re-scored."]]},
@@ -1215,6 +1252,192 @@ function subscribe(e){e.preventDefault();
   sendToSheet('newsletter',{email:nlEmail.value});
   nlMsg.textContent=`✓ Subscribed — first issue of Applied Intelligence lands in ${nlEmail.value.split('@')[0]}'s inbox this fortnight.`;
   e.target.reset();return false}
+
+/* ---------- Work / Projects ---------- */
+const WK=[
+{ic:"📊",ind:"Internal AI Platform",tags:["AI","Automation"],t:"AI Portfolio Management System",
+ one:"One dashboard for leadership to see every project, KPI, owner and timeline — with AI writing the summary.",
+ tech:["Claude","Python","Supabase","JavaScript","Cloud"],out:"Manual reporting effort cut across the leadership team.",
+ prob:"Project status lived in decks, spreadsheets and people's heads. Leadership burned hours every week chasing updates and reconciling versions before every review meeting.",
+ sol:"An AI-powered portfolio platform: live project tracking, KPI dashboards, owner and timeline views, and AI-generated executive summaries so leadership reads one page instead of ten trackers.",
+ stack:"Claude for AI summaries, Python services on cloud, Supabase for data, a JavaScript dashboard front-end.",
+ met:[["1","source of truth for all projects"],["AI","summaries written automatically"],["Hrs/week","of status-chasing removed"]],
+ tl:[["Week 1","Audit of existing trackers & KPIs"],["Weeks 2–3","Dashboard + data model build"],["Week 4","AI summaries & rollout"],["Ongoing","Operate & refine"]]},
+{ic:"🎓",ind:"Learning Platform",tags:["AI","Consulting"],t:"Enterprise AI Adoption Platform",
+ one:"Department-wise GenAI training that turns 'we should use AI' into employees who actually do.",
+ tech:["GPT","Gemini","JavaScript","Firebase","Cloud"],out:"AI adoption accelerated across every department.",
+ prob:"The company had AI licences but no adoption — employees didn't know which tasks AI could take off their desk, and generic training didn't map to their actual jobs.",
+ sol:"An adoption platform with department-specific tracks — Sales, HR, Marketing, Operations, Finance — practical GenAI use cases, interactive certifications, learning dashboards and progress tracking for leadership.",
+ stack:"GPT and Gemini for in-course exercises, Firebase for auth and progress data, a JavaScript learning front-end.",
+ met:[["5","department tracks live"],["Certs","interactive, per module"],["Live","adoption dashboard for leadership"]],
+ tl:[["Week 1","Use-case mapping per department"],["Weeks 2–4","Platform & content build"],["Week 5","Pilot cohort"],["Ongoing","New modules quarterly"]]},
+{ic:"💬",ind:"Customer Support",tags:["AI","Automation"],t:"AI Chatbots for Business",
+ one:"Chatbots that qualify leads, answer FAQs and dig through SOPs — on WhatsApp and the website, 24/7.",
+ tech:["Claude","OpenAI API","Node.js","WhatsApp","Cloud"],out:"Routine queries answered instantly, without adding headcount.",
+ prob:"Customer questions, employee queries and internal 'where is that SOP?' messages all landed on the same few people — slow answers, dropped leads, interrupted work.",
+ sol:"Intelligent chatbots trained on the business's own knowledge base: lead qualification, FAQ handling, internal SOP assistant, document search — integrated into WhatsApp and the website.",
+ stack:"Claude and OpenAI APIs over a document knowledge base, Node.js middleware, WhatsApp Business API and website widgets.",
+ met:[["24/7","instant first response"],["Leads","qualified before a human joins"],["1","assistant for staff SOP questions"]],
+ tl:[["Week 1","Knowledge base assembly"],["Week 2","Bot build & tone tuning"],["Week 3","WhatsApp + site integration"],["Ongoing","Retraining on new docs"]]},
+{ic:"🏋️",ind:"Fitness Industry",tags:["Web","Marketing"],t:"Complete Digital Growth Platform",
+ one:"A fitness company's entire online customer-acquisition funnel — built end to end by one team.",
+ tech:["HTML","CSS","JavaScript","SEO","Ads","CRM","WhatsApp"],out:"The whole acquisition funnel — traffic to member — runs online.",
+ prob:"A growing fitness brand had no coherent digital presence: no funnel, scattered ads, leads dying in DMs, zero attribution on what marketing actually worked.",
+ sol:"The complete ecosystem: website and landing pages, SEO, ad campaigns, content, lead capture, WhatsApp automation, email automation, CRM integration, analytics and conversion tracking.",
+ stack:"Hand-built site and landing pages, Meta/Google ads, WhatsApp automation flows, CRM and analytics wiring end to end.",
+ met:[["Full","funnel: click → lead → member"],["Auto","WhatsApp + email follow-up"],["Tracked","every rupee of ad spend"]],
+ tl:[["Weeks 1–2","Site & landing pages"],["Week 3","Tracking + CRM wiring"],["Week 4","Campaigns live"],["Ongoing","Optimise & report"]]},
+{ic:"🧭",ind:"Consulting",tags:["Web","Marketing","Consulting"],t:"Consulting Company Digital Presence",
+ one:"Brand, website and lead engine for a consulting firm — from zero online presence to inbound pipeline.",
+ tech:["HTML","CSS","JavaScript","SEO","CRM","Automation"],out:"A credible online presence that generates inbound leads.",
+ prob:"The firm won work purely on referrals — no site, no content, no way for a prospect who heard the name to verify credibility or reach out.",
+ sol:"Full digital presence: brand identity, website, SEO, content strategy, lead generation, marketing automation, CRM and analytics — designed to convert reputation into pipeline.",
+ stack:"Custom-built website, on-page and technical SEO, automated lead routing into CRM, analytics on every enquiry path.",
+ met:[["0→1","online presence, launched"],["Inbound","leads captured & routed"],["Brand","identity system delivered"]],
+ tl:[["Week 1","Brand & positioning"],["Weeks 2–3","Website & SEO build"],["Week 4","Lead automation live"],["Ongoing","Content engine"]]},
+{ic:"🏭",ind:"Manufacturing",tags:["Automation","Manufacturing"],t:"Manufacturing Automation Suite",
+ one:"Certificates, approvals, inventory and reports — the paperwork layer of a factory, automated.",
+ tech:["Python","Apps Script","SQL","Automation","Email"],out:"Hours of repetitive manual work eliminated every week.",
+ prob:"Skilled staff at manufacturing companies — including a Fortune 500 client — spent hours on clerical work: test certificates, approval chains, inventory sheets, consolidated reports, all manual and error-prone.",
+ sol:"A suite of workflow automations: certificate generation (99% accuracy), document generation, approval workflows, inventory tracking, data consolidation, report automation and email notifications.",
+ stack:"Python generation pipelines, Apps Script glue, SQL data consolidation, automated email delivery.",
+ met:[["99%","certificate accuracy"],["Hrs/week","of clerical work removed"],["6+","workflows automated"]],
+ tl:[["Week 1","Workflow mapping"],["Weeks 2–3","Automation build"],["Week 4","Parallel-run validation"],["Ongoing","New workflows added"]]},
+{ic:"🧑‍💼",ind:"Human Resources",tags:["Automation","HR"],t:"HR Automation Platform",
+ one:"HR ran on spreadsheets. Now attendance, leave, records and reports run themselves.",
+ tech:["Apps Script","Python","Excel","Automation","Notifications"],out:"Repetitive HR operations reduced significantly.",
+ prob:"Attendance, employee records, leave balances and performance logs lived in disconnected spreadsheets — every report was a manual copy-paste job and errors crept in monthly.",
+ sol:"HR automation tools replacing the spreadsheet mess with AI workflows: attendance, employee records, leave tracking, performance logs, automated Excel reporting and notifications.",
+ stack:"Apps Script and Python workflows over the existing Excel/Sheets data, with automated notifications to staff and managers.",
+ met:[["Auto","attendance & leave tracking"],["1-click","monthly HR reports"],["Fewer","manual errors in records"]],
+ tl:[["Week 1","Process & data audit"],["Weeks 2–3","Workflow automation"],["Week 4","Handover & training"],["Ongoing","Support"]]},
+{ic:"📈",ind:"Business Intelligence",tags:["Automation","AI"],t:"Executive Reporting Automation",
+ one:"Leadership gets dashboards, charts and even presentations — generated automatically, every day.",
+ tech:["Power BI","Python","SQL","Excel","Email"],out:"Leadership receives reports automatically every day.",
+ prob:"Daily and weekly business reports were compiled by hand from Excel exports — late, inconsistent, and consuming analyst hours that should have gone into actual analysis.",
+ sol:"Converted manual Excel reporting into automated pipelines: daily and weekly reports, email summaries, KPI dashboards, charts and auto-generated presentations for leadership.",
+ stack:"Power BI dashboards fed by Python/SQL pipelines, scheduled email summaries and auto-built decks.",
+ met:[["Daily","reports, zero manual effort"],["Auto","generated presentations"],["On-time","every morning, no chasing"]],
+ tl:[["Week 1","Report inventory & sources"],["Week 2","Pipeline build"],["Week 3","Dashboards & scheduling"],["Ongoing","New KPIs on request"]]},
+{ic:"🔍",ind:"FMCG",tags:["AI","Consulting"],t:"GenAI Awareness & Audit Program",
+ one:"An enterprise GenAI audit that ended in a roadmap, not a slide deck on a shelf.",
+ tech:["Claude","GPT","Google AI","Workshops"],out:"A clear, prioritised AI implementation roadmap.",
+ prob:"An FMCG enterprise knew AI mattered but had no honest picture of where it stood — which departments were ready, what to automate first, and what the risks were.",
+ sol:"A full GenAI audit and readiness assessment: current AI maturity, department-by-department analysis, automation opportunity mapping, risk assessment, training roadmap and executive recommendations.",
+ stack:"Hands-on evaluation across Claude, GPT and Google AI tooling, structured department interviews, executive workshop delivery.",
+ met:[["Dept-wise","readiness scores"],["Ranked","automation opportunities"],["1","actionable roadmap delivered"]],
+ tl:[["Week 1","Department interviews"],["Week 2","Maturity & risk assessment"],["Week 3","Roadmap & exec workshop"],["Optional","Implementation phase"]]},
+{ic:"🍽️",ind:"Food Tech",tags:["Web","Food"],t:"Restaurant Ordering Platform",
+ one:"QR ordering to kitchen dashboard to payment — a restaurant's full operations in one system.",
+ tech:["JavaScript","Node.js","Firebase","Payments"],out:"Orders flow from table to kitchen with no paper and no shouting.",
+ prob:"Order-taking was manual: waiters relaying to the kitchen, billing errors, no view of inventory, and zero data on what sells.",
+ sol:"A complete restaurant management system: QR-code ordering, kitchen dashboard, live order tracking, inventory, payments, admin panel and reports.",
+ stack:"JavaScript front-end, Node.js and Firebase backend, integrated payment gateway.",
+ met:[["QR","ordering, straight to kitchen"],["Live","order & inventory tracking"],["Reports","on what actually sells"]],
+ tl:[["Weeks 1–2","Core ordering & kitchen flow"],["Week 3","Payments & inventory"],["Week 4","Pilot in service"],["Ongoing","Feature additions"]]},
+{ic:"🐾",ind:"Consumer Tech",tags:["Web"],t:"Pet Care Marketplace",
+ one:"Booking, GPS-tracked walks and food delivery subscriptions — a pet-care business, productised.",
+ tech:["JavaScript","Node.js","Firebase","GPS","Payments"],out:"A bookable, trackable, subscription-ready service platform.",
+ prob:"Pet walking and food delivery ran on phone calls and trust — no booking system, no proof-of-service, no recurring revenue mechanics.",
+ sol:"An online marketplace: service booking, delivery management, subscriptions, GPS tracking of walks, payments and notifications.",
+ met:[["GPS","proof of every walk"],["Subs","recurring revenue built in"],["Auto","booking & notifications"]],
+ stack:"JavaScript app with Node.js/Firebase backend, GPS tracking, payment gateway and push notifications.",
+ tl:[["Weeks 1–2","Booking & payments"],["Week 3","GPS tracking & subs"],["Week 4","Launch"],["Ongoing","Growth features"]]},
+{ic:"🛒",ind:"Retail",tags:["Web","Retail","Marketing"],t:"E-Commerce Websites",
+ one:"Multiple conversion-optimised online stores — payments, inventory, coupons, analytics, done.",
+ tech:["HTML","CSS","JavaScript","Payments","SEO","Analytics"],out:"Stores that are built to convert, not just to exist.",
+ prob:"Retailers needed to sell online but off-the-shelf stores leaked conversions — slow pages, clumsy checkout, no tracking, no marketing hooks.",
+ sol:"Multiple e-commerce builds optimised for conversion: payment gateway, inventory, coupons, SEO, analytics, admin dashboard and marketing integrations.",
+ stack:"Custom storefronts with integrated payments, inventory and coupon engines, SEO and analytics wired from day one.",
+ met:[["CRO","first checkout design"],["Full","admin & inventory control"],["Wired","for ads & email from day 1"]],
+ tl:[["Weeks 1–2","Store & checkout build"],["Week 3","Payments & inventory"],["Week 4","SEO, analytics, launch"],["Ongoing","CRO iterations"]]},
+{ic:"🧠",ind:"Marketing AI",tags:["AI","Marketing"],t:"AI Content Reporting Software",
+ one:"Software that reads your marketing content and tells you — automatically — what to fix.",
+ tech:["Claude","OpenAI API","Python","SEO","Cloud"],out:"Actionable content reports without an analyst in the loop.",
+ prob:"Marketing teams produced content constantly but reviewed it rarely — no consistent scoring, no SEO feedback loop, insights trapped in ad-hoc audits.",
+ sol:"AI software that automatically analyses marketing content and generates actionable reports: content scoring, SEO analysis, performance insights, recommendations and executive summaries.",
+ stack:"Claude and OpenAI models for analysis and scoring, Python pipeline, cloud-hosted with scheduled report delivery.",
+ met:[["Auto","content scoring on every piece"],["SEO","gaps flagged with fixes"],["Exec","summaries, no analyst hours"]],
+ tl:[["Week 1","Scoring rubric & pipeline"],["Week 2","SEO & insights modules"],["Week 3","Reports & scheduling"],["Ongoing","Model tuning"]]}];
+const WK_FILTERS=["All","AI","Automation","Web","Marketing","Manufacturing","HR","Consulting","Food","Retail"];
+const wkGrid=document.getElementById('wkGrid'),wkFbar=document.getElementById('wkFilters');
+const wkRM=matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+function wkCard(p,i){
+ const block=(h,b,d)=>`<div class="wk-block" style="transition-delay:${wkRM?0:d}s"><h4>${h}</h4>${b}</div>`;
+ const arrow=`<div class="wk-arrow">↓</div>`;
+ return `<article class="wk-card out" data-tags="${p.tags.join(' ')}">
+  <div class="wk-top"><div style="display:flex;align-items:center;gap:12px"><div class="ic">${p.ic}</div><span class="pill">${p.ind}</span></div>
+   <button class="wk-x" aria-expanded="false" aria-label="Toggle project details">+</button></div>
+  <h3>${p.t}</h3>
+  <p class="wk-impact">${p.one}</p>
+  <div class="wk-chips">${p.tech.map(c=>`<span class="pill">${c}</span>`).join('')}</div>
+  <p class="wk-outcome">↳ ${p.out}</p>
+  <div class="wk-detail"><div>
+   ${block('The problem',`<p>${p.prob}</p>`,.1)}${arrow}
+   ${block('What we built',`<p>${p.sol}</p>`,.17)}${arrow}
+   ${block('Technology stack',`<p>${p.stack}</p>`,.24)}${arrow}
+   ${block('Business impact',`<div class="wk-metrics">${p.met.map(m=>`<div class="wk-metric"><b>${m[0]}</b>${m[1]}</div>`).join('')}</div>`,.31)}${arrow}
+   ${block('A look inside',`<div class="wk-mock"><div class="mbar"><i></i><i></i><i></i></div>
+     <div class="mbody">${[64,40,52,34,58,46].map((h,j)=>`<div class="blk" style="height:${h}px;grid-row:${j<3?1:2}"></div>`).join('')}</div></div>
+     <p style="font-size:.78rem;margin-top:8px">Representative dashboard mockup — client data stays confidential.</p>`,.38)}${arrow}
+   ${block('Timeline',`<div class="wk-tl">${p.tl.map((s,j)=>`<div style="transition-delay:${wkRM?0:.45+j*.08}s"><b>${s[0]}</b>${s[1]}</div>`).join('')}</div>`,.45)}
+   <div class="wk-block" style="transition-delay:${wkRM?0:.55}s;display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+     <a class="btn sm" href="#book">Need something similar? →</a>
+     <span style="font-size:.85rem;color:var(--ink2)">Scoped in one call · shipped in weeks</span></div>
+  </div></div></article>`}
+
+if(wkGrid){
+ wkFbar.innerHTML=WK_FILTERS.map((f,i)=>`<button class="wk-filter${i?'':' on'}" data-f="${f}">${f}</button>`).join('');
+ wkGrid.innerHTML=WK.map(wkCard).join('');
+
+ const wkEnter=()=>[...wkGrid.children].forEach((c,i)=>{
+   if(c.style.display==='none')return;
+   setTimeout(()=>c.classList.remove('out'),wkRM?0:60+i*50)});
+ wkEnter();
+
+ wkFbar.addEventListener('click',e=>{
+   const b=e.target.closest('.wk-filter');if(!b)return;
+   wkFbar.querySelector('.on')?.classList.remove('on');b.classList.add('on');
+   const f=b.dataset.f;
+   [...wkGrid.children].forEach(c=>{c.classList.add('out');wkClose(c)});
+   setTimeout(()=>{
+     [...wkGrid.children].forEach(c=>{c.style.display=(f==='All'||c.dataset.tags.split(' ').includes(f))?'':'none'});
+     wkEnter()},wkRM?0:280)});
+
+ const wkClose=c=>{c.classList.remove('open');const x=c.querySelector('.wk-x');x.setAttribute('aria-expanded','false')};
+ wkGrid.addEventListener('click',e=>{
+   if(e.target.closest('a'))return;
+   const c=e.target.closest('.wk-card');if(!c)return;
+   const was=c.classList.contains('open');
+   wkGrid.querySelectorAll('.wk-card.open').forEach(wkClose);
+   if(!was){c.classList.add('open');c.querySelector('.wk-x').setAttribute('aria-expanded','true');
+     setTimeout(()=>c.scrollIntoView({behavior:wkRM?'auto':'smooth',block:'nearest'}),120)}});
+
+ // tilt + mouse-follow glow (fine pointers only, never while expanded)
+ const wkTilt=matchMedia('(pointer:fine)').matches&&!wkRM;
+ wkGrid.addEventListener('pointermove',e=>{
+   const c=e.target.closest('.wk-card');if(!c)return;
+   const r=c.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;
+   c.style.setProperty('--mx',x+'px');c.style.setProperty('--my',y+'px');
+   if(wkTilt&&!c.classList.contains('open')){
+     c.style.setProperty('--ry',((x/r.width)-.5)*5+'deg');
+     c.style.setProperty('--rx',(.5-(y/r.height))*5+'deg')}});
+ wkGrid.addEventListener('pointerout',e=>{
+   const c=e.target.closest('.wk-card');
+   if(c&&!c.contains(e.relatedTarget)){c.style.setProperty('--rx','0deg');c.style.setProperty('--ry','0deg')}});
+
+ // animated counters, once, when the stat row first becomes visible
+ const wkStats=document.querySelector('.wk-stats');let wkCounted=false;
+ const wkCounts=()=>{if(wkCounted)return;wkCounted=true;
+   wkStats.querySelectorAll('b[data-n]').forEach(el=>{
+     const t=+el.dataset.n,suf=el.dataset.suf||'';
+     if(wkRM){el.textContent=t+suf;return}
+     const st=performance.now();
+     (function f(n){const p=Math.min(1,(n-st)/1300),e2=1-Math.pow(1-p,3);
+       el.textContent=Math.round(t*e2)+suf;if(p<1)requestAnimationFrame(f)})(st)})};
+ new IntersectionObserver((es,o)=>{if(es.some(x=>x.isIntersecting)){wkCounts();o.disconnect()}},{threshold:.3}).observe(wkStats);
+}
 
 const svcNames=[["01","Web"],["02","SEO"],["03","GEO"],["04","Social"],["05","Performance"],["06","Branding"],["07","AI Automation"],["08","Consulting"]];
 document.getElementById('svcNav').innerHTML=svcNames.map(n=>
