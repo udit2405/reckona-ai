@@ -81,6 +81,15 @@ nav a.nl:hover,nav a.nl.active{color:var(--ink);background:var(--surface2)}
 .g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
 .g3{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
 .g4{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+/* Four practice cards, one row, compact */
+.g4-row{grid-template-columns:repeat(4,1fr);gap:16px}
+.g4-row .card{padding:22px 20px}
+.g4-row .card .ic{width:34px;height:34px;margin-bottom:12px}
+.g4-row .card h3{font-size:1rem;margin-bottom:6px}
+.g4-row .card p{font-size:.86rem;line-height:1.55}
+.g4-row .card .pill{font-size:.68rem;padding:3px 9px;margin:2px 3px 2px 0}
+@media(max-width:1040px){.g4-row{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.g4-row{grid-template-columns:1fr}}
 .card{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:30px;box-shadow:var(--shadow);transition:transform .25s,box-shadow .25s,border-color .25s}
 .card:hover{transform:translateY(-4px);box-shadow:0 2px 4px rgba(22,21,15,.04),0 20px 44px rgba(22,21,15,.09);border-color:var(--ink2)}
 .card .ic{width:42px;height:42px;display:grid;place-items:center;font-size:1.1rem;margin-bottom:16px;
@@ -281,7 +290,7 @@ blockquote{border-left:2px solid var(--brand);padding-left:20px;font-family:Frau
     <div class="container">
       <div class="eyebrow">What we do</div>
       <h2>Four practices. One accountable partner.</h2>
-      <div class="grid g2" style="margin-top:28px">
+      <div class="grid g4-row" style="margin-top:28px">
         <div class="card reveal"><span class="ic ic-num">01</span><h3>Digital Growth</h3><p>Websites that convert, SEO that compounds, performance ads that pay for themselves, social that builds authority. The full engine — run by one pod.</p><p style="margin-top:8px"><span class="pill">Web</span><span class="pill">SEO</span><span class="pill">Paid Media</span><span class="pill">Social</span><span class="pill">CRO</span></p></div>
         <div class="card reveal"><span class="ic ic-num">02</span><h3>GEO — AI Visibility</h3><p>Our flagship practice. We get you cited, recommended, and correctly described inside ChatGPT, Gemini, Claude, Perplexity and AI Overviews — and prove it with a monthly share-of-voice score.</p><p style="margin-top:8px"><span class="pill up">Early-mover advantage</span><span class="pill">Entity Building</span><span class="pill">AI Citations</span></p></div>
         <div class="card reveal"><span class="ic ic-num">03</span><h3>AI Automation</h3><p>Knowledge assistants, sales and support agents, WhatsApp automation, document processing, executive dashboards. Deployed to your cloud, documented, handed over.</p><p style="margin-top:8px"><span class="pill">AI Employees</span><span class="pill">WhatsApp</span><span class="pill">CRM</span><span class="pill">Finance Ops</span></p></div>
