@@ -283,12 +283,30 @@ blockquote{border-left:2px solid var(--brand);padding-left:20px;font-family:Frau
   background:var(--ink);color:var(--bg);font-size:1rem;cursor:pointer;display:none;place-items:center;box-shadow:var(--shadow)}
 #vwChip.on{display:grid}
 @media(max-width:640px){#vw{width:122px;right:14px;bottom:14px}#vw.big{width:min(44vh,88vw)}}
-/* RESOURCE CARDS (links to standalone article pages) */
-a.res-card{display:block;color:inherit}
-a.res-card:hover{text-decoration:none}
-a.res-card h3{color:var(--ink)}
-.res-read{display:inline-block;margin-top:12px;font-size:.86rem;font-weight:600;color:var(--brand)}
-a.res-card:hover .res-read{text-decoration:underline;text-underline-offset:3px}
+/* RESOURCES (links to standalone article pages) */
+.res-read{display:inline-block;margin-top:14px;font-size:.86rem;font-weight:600;color:var(--brand)}
+a.res-feat{display:grid;grid-template-columns:1.4fr .6fr;gap:30px;align-items:center;color:inherit;position:relative;overflow:hidden}
+a.res-feat:hover{text-decoration:none;transform:translateY(-3px)}
+a.res-feat h3{font-family:Fraunces,serif;font-weight:500;font-size:clamp(1.4rem,2.6vw,2rem);line-height:1.18;letter-spacing:-.01em;margin-top:12px}
+a.res-feat:hover .res-read{text-decoration:underline;text-underline-offset:3px}
+.res-feat-art{align-self:stretch;min-height:170px;border-radius:14px;background:
+  radial-gradient(120% 120% at 80% 20%,rgba(68,56,202,.28),transparent 60%),
+  radial-gradient(120% 120% at 20% 90%,rgba(15,118,110,.25),transparent 55%),var(--surface2);
+  border:1px solid var(--border);display:grid;place-items:center}
+.res-feat-art b{font-family:Fraunces,serif;font-weight:500;font-size:2.4rem;color:var(--brand)}
+.res-feat-art span{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink2)}
+@media(max-width:760px){a.res-feat{grid-template-columns:1fr}.res-feat-art{min-height:110px}}
+.res-list{margin-top:26px;border-top:1px solid var(--border)}
+a.res-row{display:grid;grid-template-columns:120px 1fr auto;gap:22px;align-items:center;padding:22px 6px;
+  border-bottom:1px solid var(--border);color:inherit;transition:background .25s,padding .25s}
+a.res-row:hover{text-decoration:none;background:var(--surface);padding-left:16px;padding-right:16px}
+a.res-row .pill{justify-self:start}
+a.res-row h3{font-size:1.06rem;margin-bottom:4px;color:var(--ink)}
+a.res-row p{font-size:.89rem;margin:0}
+.res-arrow{font-size:1.1rem;color:var(--ink2);transition:transform .25s,color .25s}
+a.res-row:hover .res-arrow{transform:translateX(5px);color:var(--brand)}
+.res-min{display:block;font-size:.76rem;color:var(--ink2);margin-top:6px}
+@media(max-width:700px){a.res-row{grid-template-columns:1fr auto}a.res-row .pill{display:none}}
 /* WORK / PROJECTS */
 @property --wk-ang{syntax:'<angle>';initial-value:0deg;inherits:false}
 .wk-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:44px}
@@ -782,13 +800,22 @@ a.res-card:hover .res-read{text-decoration:underline;text-underline-offset:3px}
     <section style="padding-top:28px">
       <h1>Resources</h1>
       <p class="lead" style="margin-top:14px;max-width:620px">Practical, numbers-first writing on AI-era growth. New essays fortnightly in <b>Applied Intelligence</b>, our newsletter.</p>
-      <div class="grid g3" style="margin-top:34px">
-        <a class="card res-card" href="resources/generative-engine-optimization-guide/"><span class="pill">GEO · Pillar guide</span><h3 style="margin-top:10px">The Complete Guide to Generative Engine Optimization (2026)</h3><p>What GEO is, how AI engines choose which brands to recommend, and the 90-day playbook we run for clients.</p><span class="res-read">Read the guide →</span></a>
-        <a class="card res-card" href="resources/ai-visibility-indian-brands-study/"><span class="pill">GEO</span><h3 style="margin-top:10px">We asked ChatGPT about 50 Indian brands. 34 were invisible.</h3><p>Our study of AI visibility across Indian mid-market leaders — the data behind the "State of AI Visibility: India 2026" report.</p><span class="res-read">Read the study →</span></a>
-        <a class="card res-card" href="resources/cost-of-manual-operations-sme/"><span class="pill">Automation</span><h3 style="margin-top:10px">The ₹40-lakh spreadsheet: what manual ops really cost an SME</h3><p>A cost model you can copy, plus the 5 automations with the fastest payback we've deployed.</p><span class="res-read">Read the article →</span></a>
-        <a class="card res-card" href="resources/seo-vs-geo-strategy/"><span class="pill">SEO</span><h3 style="margin-top:10px">SEO isn't dying. It's splitting in two.</h3><p>Why rankings and retrievability are now different games, and how to budget between them.</p><span class="res-read">Read the article →</span></a>
-        <a class="card res-card" href="resources/whatsapp-business-automation-guide-india/"><span class="pill">WhatsApp</span><h3 style="margin-top:10px">The WhatsApp Business Automation Guide for India</h3><p>Verified API setup, flow library, compliance, and 12 revenue flows with benchmarks.</p><span class="res-read">Read the guide →</span></a>
-        <a class="card res-card" href="resources/executive-guide-ai-agents/"><span class="pill">Leadership</span><h3 style="margin-top:10px">An executive's guide to AI agents (without the hype)</h3><p>What agents can actually do in 2026, where they fail, and the governance checklist before you deploy one.</p><span class="res-read">Read the guide →</span></a>
+      <a class="card res-feat reveal" href="resources/generative-engine-optimization-guide/" style="margin-top:34px">
+        <div>
+          <span class="pill">GEO · Pillar guide</span>
+          <h3>The Complete Guide to Generative Engine Optimization (2026)</h3>
+          <p style="margin-top:10px">What GEO is, how AI engines choose which brands to recommend, and the 90-day playbook we run for clients.</p>
+          <span class="res-read">Read the full guide →</span>
+        </div>
+        <div class="res-feat-art"><div style="text-align:center"><b>GEO</b><span style="display:block;margin-top:4px">The flagship guide · 14 min</span></div></div>
+      </a>
+
+      <div class="res-list reveal">
+        <a class="res-row" href="resources/ai-visibility-indian-brands-study/"><span class="pill">GEO</span><div><h3>We asked ChatGPT about 50 Indian brands. 34 were invisible.</h3><p>Our study of AI visibility across Indian mid-market leaders.</p><span class="res-min">8 min read</span></div><span class="res-arrow">→</span></a>
+        <a class="res-row" href="resources/seo-vs-geo-strategy/"><span class="pill">SEO</span><div><h3>SEO isn't dying. It's splitting in two.</h3><p>Why rankings and retrievability are now different games, and how to budget between them.</p><span class="res-min">7 min read</span></div><span class="res-arrow">→</span></a>
+        <a class="res-row" href="resources/cost-of-manual-operations-sme/"><span class="pill">Automation</span><div><h3>The ₹40-lakh spreadsheet: what manual ops really cost an SME</h3><p>A cost model you can copy, plus the 5 automations with the fastest payback.</p><span class="res-min">9 min read</span></div><span class="res-arrow">→</span></a>
+        <a class="res-row" href="resources/whatsapp-business-automation-guide-india/"><span class="pill">WhatsApp</span><div><h3>The WhatsApp Business Automation Guide for India</h3><p>Verified API setup, compliance, and 12 revenue flows with benchmarks.</p><span class="res-min">12 min read</span></div><span class="res-arrow">→</span></a>
+        <a class="res-row" href="resources/executive-guide-ai-agents/"><span class="pill">Leadership</span><div><h3>An executive's guide to AI agents (without the hype)</h3><p>What agents can do in 2026, where they fail, and the governance checklist before you deploy one.</p><span class="res-min">10 min read</span></div><span class="res-arrow">→</span></a>
       </div>
       <div class="card" style="margin-top:26px;display:flex;gap:20px;align-items:center;flex-wrap:wrap">
         <div style="flex:1;min-width:260px"><h3>Applied Intelligence — the newsletter</h3><p style="font-size:.92rem">One AI-growth play, explained with real numbers, every two weeks. 5,000+ founders and CMOs read it.</p></div>
