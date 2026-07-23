@@ -25,12 +25,18 @@ b,strong{color:var(--ink)}
 .mono{font-family:'JetBrains Mono',monospace}
 nav{position:sticky;top:0;z-index:50;background:var(--glass);backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4);border-bottom:1px solid var(--border);padding:14px 0}
 nav .row{max-width:760px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:18px}
-.logo{font-family:Fraunces,serif;font-weight:600;font-size:1.3rem;color:var(--ink);margin-right:auto;letter-spacing:-.01em}
+.logo{font-family:Fraunces,serif;font-weight:600;font-size:1.3rem;color:var(--ink);margin-right:auto;letter-spacing:-.01em;white-space:nowrap}
 .logo span{color:var(--brand)}
-nav a.nl{color:var(--ink2);font-size:.88rem;font-weight:500}
+nav a.nl{color:var(--ink2);font-size:.88rem;font-weight:500;white-space:nowrap}
 nav a.nl:hover{color:var(--ink);text-decoration:none}
-.btn{display:inline-block;background:var(--ink);color:var(--bg);font-weight:600;font-size:.86rem;padding:9px 20px;border-radius:999px}
+.btn{display:inline-block;background:var(--ink);color:var(--bg);font-weight:600;font-size:.86rem;padding:9px 20px;border-radius:999px;white-space:nowrap}
 .btn:hover{text-decoration:none;opacity:.9}
+@media(max-width:640px){
+  nav .row{padding:0 16px;gap:10px}
+  nav a.nl{display:none}
+  .logo{font-size:1.1rem}
+  main{padding:40px 18px 32px}
+}
 main{max-width:760px;margin:0 auto;padding:56px 24px 40px}
 .crumb{font-size:.8rem;color:var(--ink2)}
 .crumb a{color:var(--ink2)}
@@ -39,10 +45,20 @@ main{max-width:760px;margin:0 auto;padding:56px 24px 40px}
 .lead{font-size:1.16rem;line-height:1.65}
 .callout{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--brand);border-radius:14px;padding:20px 24px;margin:30px 0}
 .callout p{margin:6px 0}
-table{width:100%;border-collapse:separate;border-spacing:0;font-size:.9rem;background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin:20px 0}
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:20px 0;border-radius:12px;border:1px solid var(--border);
+  background:
+    linear-gradient(to right,var(--surface) 30%,rgba(255,255,255,0)) 0 0,
+    linear-gradient(to right,rgba(255,255,255,0),var(--surface) 70%) 100% 0,
+    linear-gradient(to right,rgba(22,21,15,.12),rgba(22,21,15,0)) 0 0,
+    linear-gradient(to left,rgba(22,21,15,.12),rgba(22,21,15,0)) 100% 0;
+  background-repeat:no-repeat;background-color:var(--surface);
+  background-size:24px 100%,24px 100%,10px 100%,10px 100%;
+  background-attachment:local,local,scroll,scroll}
+table{width:100%;min-width:460px;border-collapse:separate;border-spacing:0;font-size:.9rem;background:var(--surface);border:none;border-radius:12px;overflow:hidden;margin:0}
 th{text-align:left;font-size:.72rem;text-transform:uppercase;letter-spacing:.09em;color:var(--ink2);padding:11px 16px;border-bottom:1px solid var(--border)}
 td{padding:12px 16px;border-bottom:1px solid var(--border);color:var(--ink2);vertical-align:top}
 tr:last-child td{border-bottom:none}
+@media(max-width:520px){table{font-size:.84rem}th,td{padding:10px 13px}}
 .cta{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:26px 28px;margin:44px 0 0;text-align:center}
 .cta h2{margin-top:0}
 .more{max-width:760px;margin:0 auto;padding:10px 24px 30px}
