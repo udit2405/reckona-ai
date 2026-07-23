@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The AI Readiness Audit: What It Actually Checks | Reckona AI</title>
+<meta name="description" content="What a real AI readiness audit examines — data, workflows, tooling, governance and team capability — and what it costs a company to skip straight to buying tools instead.">
+<link rel="canonical" href="https://reckonaai.com/resources/ai-readiness-audit-guide/">
+<meta property="og:title" content="The AI readiness audit: what it actually checks (and what it costs to skip)">
+<meta property="og:description" content="What a real AI readiness audit examines, and why skipping it is the most common reason AI projects stall.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://reckonaai.com/resources/ai-readiness-audit-guide/">
+<meta name="robots" content="index,follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../article.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"The AI Readiness Audit: What It Actually Checks (and What It Costs to Skip)","description":"What a real AI readiness audit examines — data, workflows, tooling, governance and team capability — and the cost of skipping it.","datePublished":"2026-07-23","dateModified":"2026-07-23","author":{"@type":"Organization","name":"Reckona AI","url":"https://reckonaai.com/"},"publisher":{"@type":"Organization","name":"Reckona AI"},"mainEntityOfPage":"https://reckonaai.com/resources/ai-readiness-audit-guide/"}
+</script>
+</head>
+<body>
+<nav><div class="row">
+  <a class="logo" href="../../">Reckona<span> AI</span></a>
+  <a class="nl" href="../../#services">Services</a>
+  <a class="nl" href="../../#work">Work</a>
+  <a class="nl" href="../../#resources">Resources</a>
+  <a class="btn" href="../../#book">Book a Call</a>
+</div></nav>
+<main>
+<p class="crumb"><a href="../../">Home</a> / <a href="../../#resources">Resources</a> / AI Readiness Audit</p>
+<span class="pill">Consulting</span>
+<h1>The AI readiness audit: what it actually checks (and what it costs to skip)</h1>
+<div class="meta"><span>By Reckona AI</span><span>Updated 23 July 2026</span><span>9 min read</span></div>
+
+<p class="lead">Most failed AI projects don't fail on the model. They fail on the six weeks before the model ever ran — the data nobody checked was usable, the workflow nobody mapped, the approval nobody knew was required. An AI readiness audit exists to surface all of that before you commit budget, not after a pilot quietly stalls.</p>
+
+<h2>What "readiness" actually means</h2>
+<p>It's not a maturity score for its own sake. A useful readiness audit answers one operational question per workflow candidate: <b>if we built this today, would it survive contact with your real data, your real approval chain, and your real team?</b> That means checking five things, in this order.</p>
+
+<h2>The five things a real audit checks</h2>
+<ol>
+  <li><b>Data accessibility and quality.</b> Not "do you have data" — almost everyone does — but is it in a system with an API or export, is it consistently structured, and is it current. A CRM with three years of untouched duplicate records is not automation-ready until someone decides what "clean" means.</li>
+  <li><b>Workflow shape.</b> Does the process have a stable, repeatable structure, or does every instance require a judgment call only a specific senior person can make? High-volume, well-defined tasks (quote generation, report compilation, order status queries) automate cleanly. Highly exception-driven tasks need a human-in-the-loop design, not full automation, at least initially.</li>
+  <li><b>Tooling and integration reality.</b> What can actually talk to what. An ERP with no API and no scheduled export access is a real constraint that changes the design, not a detail to discover mid-build.</li>
+  <li><b>Governance and approval.</b> Who needs to sign off on an AI system touching customer data, financial figures or external communication, and how long does that actually take in your organization. This is where timelines quietly double if it's skipped upfront.</li>
+  <li><b>Team capability and ownership.</b> Who owns the system after it ships. An automation with no internal owner degrades within two quarters — inputs drift, edge cases pile up, nobody notices until a customer complains.</li>
+</ol>
+
+<h2>What skipping it costs</h2>
+<p>We've watched the same failure pattern play out at companies that skip straight to buying a tool or briefing a vendor on outcomes without this groundwork:</p>
+<div class="tbl-wrap"><table>
+<tr><th>Skipped step</th><th>What breaks, and when</th></tr>
+<tr><td>Data quality check</td><td>Pilot looks great on curated sample data, fails within weeks on the messy real feed — trust in the whole initiative drops with it.</td></tr>
+<tr><td>Workflow shape check</td><td>Team builds full automation for a task that's actually 30% exceptions; exceptions get force-fit or silently mishandled.</td></tr>
+<tr><td>Integration check</td><td>Discover mid-build that the core system has no API — 6–8 week delay while a workaround is built.</td></tr>
+<tr><td>Governance check</td><td>Finished system sits in legal/security review for months because approval wasn't sought until after launch was promised.</td></tr>
+<tr><td>Ownership check</td><td>System works at launch, has no owner, quietly rots — six months later it's "the automation nobody trusts anymore."</td></tr>
+</table></div>
+<p>Each of these is a 2–3 day conversation to catch upfront and a multi-month setback to catch after the fact. That asymmetry is the entire case for doing the audit first.</p>
+
+<h2>What a good audit produces</h2>
+<p>Not a slide deck of generic AI opportunities. A usable audit ends with a short, ranked list of 3–5 candidate automations, each with an honest readiness rating against the five checks above, a rough cost-to-build, and an expected payback window — the same cost-model thinking we walk through in <a href="../cost-of-manual-operations-sme/">The ₹40-lakh spreadsheet</a>. If nothing on the list clears a sensible payback bar, a good audit says so, rather than manufacturing a project to justify itself.</p>
+
+<div class="callout">
+<p><b>Rule of thumb:</b> if an audit can't tell you which specific system to build first and why, in one sentence, it's a slide deck, not an audit.</p>
+</div>
+
+<h2>Who should run it</h2>
+<p>It can be done internally if someone senior enough has both the technical literacy to judge data/integration reality and the organizational standing to ask governance questions across departments. Most companies don't have that person free for two weeks, which is why this is usually the first engagement with an outside partner — see our <a href="../executive-guide-ai-agents/">executive's guide to AI agents</a> for the governance checklist that follows once you've picked what to build.</p>
+
+<div class="cta">
+<h2>Get your five-check readiness read</h2>
+<p>Our free AI Readiness snapshot runs your top automation candidates through this exact checklist and ranks them by payback — no pitch, just the numbers.</p>
+<a class="btn" href="../../#audit">Get my free readiness audit →</a>
+</div>
+</main>
+<aside class="more">
+<h2>More from Reckona AI</h2>
+<ul>
+<li><a href="../cost-of-manual-operations-sme/">The ₹40-lakh spreadsheet: what manual ops really cost an SME</a></li>
+<li><a href="../executive-guide-ai-agents/">An executive's guide to AI agents (without the hype)</a></li>
+<li><a href="../fractional-ai-officer-guide/">The fractional AI officer: when a full-time hire doesn't make sense yet</a></li>
+</ul>
+</aside>
+<footer><div class="row">
+  <span>© 2026 Reckona AI</span>
+  <a href="../../">Home</a><a href="../../#services">Services</a><a href="../../#work">Work</a><a href="../../#pricing">Pricing</a><a href="../../#book">Book a Call</a>
+</div></footer>
+</body>
+</html>
