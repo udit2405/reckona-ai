@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free AI Readiness Assessment & Report | Reckona AI</title>
+<meta name="description" content="A free 5-minute AI readiness assessment for Indian businesses. Get an instant report scoring your team, process documentation, tooling and leadership appetite — with the specific automations to start with.">
+<meta name="keywords" content="AI readiness assessment, AI readiness audit, AI readiness score, business AI automation assessment India">
+<link rel="canonical" href="https://reckonaai.com/tools/ai-readiness/">
+<meta property="og:title" content="Free AI Readiness Assessment & Report | Reckona AI">
+<meta property="og:description" content="A free 5-minute assessment — get an instant report on how ready your business is for AI automation, and what to automate first.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://reckonaai.com/tools/ai-readiness/">
+<meta property="og:image" content="https://reckonaai.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="robots" content="index,follow">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/page.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://reckonaai.com/"},{"@type":"ListItem","position":2,"name":"Free Tools","item":"https://reckonaai.com/#tools"},{"@type":"ListItem","position":3,"name":"AI Readiness Assessment","item":"https://reckonaai.com/tools/ai-readiness/"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How long does the AI readiness assessment take?","acceptedAnswer":{"@type":"Answer","text":"About 5 minutes — five questions covering team size, process documentation, repetitive workload, tooling and leadership appetite. The report is generated instantly, with no email wall on the result."}},{"@type":"Question","name":"How is the AI readiness score calculated?","acceptedAnswer":{"@type":"Answer","text":"Each answer is weighted by how strongly it predicts successful AI adoption: documented processes and consistent CRM/ERP usage score highest, since automation requires reliable structured data. The five scores combine into an overall readiness score out of 100."}},{"@type":"Question","name":"What happens after I get my score?","acceptedAnswer":{"@type":"Answer","text":"The report shows a breakdown by category with what to fix first, plus a recommended next step. For a deeper, business-specific version with rupee estimates, book a free AI readiness audit."}}]}
+</script>
+<style>
+.ar-hero{padding:34px 0 12px}
+.ar-form{max-width:640px}
+.ar-form label{display:block;font-size:.86rem;font-weight:600;margin:18px 0 6px;color:var(--ink)}
+.ar-form select{width:100%;padding:12px 15px;border:1px solid var(--border);border-radius:10px;background:var(--surface);color:var(--ink);font:inherit;font-size:.95rem}
+.ar-form select:focus{outline:none;border-color:var(--ink)}
+#arReport{display:none;margin-top:36px}
+#arReport.show{display:block;animation:arRise .4s ease-out}
+@keyframes arRise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.ar-score{display:flex;align-items:center;gap:24px;flex-wrap:wrap;padding:28px;border:1px solid var(--border);border-radius:20px;background:var(--surface)}
+.ar-score-big{font-family:Fraunces,serif;font-weight:500;font-size:3.2rem;color:var(--ink);line-height:1}
+.ar-score-big span{font-size:1.2rem;color:var(--ink2);font-family:Inter}
+.ar-verdict{flex:1;min-width:220px}
+.ar-verdict b{display:block;font-size:1.05rem;color:var(--ink);margin-bottom:4px}
+.ar-cats{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:20px}
+.ar-cat{border:1px solid var(--border);border-radius:14px;padding:18px 20px;background:var(--surface)}
+.ar-cat b{display:block;font-size:.92rem;color:var(--ink)}
+.ar-cat .bar{height:6px;border-radius:99px;background:var(--surface2);margin:10px 0;overflow:hidden}
+.ar-cat .bar>div{height:100%;background:var(--brand);border-radius:99px;transition:width .6s ease-out}
+.ar-cat p{font-size:.84rem;margin:0}
+.ar-next{margin-top:24px;padding:22px 24px;border-radius:16px;background:var(--surface2);border:1px solid var(--border)}
+</style>
+</head>
+<body>
+<nav aria-label="Main">
+  <a class="logo" href="/">Reckona<span> AI</span></a>
+  <a class="nl" href="/services/">Services</a>
+  <a class="nl" href="/industries/">Industries</a>
+  <a class="nl" href="/pricing/">Pricing</a>
+  <a class="nl" href="/resources/">Resources</a>
+  <a class="nl" href="/about/">About</a>
+  <button id="themeBtn" class="btn ghost sm" aria-label="Toggle theme" style="padding:8px 12px">◐</button>
+  <a class="btn sm keep" href="/#book">Book a Call</a>
+</nav>
+<main>
+<p class="crumb"><a href="/">Home</a> / <a href="/#tools">Free Tools</a> / AI Readiness Assessment</p>
+
+<header class="ar-hero">
+  <div class="eyebrow">Free · 5 minutes · instant report</div>
+  <h1>How ready is your business<br>for <em>AI automation?</em></h1>
+  <p class="lead" style="max-width:640px;margin-top:16px">Five questions on your team, process documentation, workload and tooling — answered instantly with a scored report and the specific automations to start with. No email wall on the result.</p>
+</header>
+
+<section class="section-tight">
+  <div class="card ar-form">
+    <form id="arForm" onsubmit="return arSubmit(event)">
+      <label>Team size</label>
+      <select id="q1"><option value="5">1–20</option><option value="10">21–100</option><option value="15">100+</option></select>
+
+      <label>Where does your process knowledge live?</label>
+      <select id="q2"><option value="0">In people's heads</option><option value="10">Scattered docs / spreadsheets</option><option value="20">Documented SOPs</option></select>
+
+      <label>Repetitive digital tasks (quotes, reports, data entry) per week?</label>
+      <select id="q3"><option value="5">A few hours</option><option value="15">10–40 hours</option><option value="25">40+ hours</option></select>
+
+      <label>Do you use a CRM/ERP consistently?</label>
+      <select id="q4"><option value="0">No</option><option value="10">Partially</option><option value="20">Yes, religiously</option></select>
+
+      <label>Leadership appetite for AI?</label>
+      <select id="q5"><option value="5">Curious</option><option value="10">Budgeted</option><option value="20">Urgent priority</option></select>
+
+      <button class="btn" style="margin-top:22px">Get my report</button>
+    </form>
+  </div>
+
+  <div id="arReport">
+    <div class="ar-score">
+      <div class="ar-score-big"><span id="arScoreNum">0</span><span>/100</span></div>
+      <div class="ar-verdict"><b id="arVerdictTitle"></b><p id="arVerdictBody" style="margin:0;font-size:.92rem"></p></div>
+    </div>
+
+    <div class="ar-cats" id="arCats"></div>
+
+    <div class="ar-next">
+      <h3 style="margin-bottom:8px">Recommended next step</h3>
+      <p id="arNextText" style="margin:0 0 14px"></p>
+      <a class="btn sm" href="/#audit">Get a free, business-specific AI readiness audit →</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Common questions</h2>
+  <div class="faq">
+    <details open><summary>How long does the assessment take?</summary><p>About 5 minutes — five questions covering team size, process documentation, repetitive workload, tooling and leadership appetite. The report generates instantly, with no email wall on the result.</p></details>
+    <details><summary>How is the score calculated?</summary><p>Each answer is weighted by how strongly it predicts successful AI adoption — documented processes and consistent CRM/ERP usage score highest, since automation depends on reliable structured data. The five category scores combine into an overall readiness score out of 100.</p></details>
+    <details><summary>What happens after I get my score?</summary><p>The report shows a breakdown by category with what to fix first, plus a recommended next step. For a deeper, business-specific version with rupee estimates for your actual processes, book a free AI readiness audit.</p></details>
+  </div>
+</section>
+
+<section>
+  <h2>Go deeper</h2>
+  <div class="related">
+    <a class="card" href="/resources/ai-readiness-audit-what-to-expect/"><span class="pill">Consulting</span><h3 style="margin-top:10px">What happens in an AI readiness audit, step by step</h3><p style="font-size:.9rem">Process inventory, opportunity scoring and the roadmap you walk away with.</p><span class="go">Read →</span></a>
+    <a class="card" href="/resources/cost-of-manual-operations-sme/"><span class="pill">Automation</span><h3 style="margin-top:10px">The ₹40-lakh spreadsheet: what manual ops really cost an SME</h3><p style="font-size:.9rem">A cost model you can copy, plus the 5 fastest-payback automations.</p><span class="go">Read →</span></a>
+    <a class="card" href="/services/ai-automation/"><span class="pill">Service</span><h3 style="margin-top:10px">AI Automation practice</h3><p style="font-size:.9rem">Knowledge assistants, document processing, dashboards — deployed to your cloud.</p><span class="go">Explore →</span></a>
+  </div>
+</section>
+
+<div class="cta">
+  <h2>Want the number for your actual business?</h2>
+  <p>This assessment is a five-minute self-check. Our free audit inventories your real processes and ranks them by rupee savings — with a human analyst, AI-assisted.</p>
+  <a class="btn" href="/#audit">Get my free audit</a>
+  <a class="btn ghost" href="/#book">Book a strategy call</a>
+</div>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="cols">
+      <div>
+        <div class="logo">Reckona<span> AI</span></div>
+        <p style="font-size:.9rem;max-width:280px;margin-top:10px">Intelligence, Applied. AI-first growth &amp; automation partner for India's ambitious mid-market.</p>
+      </div>
+      <div><span class="ft-b">Services</span><a href="/services/geo/">GEO / AI Visibility</a><a href="/services/ai-automation/">AI Automation</a><a href="/services/seo/">SEO</a><a href="/services/">All services</a></div>
+      <div><span class="ft-b">Explore</span><a href="/industries/">Industries</a><a href="/pricing/">Pricing</a><a href="/resources/">Resources</a><a href="/about/">About</a></div>
+      <div><span class="ft-b">Start</span><a href="/#audit">Free audit</a><a href="/tools/ai-readiness/">AI Readiness Report</a><a href="/#book">Book a call</a></div>
+    </div>
+    <p class="fine">© 2026 Reckona AI Pvt. Ltd. · Every engagement is scoped and quoted for your business — no rate card, no surprises.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var r=document.documentElement, s=localStorage.getItem('theme');
+  if(s)r.setAttribute('data-theme',s);
+  else r.setAttribute('data-theme',matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');
+  var b=document.getElementById('themeBtn');
+  if(b)b.onclick=function(){var n=r.getAttribute('data-theme')==='dark'?'light':'dark';r.setAttribute('data-theme',n);localStorage.setItem('theme',n)};
+})();
+
+var CATS=[
+ {id:'q1',key:'team',label:'Team scale',max:15,low:"A small team means automation should target the single most time-consuming task first, not a platform rollout.",high:"Enough scale that automation compounds — the same workflow repeats often enough to justify building it once."},
+ {id:'q2',key:'docs',label:'Process documentation',max:20,low:"Undocumented process is the biggest blocker to automation — you can't automate what nobody has written down. Document your top 3 processes before anything else.",high:"Documented SOPs mean automation can be scoped precisely instead of guessed at — this is your strongest readiness signal."},
+ {id:'q3',key:'workload',label:'Repetitive workload',max:25,low:"Limited repetitive workload today — automation still helps, but the payback period will be longer.",high:"High repetitive workload is exactly where automation pays back fastest — this is your highest-leverage starting point."},
+ {id:'q4',key:'tooling',label:'CRM/ERP consistency',max:20,low:"Inconsistent system usage means automation has no reliable data to work from. Fix data discipline before or alongside automation.",high:"Consistent CRM/ERP usage gives automation clean, structured data to work with — a strong technical foundation."},
+ {id:'q5',key:'leadership',label:'Leadership appetite',max:20,low:"Automation projects stall without leadership buy-in. Build the business case with real numbers before scoping a project.",high:"Strong leadership appetite means projects get resourced and adopted — the organisational half of readiness."}
+];
+
+function arSubmit(e){
+  e.preventDefault();
+  var total=0, cats=[];
+  CATS.forEach(function(c){
+    var v=+document.getElementById(c.id).value;
+    total+=v;
+    var pct=Math.round(v/c.max*100);
+    cats.push({label:c.label, pct:pct, text:pct>=60?c.high:c.low});
+  });
+
+  document.getElementById('arScoreNum').textContent=total;
+
+  var vt,vb,next;
+  if(total>=75){
+    vt="High readiness — you could deploy 2–3 AI assistants this quarter.";
+    vb="Your foundations (documentation, tooling, leadership) support real automation now. Biggest risk from here is governance, not capability.";
+    next="Start with a scoped pilot on your single highest-volume workflow — see how we sequence multiple assistants in our AI Automation practice.";
+  } else if(total>=45){
+    vt="Ready for pilots — start with one high-volume workflow.";
+    vb="You have enough foundation to automate, but not everywhere at once. Pick the workflow with the highest volume and lowest ambiguity, and document as you go rather than waiting for perfect SOPs.";
+    next="A single focused pilot — usually quotes, follow-ups or reporting — builds the case for wider rollout without over-committing early.";
+  } else {
+    vt="Foundation stage — fix documentation and tooling first.";
+    vb="Automating an undocumented, inconsistent process usually produces faster chaos, not less work. The highest-leverage move right now isn't a tool — it's documentation and CRM discipline.";
+    next="Pick a CRM and use it consistently for 60 days, and document your top 3 processes. Revisit automation once that foundation is in place.";
+  }
+  document.getElementById('arVerdictTitle').textContent=vt;
+  document.getElementById('arVerdictBody').textContent=vb;
+  document.getElementById('arNextText').textContent=next;
+
+  document.getElementById('arCats').innerHTML=cats.map(function(c){
+    return '<div class="ar-cat"><b>'+c.label+'</b><div class="bar"><div style="width:'+c.pct+'%"></div></div><p>'+c.text+'</p></div>';
+  }).join('');
+
+  var rep=document.getElementById('arReport');
+  rep.classList.add('show');
+  rep.scrollIntoView({behavior:'smooth', block:'start'});
+  return false;
+}
+</script>
+</body>
+</html>
