@@ -123,16 +123,27 @@ tr:last-child td{border-bottom:none}
 .faq summary{cursor:pointer;font-weight:600;color:var(--ink)}
 .faq p{padding-top:10px}
 /* PRICING */
-.price-grid{display:grid;gap:16px;align-items:stretch;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
-.price-card{position:relative;display:flex;flex-direction:column}
-.price-card .price{font-family:Fraunces,serif;font-weight:500;font-size:1.9rem;margin:8px 0 2px}
-.price-card .price small{font-size:.8rem;color:var(--ink2);font-family:Inter;font-weight:400;display:block}
-.price-card ul{list-style:none;margin:16px 0 20px;flex:1}
-.price-card li{padding:7px 0;font-size:.9rem;color:var(--ink2);border-bottom:1px solid var(--border)}
+.price-grid{display:grid;gap:18px;align-items:stretch;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));margin-top:8px}
+@media(min-width:920px){.price-grid{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:1240px){.price-grid{grid-template-columns:repeat(5,1fr)}}
+.price-card{position:relative;display:flex;flex-direction:column;padding-top:30px;transition:transform .25s,box-shadow .25s,border-color .25s}
+.price-card:hover{transform:translateY(-3px)}
+.price-card h3{font-size:1.05rem}
+.price-card .tier-desc{font-size:.86rem;color:var(--ink2);margin:2px 0 14px;min-height:2.6em}
+.price-scale{display:flex;gap:4px;margin-bottom:14px}
+.price-scale i{width:20px;height:5px;border-radius:3px;background:var(--border);display:inline-block;font-style:normal}
+.price-scale i.on{background:var(--brand)}
+.price-card .price{display:flex;align-items:baseline;gap:8px;padding:10px 0;margin:0 0 14px;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.price-card .price .amt{font-family:Fraunces,serif;font-weight:500;font-size:1.15rem;color:var(--ink)}
+.price-card .price small{font-size:.76rem;color:var(--ink2);font-family:Inter;font-weight:400}
+.price-card ul{list-style:none;margin:0 0 20px;flex:1}
+.price-card li{padding:8px 0;font-size:.87rem;line-height:1.5;color:var(--ink2);border-bottom:1px solid var(--border)}
 .price-card li:last-child{border-bottom:none}
 .price-card li::before{content:"— ";color:var(--brand);font-weight:600}
-.price-card.featured{border-color:var(--ink);border-width:1.5px}
-.price-card .tag{position:absolute;top:-13px;left:24px;background:var(--ink);color:var(--bg);font-size:.71rem;font-weight:600;padding:4px 14px;border-radius:999px}
+.price-card .btn{margin-top:auto}
+.price-card.featured{border-color:var(--ink);border-width:1.5px;background:linear-gradient(180deg,color-mix(in srgb,var(--brand) 5%,var(--surface)),var(--surface) 60%);box-shadow:0 4px 10px rgba(0,0,0,.04),0 24px 48px rgba(0,0,0,.10)}
+.price-card.featured::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:linear-gradient(90deg,var(--brand),var(--signal));border-radius:18px 18px 0 0}
+.price-card .tag{position:absolute;top:-12px;left:24px;background:var(--ink);color:var(--bg);font-size:.7rem;font-weight:600;letter-spacing:.02em;padding:4px 14px;border-radius:999px;box-shadow:0 2px 6px rgba(0,0,0,.15)}
 /* FOOTER */
 footer{border-top:1px solid var(--border);padding:56px 0 44px;margin-top:56px}
 footer .cols{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:36px}
