@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free AI Rank Tracker — Check Your Brand's ChatGPT & Gemini Visibility | Reckona AI</title>
+<meta name="description" content="A free AI rank tracker for Indian businesses. Generate a personalized panel of test prompts to check whether ChatGPT, Gemini, Perplexity and Claude mention, recommend and describe your brand correctly — with a scoring guide.">
+<meta name="keywords" content="AI rank tracker, AI visibility tracker, ChatGPT rank checker, check brand on ChatGPT, GEO tracking tool, AI search visibility India">
+<link rel="canonical" href="https://reckonaai.com/tools/ai-rank-tracker/">
+<meta property="og:title" content="Free AI Rank Tracker | Reckona AI">
+<meta property="og:description" content="Generate a personalized panel of prompts to check your brand's visibility across ChatGPT, Gemini, Perplexity and Claude.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://reckonaai.com/tools/ai-rank-tracker/">
+<meta property="og:image" content="https://reckonaai.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="robots" content="index,follow">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/page.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://reckonaai.com/"},{"@type":"ListItem","position":2,"name":"Free Tools","item":"https://reckonaai.com/#tools"},{"@type":"ListItem","position":3,"name":"AI Rank Tracker","item":"https://reckonaai.com/tools/ai-rank-tracker/"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is an AI rank tracker?","acceptedAnswer":{"@type":"Answer","text":"Unlike a Google rank tracker, there's no single position to track in an AI answer — you're either mentioned, recommended and described accurately, or you're not. An AI rank tracker runs a fixed panel of realistic buyer questions across engines like ChatGPT, Gemini, Perplexity and Claude, and scores whether your brand appears and how accurately."}},{"@type":"Question","name":"Why can't this tool check the AI engines automatically?","acceptedAnswer":{"@type":"Answer","text":"Automated, live checking requires paid API access to every engine and re-running the same panel monthly to track change over time — that's the paid GEO Audit service. This free tool generates your test panel and scoring guide so you can run the check yourself in minutes, no cost, no email required."}},{"@type":"Question","name":"How often should I re-run my AI visibility panel?","acceptedAnswer":{"@type":"Answer","text":"Monthly is a reasonable cadence for a growing brand — AI engines update frequently, and a panel re-run monthly lets you catch both new citations and any hallucinations early."}}]}
+</script>
+<style>
+.rt-hero{padding:34px 0 12px}
+.rt-form{max-width:640px}
+.rt-form label{display:block;font-size:.86rem;font-weight:600;margin:18px 0 6px;color:var(--ink)}
+.rt-form input{width:100%;padding:12px 15px;border:1px solid var(--border);border-radius:10px;background:var(--surface);color:var(--ink);font:inherit;font-size:.95rem}
+.rt-form input:focus{outline:none;border-color:var(--ink)}
+.rt-form .hint{font-size:.78rem;color:var(--ink2);margin-top:4px}
+#rtReport{display:none;margin-top:36px}
+#rtReport.show{display:block;animation:rtRise .4s ease-out}
+@keyframes rtRise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.rt-panel{border:1px solid var(--border);border-radius:14px;background:var(--surface);margin-top:14px;overflow:hidden}
+.rt-row{display:flex;gap:14px;align-items:flex-start;padding:16px 18px;border-bottom:1px solid var(--border)}
+.rt-row:last-child{border-bottom:none}
+.rt-row .num{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--brand);font-weight:700;padding-top:3px;white-space:nowrap}
+.rt-row .prompt{flex:1;font-size:.94rem;color:var(--ink)}
+.rt-row .cat{display:block;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink2);margin-bottom:4px}
+.rt-copy{background:none;border:1px solid var(--border);border-radius:999px;padding:6px 14px;font-size:.78rem;font-weight:600;color:var(--ink);cursor:pointer;white-space:nowrap;flex:none}
+.rt-copy:hover{border-color:var(--ink)}
+.rt-copy.copied{background:var(--signal);border-color:var(--signal);color:#fff}
+.rt-score-box{margin-top:24px;padding:22px 24px;border-radius:16px;background:var(--surface2);border:1px solid var(--border)}
+.rt-score-box .grid{margin-top:12px}
+</style>
+</head>
+<body>
+<nav aria-label="Main">
+  <a class="logo" href="/">Reckona<span> AI</span></a>
+  <a class="nl" href="/services/">Services</a>
+  <a class="nl" href="/industries/">Industries</a>
+  <a class="nl" href="/pricing/">Pricing</a>
+  <a class="nl" href="/resources/">Resources</a>
+  <a class="nl" href="/about/">About</a>
+  <button id="themeBtn" class="btn ghost sm" aria-label="Toggle theme" style="padding:8px 12px">◐</button>
+  <a class="btn sm keep" href="/#book">Book a Call</a>
+</nav>
+<main>
+<p class="crumb"><a href="/">Home</a> / <a href="/#tools">Free Tools</a> / AI Rank Tracker</p>
+
+<header class="rt-hero">
+  <div class="eyebrow">Free · No email required · Instant panel</div>
+  <h1>Is ChatGPT recommending you,<br>or your <em>competitor?</em></h1>
+  <p class="lead" style="max-width:660px;margin-top:16px">There's no single "rank" inside an AI answer — you're either cited, recommended and described accurately, or you're invisible. This tool builds you a personalized panel of real buyer questions to test across ChatGPT, Gemini, Perplexity and Claude, plus a scoring guide to track the result.</p>
+</header>
+
+<section class="section-tight">
+  <div class="card rt-form">
+    <form id="rtForm" onsubmit="return rtBuild(event)">
+      <label>Your brand name</label>
+      <input id="rtBrand" placeholder="e.g., Reckona AI" required>
+
+      <label>Your category / what you do</label>
+      <input id="rtCategory" placeholder="e.g., GEO agency, CRM software, dentist" required>
+      <p class="hint">How a buyer would describe what you sell, not your brand name.</p>
+
+      <label>City / location (optional — skip for non-local businesses)</label>
+      <input id="rtLocation" placeholder="e.g., Mumbai">
+
+      <label>Up to 2 competitors (optional, comma-separated)</label>
+      <input id="rtCompetitors" placeholder="e.g., Competitor A, Competitor B">
+
+      <button class="btn" style="margin-top:22px">Build my AI test panel</button>
+    </form>
+  </div>
+
+  <div id="rtReport">
+    <h2>Your AI visibility test panel</h2>
+    <p style="max-width:640px">Copy each prompt into ChatGPT, Gemini, Perplexity and Claude — separately, in a fresh chat each time. Score every response using the guide below.</p>
+    <div class="rt-panel" id="rtPanel"></div>
+
+    <div class="rt-score-box">
+      <h3 style="margin-bottom:8px">How to score each response</h3>
+      <div class="grid g3">
+        <div><b style="color:var(--ink)">0 — Invisible</b><p style="font-size:.88rem;margin:4px 0 0">Your brand isn't mentioned at all, even when directly relevant.</p></div>
+        <div><b style="color:var(--ink)">1 — Mentioned</b><p style="font-size:.88rem;margin:4px 0 0">Named, but not recommended first or described in detail.</p></div>
+        <div><b style="color:var(--ink)">2 — Recommended</b><p style="font-size:.88rem;margin:4px 0 0">Named prominently, recommended, and described accurately.</p></div>
+      </div>
+      <p style="margin-top:16px;font-size:.9rem">Add your scores across all prompts and all four engines. A consistent 0 across most prompts means you're effectively invisible to AI-era search — see <a href="/resources/how-to-get-cited-by-chatgpt/">how to get cited by ChatGPT</a> for the fix. Also watch for <b style="color:var(--ink)">wrong</b> answers — outdated prices, discontinued products, incorrect claims — and log them separately; see <a href="/resources/ai-hallucination-brand-monitoring/">how to catch and correct AI hallucinations</a>.</p>
+    </div>
+
+    <div class="rt-next">
+      <h3 style="margin:24px 0 8px">Want this done for you, monthly, with competitor benchmarking?</h3>
+      <p style="margin:0 0 14px;color:var(--ink2);font-size:.92rem">This free panel is a manual, one-time check. Our GEO Audit runs a 40-prompt matrix across four engines automatically, scores it, and re-runs it monthly so you can see share-of-voice move.</p>
+      <a class="btn sm" href="/#audit">Get the full GEO Audit →</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Common questions</h2>
+  <div class="faq">
+    <details open><summary>What is an AI rank tracker?</summary><p>Unlike a Google rank tracker, there's no single position to track in an AI answer — you're either mentioned, recommended and described accurately, or you're not. An AI rank tracker runs a fixed panel of realistic buyer questions across engines like ChatGPT, Gemini, Perplexity and Claude, and scores whether your brand appears and how accurately.</p></details>
+    <details><summary>Why can't this tool check the AI engines automatically?</summary><p>Automated, live checking requires paid API access to every engine and re-running the same panel monthly to track change over time — that's what our paid GEO Audit service does. This free tool generates your test panel and scoring guide so you can run the check yourself in minutes, no cost, no email required.</p></details>
+    <details><summary>How often should I re-run my AI visibility panel?</summary><p>Monthly is a reasonable cadence for a growing brand — AI engines update frequently, and a panel re-run monthly lets you catch both new citations and any hallucinations early.</p></details>
+  </div>
+</section>
+
+<section>
+  <h2>Go deeper</h2>
+  <div class="related">
+    <a class="card" href="/resources/track-ai-search-ranking-visibility/"><span class="pill">GEO</span><h3 style="margin-top:10px">How to track your AI search ranking and visibility</h3><p style="font-size:.9rem">The full prompt-panel method this tool is built on.</p><span class="go">Read →</span></a>
+    <a class="card" href="/resources/how-to-get-cited-by-chatgpt/"><span class="pill">GEO</span><h3 style="margin-top:10px">How to get cited by ChatGPT: a 2026 checklist</h3><p style="font-size:.9rem">What to fix once your panel shows you're invisible.</p><span class="go">Read →</span></a>
+    <a class="card" href="/services/geo/"><span class="pill">Service</span><h3 style="margin-top:10px">GEO practice</h3><p style="font-size:.9rem">The monthly, automated version of this panel — with competitor benchmarking.</p><span class="go">Explore →</span></a>
+  </div>
+</section>
+
+<div class="cta">
+  <h2>See your real number, benchmarked against competitors</h2>
+  <p>A free GEO audit runs the full 40-prompt matrix across four engines for you, scores it, and tells you exactly what to fix first.</p>
+  <a class="btn" href="/#audit">Get my free GEO audit</a>
+  <a class="btn ghost" href="/#book">Book a strategy call</a>
+</div>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="cols">
+      <div>
+        <div class="logo">Reckona<span> AI</span></div>
+        <p style="font-size:.9rem;max-width:280px;margin-top:10px">Intelligence, Applied. AI-first growth &amp; automation partner for India's ambitious mid-market.</p>
+      </div>
+      <div><span class="ft-b">Services</span><a href="/services/geo/">GEO / AI Visibility</a><a href="/services/ai-automation/">AI Automation</a><a href="/services/seo/">SEO</a><a href="/services/">All services</a></div>
+      <div><span class="ft-b">Explore</span><a href="/industries/">Industries</a><a href="/pricing/">Pricing</a><a href="/resources/">Resources</a><a href="/about/">About</a></div>
+      <div><span class="ft-b">Start</span><a href="/#audit">Free audit</a><a href="/tools/ai-rank-tracker/">AI Rank Tracker</a><a href="/#book">Book a call</a></div>
+    </div>
+    <p class="fine">© 2026 Reckona AI Pvt. Ltd. · Every engagement is scoped and quoted for your business — no rate card, no surprises.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var r=document.documentElement, s=localStorage.getItem('theme');
+  if(s)r.setAttribute('data-theme',s);
+  else r.setAttribute('data-theme',matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');
+  var b=document.getElementById('themeBtn');
+  if(b)b.onclick=function(){var n=r.getAttribute('data-theme')==='dark'?'light':'dark';r.setAttribute('data-theme',n);localStorage.setItem('theme',n)};
+})();
+
+function rtBuild(e){
+  e.preventDefault();
+  var brand=document.getElementById('rtBrand').value.trim();
+  var cat=document.getElementById('rtCategory').value.trim();
+  var loc=document.getElementById('rtLocation').value.trim();
+  var compRaw=document.getElementById('rtCompetitors').value.trim();
+  var comps=compRaw?compRaw.split(',').map(function(c){return c.trim()}).filter(Boolean).slice(0,2):[];
+  var locPhrase=loc?(' in '+loc):'';
+  var locPhrase2=loc?(' near '+loc):' near me';
+
+  var prompts=[
+    ['Direct brand', 'What is '+brand+'?'],
+    ['Direct brand', 'Tell me about '+brand+'. Is it good?'],
+    ['Category discovery', 'What are the best options for '+cat+locPhrase+'?'],
+    ['Category discovery', 'I need '+cat+locPhrase2+'. What do you recommend?'],
+    ['Category discovery', 'What should I look for when choosing '+cat+'?'],
+    ['Pricing / info', 'How much does '+cat+' typically cost'+locPhrase+'?'],
+    ['Reputation', 'Is '+brand+' trustworthy? Any reviews or complaints?'],
+    ['Reputation', 'What do customers say about '+brand+'?']
+  ];
+  if(comps[0]){
+    prompts.push(['Comparison', brand+' vs '+comps[0]+' — which is better?']);
+    prompts.push(['Comparison', 'What are the differences between '+brand+' and '+comps[0]+'?']);
+  }
+  if(comps[1]){
+    prompts.push(['Comparison', 'Compare '+brand+', '+comps[0]+' and '+comps[1]+' for '+cat+'.']);
+  }
+  prompts.push(['Category discovery', 'Who are the top providers of '+cat+locPhrase+' in 2026?']);
+
+  var panel=document.getElementById('rtPanel');
+  panel.innerHTML=prompts.map(function(p,i){
+    var id='rtp'+i;
+    return '<div class="rt-row"><span class="num">'+String(i+1).padStart(2,'0')+'</span>'+
+      '<div class="prompt"><span class="cat">'+p[0]+'</span><span id="'+id+'">'+p[1].replace(/</g,'&lt;')+'</span></div>'+
+      '<button type="button" class="rt-copy" data-copy-target="'+id+'">Copy</button></div>';
+  }).join('');
+
+  var rep=document.getElementById('rtReport');
+  rep.classList.add('show');
+  rep.scrollIntoView({behavior:'smooth', block:'start'});
+  return false;
+}
+
+document.getElementById('rtPanel').addEventListener('click', function(e){
+  var btn=e.target.closest('.rt-copy');
+  if(!btn)return;
+  rtCopy(btn.getAttribute('data-copy-target'), btn);
+});
+
+function rtCopy(id, btn){
+  var text=document.getElementById(id).textContent;
+  var orig=btn.textContent;
+  var show=function(label){
+    btn.textContent=label;
+    btn.classList.add('copied');
+    setTimeout(function(){btn.textContent=orig;btn.classList.remove('copied')},1500);
+  };
+  var fallback=function(){
+    var ok=false;
+    var ta=document.createElement('textarea');
+    ta.value=text; ta.style.position='fixed'; ta.style.opacity='0';
+    document.body.appendChild(ta); ta.focus(); ta.select();
+    try{ok=document.execCommand('copy')}catch(e){}
+    document.body.removeChild(ta);
+    show(ok?'Copied':'Select & copy');
+  };
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(function(){show('Copied')}).catch(fallback);
+  } else {
+    fallback();
+  }
+}
+</script>
+</body>
+</html>
