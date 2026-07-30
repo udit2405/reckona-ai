@@ -37,23 +37,8 @@
 </nav>
 <main>
 <p class="crumb"><a href="/">Home</a> / Resources</p>
-<header class="hero">
-  <div class="eyebrow">Applied Intelligence</div>
-  <h1>Numbers-first writing on<br><em>AI-era growth.</em></h1>
-  <p class="lead" style="max-width:640px;margin-top:16px">Practical essays and guides on GEO, AI visibility, automation and search — the plays we run for clients, explained with real numbers.</p>
-</header>
-
-<section class="section-tight">
-  <a class="card" href="/resources/generative-engine-optimization-guide/" style="display:block">
-    <span class="pill up">GEO · Pillar guide</span>
-    <h3 style="font-family:Fraunces,serif;font-weight:500;font-size:1.6rem;margin-top:12px">The Complete Guide to Generative Engine Optimization (2026)</h3>
-    <p style="margin-top:8px">What GEO is, how AI engines choose which brands to recommend, and the 90-day playbook we run for clients.</p>
-    <span class="go">Read the full guide →</span>
-  </a>
-</section>
-
 <style>
-.res-search{margin:20px 0 6px}
+.res-search{margin:22px 0 6px}
 .res-search .box{position:relative;max-width:540px}
 .res-search input{width:100%;padding:14px 18px 14px 46px;border:1px solid var(--border);border-radius:999px;background:var(--surface);color:var(--ink);font:inherit;font-size:1rem;transition:border-color .15s}
 .res-search input:focus{outline:none;border-color:var(--ink)}
@@ -64,8 +49,10 @@
 .res-chips .pill.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 .res-count{font-size:.82rem;color:var(--ink2);margin-top:14px}
 </style>
-<section>
-  <h2>All articles</h2>
+<header class="hero" style="padding-bottom:0">
+  <div class="eyebrow">Applied Intelligence</div>
+  <h1>Numbers-first writing on<br><em>AI-era growth.</em></h1>
+  <p class="lead" style="max-width:640px;margin-top:16px">Practical essays and guides on GEO, AI visibility, automation and search — the plays we run for clients, explained with real numbers.</p>
   <div class="res-search">
     <div class="box"><span class="mag"></span><input id="artSearch" type="search" autocomplete="off" placeholder="Search articles — e.g. ChatGPT, automation, local SEO…" oninput="filterArticles()" aria-label="Search articles"></div>
     <div class="res-chips" id="artChips">
@@ -78,6 +65,19 @@
       <span class="pill" data-cat="leadership" onclick="setArtCat('leadership',this)">Leadership</span>
     </div>
   </div>
+</header>
+
+<section class="section-tight">
+  <a class="card" href="/resources/generative-engine-optimization-guide/" style="display:block">
+    <span class="pill up">GEO · Pillar guide</span>
+    <h3 style="font-family:Fraunces,serif;font-weight:500;font-size:1.6rem;margin-top:12px">The Complete Guide to Generative Engine Optimization (2026)</h3>
+    <p style="margin-top:8px">What GEO is, how AI engines choose which brands to recommend, and the 90-day playbook we run for clients.</p>
+    <span class="go">Read the full guide →</span>
+  </a>
+</section>
+
+<section>
+  <h2>All articles</h2>
   <div class="grid g2" id="artGrid" style="margin-top:20px">
     <a class="card" href="/resources/what-is-content-marketing-strategy-guide/" data-cat="seo" data-kw="what is content marketing strategy guide definition india"><span class="pill">SEO · Content Strategy</span><h3 style="margin-top:10px">What is content marketing? A strategy guide</h3><p style="font-size:.9rem">What it means, how to build a real strategy, and how it connects to SEO and GEO. · 8 min</p><span class="go">Read →</span></a>
     <a class="card" href="/resources/seo-for-startups-prelaunch-to-postlaunch/" data-cat="seo" data-kw="seo for startups pre launch post launch checklist new business"><span class="pill">SEO · Startups</span><h3 style="margin-top:10px">SEO for startups: a pre-launch to post-launch checklist</h3><p style="font-size:.9rem">What to set up before launch, what to prioritize in the first 90 days. · 8 min</p><span class="go">Read →</span></a>
