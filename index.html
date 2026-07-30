@@ -1,6 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6SJJLB7S6Y"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  // This page is a hash-routed single-page app — route() sends a manual
+  // page_view for every section (including the initial load), so the
+  // automatic one from config() is disabled to avoid double-counting.
+  gtag('config', 'G-6SJJLB7S6Y', {send_page_view: false});
+</script>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Reckona AI — AI-First Growth & Automation Partner | Intelligence, Applied.</title>
@@ -1220,6 +1233,11 @@ function route(){
     if(v.readyState>=2)go(); else v.addEventListener('canplay',go,{once:true});
   });
   document.title='Reckona AI — '+(h==='home'?'AI-First Growth & Automation Partner':h[0].toUpperCase()+h.slice(1))+' | Intelligence, Applied.';
+  // Single-page app: hash sections are distinct "pages" to a visitor, so
+  // send a virtual pageview on every route change, not just the initial load.
+  if(typeof gtag==='function'){
+    gtag('event','page_view',{page_title:document.title,page_path:'/#'+h,page_location:location.href});
+  }
   reveal();
 }
 window.addEventListener('hashchange',route);
