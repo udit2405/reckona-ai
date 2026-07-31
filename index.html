@@ -411,9 +411,7 @@ a.res-row:hover .res-arrow{transform:translateX(5px);color:var(--brand)}
 .wk-chips{margin-bottom:14px}
 .wk-chips .pill{font-family:'JetBrains Mono',monospace;font-size:.66rem;padding:3px 10px}
 .wk-outcome{font-size:.87rem;color:var(--signal);font-weight:600}
-.wk-detail{display:grid;grid-template-rows:0fr;transition:grid-template-rows .55s cubic-bezier(.22,1,.36,1)}
-.wk-card.open .wk-detail{grid-template-rows:1fr}
-.wk-detail>div{overflow:hidden}
+.wk-detail{height:0;overflow:hidden;transition:height .55s cubic-bezier(.22,1,.36,1)}
 .wk-block{opacity:0;transform:translateY(14px);transition:opacity .4s,transform .4s;padding-top:18px}
 .wk-card.open .wk-block{opacity:1;transform:none}
 .wk-block h4{font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--brand);margin-bottom:6px}
@@ -1797,13 +1795,21 @@ if(wkGrid){
      [...wkGrid.children].forEach(c=>{c.style.display=(f==='All'||c.dataset.tags.split(' ').includes(f))?'':'none'});
      wkEnter()},wkRM?0:280)});
 
- const wkClose=c=>{c.classList.remove('open');const x=c.querySelector('.wk-x');x.setAttribute('aria-expanded','false')};
+ const wkClose=c=>{
+   const d=c.querySelector('.wk-detail');
+   d.style.height=d.scrollHeight+'px'; // freeze current px height so the collapse can animate from it
+   requestAnimationFrame(()=>{d.style.height='0px'});
+   c.classList.remove('open');c.querySelector('.wk-x').setAttribute('aria-expanded','false')};
  wkGrid.addEventListener('click',e=>{
    if(e.target.closest('a'))return;
    const c=e.target.closest('.wk-card');if(!c)return;
    const was=c.classList.contains('open');
    wkGrid.querySelectorAll('.wk-card.open').forEach(wkClose);
    if(!was){c.classList.add('open');c.querySelector('.wk-x').setAttribute('aria-expanded','true');
+     const d=c.querySelector('.wk-detail');d.style.height=d.scrollHeight+'px';
+     d.addEventListener('transitionend',function te(ev){
+       if(ev.propertyName==='height'&&c.classList.contains('open')){d.style.height='auto'}
+       d.removeEventListener('transitionend',te)});
      setTimeout(()=>c.scrollIntoView({behavior:wkRM?'auto':'smooth',block:'nearest'}),120)}});
 
  // tilt + mouse-follow glow (fine pointers only, never while expanded)

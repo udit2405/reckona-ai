@@ -50,6 +50,35 @@
 </nav>
 <main>
 <p class="crumb"><a href="/">Home</a> / About</p>
+<style>
+.compare td.good::before{content:"✓  "}
+.compare td.bad::before{content:"–  ";opacity:.7}
+
+#beliefGrid{counter-reset:belief}
+#beliefGrid .card{position:relative;overflow:hidden;counter-increment:belief;transition:transform .28s ease,box-shadow .28s ease,border-color .28s ease}
+#beliefGrid .card::after{content:counter(belief,decimal-leading-zero);position:absolute;right:10px;top:-8px;font-family:Fraunces,serif;font-style:italic;font-weight:500;font-size:3.6rem;line-height:1;color:var(--ink);opacity:.05;pointer-events:none}
+#beliefGrid .card:hover{transform:translateY(-4px);box-shadow:0 16px 32px color-mix(in srgb,var(--brand) 13%,transparent)}
+#beliefGrid .card:nth-child(3n+2){border-top-color:var(--signal)}
+#beliefGrid .card:nth-child(3n+2) .ic-num{color:var(--signal)}
+#beliefGrid .card:nth-child(3n+2):hover{box-shadow:0 16px 32px color-mix(in srgb,var(--signal) 13%,transparent)}
+#beliefGrid .card:nth-child(3n+3){border-top-color:color-mix(in srgb,var(--brand) 45%,var(--signal))}
+#beliefGrid .card:nth-child(3n+3) .ic-num{color:color-mix(in srgb,var(--brand) 45%,var(--signal))}
+
+#howTimeline::before{width:2px;background:linear-gradient(180deg,var(--brand),var(--signal))}
+#howTimeline .tl-row .num{transition:transform .25s ease,box-shadow .25s ease,color .25s ease;box-shadow:0 4px 12px color-mix(in srgb,var(--brand) 16%,transparent)}
+#howTimeline .tl-row:hover .num{transform:scale(1.12)}
+#howTimeline .tl-row:nth-child(1) .num{color:var(--brand)}
+#howTimeline .tl-row:nth-child(2) .num{color:color-mix(in srgb,var(--brand) 60%,var(--signal))}
+#howTimeline .tl-row:nth-child(3) .num{color:color-mix(in srgb,var(--brand) 25%,var(--signal))}
+#howTimeline .tl-row:nth-child(4) .num{color:var(--signal)}
+
+#careersGrid .card{transition:transform .25s ease,box-shadow .25s ease;position:relative}
+#careersGrid .card:hover{transform:translateY(-3px);box-shadow:0 14px 28px color-mix(in srgb,var(--brand) 10%,transparent)}
+#careersGrid .card b{font-family:Fraunces,serif;font-weight:500;font-size:1.08rem}
+#careersGrid .card:nth-child(odd){border-top-color:var(--brand)}
+#careersGrid .card:nth-child(even){border-top-color:var(--signal)}
+@media(prefers-reduced-motion:reduce){#beliefGrid .card,#howTimeline .tl-row .num,#careersGrid .card{transition:none}}
+</style>
 <header class="hero">
   <div class="eyebrow">About Reckona AI</div>
   <h1>The firm we<br>wished <em>existed.</em></h1>
@@ -86,7 +115,7 @@
 
 <section>
   <h2>What we believe</h2>
-  <div class="grid g3" style="margin-top:20px">
+  <div class="grid g3" id="beliefGrid" style="margin-top:20px">
     <div class="card accent"><span class="ic-num">01</span><h3>Outcomes over output</h3><p style="font-size:.92rem">We sell revenue, pipeline and hours saved — never deliverables for their own sake. Every engagement has a number attached.</p></div>
     <div class="card accent"><span class="ic-num">02</span><h3>Ship weekly</h3><p style="font-size:.92rem">Decks don't compound; shipped systems do. Working software or live campaigns within 14 days of kickoff.</p></div>
     <div class="card accent"><span class="ic-num">03</span><h3>Radical clarity</h3><p style="font-size:.92rem">Written quotes, fixed scopes, plain-language contracts, dashboards a CEO actually reads.</p></div>
@@ -98,7 +127,7 @@
 
 <section>
   <h2>How we work</h2>
-  <div class="timeline">
+  <div class="timeline" id="howTimeline">
     <div class="tl-row"><span class="num">01</span><b>Diagnose</b><p>Every engagement starts with an audit and a number — revenue to gain or cost to remove. No number, no proposal.</p></div>
     <div class="tl-row"><span class="num">02</span><b>Design</b><p>The smallest system that moves that number. Three options, fixed scope, a written quote, plain-language contract.</p></div>
     <div class="tl-row"><span class="num">03</span><b>Deploy</b><p>Working software or live campaigns within 14 days of kickoff. Friday demos, every week, no exceptions.</p></div>
@@ -109,7 +138,7 @@
 <section>
   <h2>Careers</h2>
   <p style="max-width:640px">We hire T-shaped operators who use AI like a power tool. Write to <span class="mono">reckonaai@gmail.com</span> with something you've shipped — no cover letters.</p>
-  <div class="grid g2" style="margin-top:18px">
+  <div class="grid g2" id="careersGrid" style="margin-top:18px">
     <div class="card accent"><b>GEO Analyst</b><br><span style="font-size:.85rem;color:var(--ink2)">Remote · Full-time</span></div>
     <div class="card accent"><b>Automation Engineer (n8n/LangChain)</b><br><span style="font-size:.85rem;color:var(--ink2)">Remote · Full-time</span></div>
     <div class="card accent"><b>Growth Strategist</b><br><span style="font-size:.85rem;color:var(--ink2)">Remote · Full-time</span></div>
