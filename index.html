@@ -1115,6 +1115,7 @@ a.res-row:hover .res-arrow{transform:translateX(5px);color:var(--brand)}
             <label>What's the #1 result you want this year?</label><textarea id="lf6" rows="3"></textarea>
             <button class="btn" style="margin-top:18px;width:100%">Request free audit</button>
             <p class="notice">We reply within 4 working hours. Your data is handled per DPDP Act 2023 — never sold, never spammed. See our <a href="/privacy/">Privacy Policy</a>.</p>
+            <p class="notice" style="margin-top:8px">Want to get in touch right now? <a href="https://wa.me/919588859960" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">WhatsApp us at +91 95888 59960</a>.</p>
           </form>
           <div class="tool-result" id="lfRes"></div>
         </div>
@@ -1135,7 +1136,7 @@ a.res-row:hover .res-arrow{transform:translateX(5px);color:var(--brand)}
           <div style="margin-top:28px">
             <p><b style="color:var(--ink)">Office</b><br>Mumbai — Andheri East</p>
             <p style="margin-top:14px"><b style="color:var(--ink)">Email</b><br><span class="mono">reckonaai@gmail.com</span></p>
-            <p style="margin-top:14px"><b style="color:var(--ink)">WhatsApp</b><br><span class="mono">+91 72080 39186</span> (4-hr response SLA, Mon–Sat 9:30–19:00 IST)</p>
+            <p style="margin-top:14px"><b style="color:var(--ink)">WhatsApp</b><br><a href="https://wa.me/919588859960" target="_blank" rel="noopener" class="mono" style="color:inherit">+91 95888 59960</a> (4-hr response SLA, Mon–Sat 9:30–19:00 IST)</p>
           </div>
         </div>
         <div class="card">
@@ -1149,6 +1150,7 @@ a.res-row:hover .res-arrow{transform:translateX(5px);color:var(--brand)}
             <label>Preferred day & time (IST)</label><input id="bk5" placeholder="e.g., Thursday, 4 pm">
             <button class="btn" style="margin-top:18px;width:100%">Request slot</button>
             <p class="notice">Your data is handled per DPDP Act 2023 — never sold, never spammed. See our <a href="/privacy/">Privacy Policy</a>.</p>
+            <p class="notice" style="margin-top:8px">Want to get in touch right now? <a href="https://wa.me/919588859960" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">WhatsApp us at +91 95888 59960</a>.</p>
           </form>
           <div class="tool-result" id="bkRes"></div>
         </div>
@@ -1607,11 +1609,11 @@ function budgetCalc(e){e.preventDefault();
 /* ---------- Forms (demo handlers) ---------- */
 function leadForm(e){e.preventDefault();
   sendToSheet('audit_request',{name:lf1.value,email:lf2.value,website:lf3.value,whatsapp:lf4.value,auditType:lf5.value,goal:lf6.value});
-  lfRes.innerHTML=`<p><b style="color:var(--ink)">Thanks, ${lf1.value.split(' ')[0]}!</b> Your ${lf5.value} is queued. You'll hear from us within 4 working hours at ${lf2.value}. Meanwhile, try the <a href="#tools">free tools</a>.</p>`;
+  lfRes.innerHTML=`<p><b style="color:var(--ink)">Thank you, ${lf1.value.split(' ')[0]}!</b> Your ${lf5.value} is queued — our team will get back to you within 4 working hours at ${lf2.value}. Meanwhile, try the <a href="#tools">free tools</a>.</p><p style="margin-top:10px">To get in touch right now, drop us a WhatsApp message and reach out on this same number given above — <a href="https://wa.me/919588859960" target="_blank" rel="noopener">+91 95888 59960</a>.</p>`;
   lfRes.classList.add('show');e.target.reset();return false}
 function bookForm(e){e.preventDefault();
   sendToSheet('booking',{name:bk1.value,email:bk2.value,company:bk3.value,prepFor:bk4.value,preferredTime:bk5.value});
-  bkRes.innerHTML=`<p><b style="color:var(--ink)">Slot requested.</b> We'll confirm ${bk5.value||'a time'} by email to ${bk2.value} within 4 working hours, with a short prep note on ${bk4.value.toLowerCase()}.</p>`;
+  bkRes.innerHTML=`<p><b style="color:var(--ink)">Thank you — slot requested.</b> Our team will get back to you and confirm ${bk5.value||'a time'} by email to ${bk2.value} within 4 working hours, with a short prep note on ${bk4.value.toLowerCase()}.</p><p style="margin-top:10px">To get in touch right now, drop us a WhatsApp message and reach out on this same number given above — <a href="https://wa.me/919588859960" target="_blank" rel="noopener">+91 95888 59960</a>.</p>`;
   bkRes.classList.add('show');e.target.reset();return false}
 function subscribe(e){e.preventDefault();
   sendToSheet('newsletter',{email:nlEmail.value});
