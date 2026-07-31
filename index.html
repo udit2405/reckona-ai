@@ -35,6 +35,7 @@
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<link rel="preload" as="image" href="assets/hero-poster.webp" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
@@ -94,7 +95,7 @@ nav a.nl:hover,nav a.nl.active{color:var(--ink);background:var(--surface2)}
 #themeBtn{background:none;border:1px solid var(--border);border-radius:999px;color:var(--ink);cursor:pointer;padding:7px 12px;font-size:.9rem}
 /* HERO */
 .hero{padding:210px 0 130px;position:relative;overflow:hidden}
-.hero-media{position:absolute;inset:0;z-index:0;background:url(assets/hero-poster.jpg) center/cover}
+.hero-media{position:absolute;inset:0;z-index:0;background:url(assets/hero-poster.webp) center/cover}
 .hero-media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .hero-media::after{content:"";position:absolute;inset:0;
   background:linear-gradient(to bottom,var(--overlay-top) 0%,var(--overlay-mid) 52%,var(--bg) 97%)}
@@ -177,7 +178,7 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--ink)}
 .pagehead{position:relative;overflow:hidden;
   margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);
   padding-left:calc(50vw - 50%);padding-right:calc(50vw - 50%);padding-bottom:8px}
-.pagehead-media{position:absolute;inset:0;z-index:0;background:url(assets/svc-poster.jpg) center/cover}
+.pagehead-media{position:absolute;inset:0;z-index:0;background:url(assets/svc-poster.webp) center/cover}
 .pagehead-media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 /* Invert only the footage — inverting the wrapper would flip the overlay too */
 [data-theme="dark"] .pagehead-media video{filter:invert(1)}
@@ -467,7 +468,7 @@ a.res-row:hover .res-arrow{transform:translateX(5px);color:var(--brand)}
 <div class="page" id="p-home">
   <header class="hero">
     <div class="hero-media" aria-hidden="true">
-      <video autoplay muted loop playsinline preload="metadata" poster="assets/hero-poster.jpg" src="assets/hero-bg.mp4"></video>
+      <video autoplay muted loop playsinline preload="metadata" poster="assets/hero-poster.webp" src="assets/hero-bg.mp4" fetchpriority="high"></video>
     </div>
     <div class="container">
       <div class="eyebrow">AI-First Growth & Automation Partner · India</div>
@@ -563,7 +564,7 @@ a.res-row:hover .res-arrow{transform:translateX(5px);color:var(--brand)}
   <div class="container">
     <div class="pagehead">
       <div class="pagehead-media" aria-hidden="true">
-        <video autoplay muted loop playsinline preload="metadata" poster="assets/svc-poster.jpg" src="assets/svc-bg.mp4"></video>
+        <video autoplay muted loop playsinline preload="metadata" poster="assets/svc-poster.webp" src="assets/svc-bg.mp4"></video>
       </div>
       <div class="crumb">Home / Services</div>
       <section style="padding-top:28px;padding-bottom:20px">
@@ -1178,7 +1179,7 @@ a.res-row:hover .res-arrow{transform:translateX(5px);color:var(--brand)}
   <div class="vw-frame" onclick="vwPlay()">
     <span class="vw-tag">Reckona AI in 40s</span>
     <button class="vw-x" onclick="event.stopPropagation();vwHide()" aria-label="Close video">✕</button>
-    <video id="vwV" src="assets/reckona-showcase.mp4" poster="assets/reckona-showcase-poster.jpg" muted loop playsinline preload="none"></video>
+    <video id="vwV" src="assets/reckona-showcase.mp4" poster="assets/reckona-showcase-poster.webp" muted loop playsinline preload="none"></video>
     <div class="vw-ctrl" onclick="event.stopPropagation()">
       <button id="vwPlayBtn" onclick="vwPlay()" aria-label="Play or pause">▶</button>
       <button id="vwZoomBtn" onclick="vwZoom()" aria-label="Zoom video">1×</button>
@@ -1277,19 +1278,25 @@ function reveal(){
   // Elements observed while their page was display:none don't reliably get an
   // intersection callback once the router shows it, which would strand them at
   // opacity 0. Reveal whatever is already on screen outright, observe the rest.
+  // Reads (getBoundingClientRect) are batched before writes (classList/observe)
+  // below so the browser isn't forced into a synchronous layout on every element.
+  const vh=window.innerHeight, toShow=[], toObserve=[];
   document.querySelectorAll('.reveal:not(.in)').forEach(el=>{
     const r=el.getBoundingClientRect();
-    if(r.height&&r.top<window.innerHeight&&r.bottom>0){el.classList.add('in');io.unobserve(el)}
-    else io.observe(el);
+    (r.height&&r.top<vh&&r.bottom>0?toShow:toObserve).push(el);
   });
+  toShow.forEach(el=>{el.classList.add('in');io.unobserve(el)});
+  toObserve.forEach(el=>io.observe(el));
   // Safety net: content must never stay invisible because an observer or a
   // throttled frame callback failed to fire.
   clearTimeout(reveal._t);
   reveal._t=setTimeout(()=>{
+    const vh2=window.innerHeight, toShow2=[];
     document.querySelectorAll('.page.active .reveal:not(.in)').forEach(el=>{
       const r=el.getBoundingClientRect();
-      if(r.height&&r.top<window.innerHeight&&r.bottom>0)el.classList.add('in');
+      if(r.height&&r.top<vh2&&r.bottom>0)toShow2.push(el);
     });
+    toShow2.forEach(el=>el.classList.add('in'));
   },400);
 }
 
