@@ -36,7 +36,10 @@
 <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet"></noscript>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"ProfessionalService","name":"Reckona AI Pvt. Ltd.","alternateName":"Reckona AI","slogan":"Intelligence, Applied.","description":"AI-first growth and automation consultancy: GEO, SEO, performance marketing, and AI automation for Indian mid-market companies.","areaServed":"IN","address":{"@type":"PostalAddress","addressLocality":"Mumbai","addressRegion":"Maharashtra","addressCountry":"IN"},"knowsAbout":["Generative Engine Optimization","AI Automation","SEO","Digital Transformation"]}
 </script>
@@ -1175,7 +1178,7 @@ a.res-row:hover .res-arrow{transform:translateX(5px);color:var(--brand)}
   <div class="vw-frame" onclick="vwPlay()">
     <span class="vw-tag">Reckona AI in 40s</span>
     <button class="vw-x" onclick="event.stopPropagation();vwHide()" aria-label="Close video">✕</button>
-    <video id="vwV" src="assets/reckona-showcase.mp4" muted loop playsinline preload="metadata"></video>
+    <video id="vwV" src="assets/reckona-showcase.mp4" poster="assets/reckona-showcase-poster.jpg" muted loop playsinline preload="none"></video>
     <div class="vw-ctrl" onclick="event.stopPropagation()">
       <button id="vwPlayBtn" onclick="vwPlay()" aria-label="Play or pause">▶</button>
       <button id="vwZoomBtn" onclick="vwZoom()" aria-label="Zoom video">1×</button>
@@ -1625,11 +1628,9 @@ function vwShow(){vwEl.classList.remove('in');document.getElementById('vwChip').
   const t=vwV.play();if(t&&t.catch)t.catch(()=>{});vwSync()}
 vwV.addEventListener('play',vwSync);vwV.addEventListener('pause',vwSync);
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&vwEl.classList.contains('big'))vwEnlarge(false)});
-/* slide in after a moment; respect reduced motion (no autoplay there) */
-setTimeout(()=>{vwEl.classList.remove('in');
-  const metered=navigator.connection&&(navigator.connection.saveData||/2g/.test(navigator.connection.effectiveType||''));
-  if(!matchMedia('(prefers-reduced-motion:reduce)').matches&&!metered){const t=vwV.play();if(t&&t.catch)t.catch(()=>{})}
-  vwSync()},1400);
+/* slide in after a moment; poster carries the preview, playback is user-initiated
+   (no autoplay — a silent 4MB+ download on every page load isn't worth it) */
+setTimeout(()=>{vwEl.classList.remove('in');vwSync()},1400);
 
 /* ---------- Work / Projects ---------- */
 const WK=[
