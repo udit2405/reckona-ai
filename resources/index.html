@@ -66,6 +66,25 @@
 .start-here .for{font-size:.8rem;color:var(--ink2);margin:8px 0 2px}
 .start-here h3{font-size:1.02rem;margin-top:2px}
 .start-here .go{margin-top:auto;padding-top:14px}
+
+.pillar-card{position:relative;overflow:hidden;padding:32px 34px;border-radius:20px;background:linear-gradient(155deg,color-mix(in srgb,var(--brand) 7%,var(--surface)),var(--surface) 60%);border-color:color-mix(in srgb,var(--brand) 28%,var(--border));transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease}
+.pillar-card::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:linear-gradient(90deg,var(--brand),var(--signal))}
+.pillar-card::after{content:"";position:absolute;right:-70px;top:-70px;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--brand) 20%,transparent),transparent 70%);pointer-events:none}
+.pillar-card:hover{transform:translateY(-4px);box-shadow:0 14px 34px color-mix(in srgb,var(--brand) 14%,transparent);border-color:color-mix(in srgb,var(--brand) 45%,var(--border))}
+.pillar-card h3{position:relative}
+.pillar-card:hover .go{transform:translateX(5px)}
+
+#artGrid .card{position:relative;overflow:hidden;opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease,border-color .25s ease,box-shadow .25s ease}
+#artGrid .card.reveal-in{opacity:1;transform:translateY(0)}
+#artGrid .card h3{font-family:Fraunces,serif;font-weight:500;font-size:1.14rem;line-height:1.32;margin-top:12px}
+#artGrid .card p{font-size:.9rem}
+#artGrid .card .pill{transition:background .2s ease,color .2s ease,border-color .2s ease}
+#artGrid .card .go{display:inline-block;transition:transform .2s ease,color .2s ease}
+#artGrid .card:hover{border-color:color-mix(in srgb,var(--brand) 45%,var(--border));box-shadow:0 12px 30px color-mix(in srgb,var(--brand) 10%,transparent)}
+#artGrid .card:hover .go{transform:translateX(4px);color:var(--signal)}
+#artGrid .card:nth-child(3n+1) .pill{background:color-mix(in srgb,var(--brand) 12%,var(--surface2));color:var(--brand);border-color:color-mix(in srgb,var(--brand) 25%,var(--border))}
+#artGrid .card:nth-child(3n+2) .pill{background:color-mix(in srgb,var(--signal) 12%,var(--surface2));color:var(--signal);border-color:color-mix(in srgb,var(--signal) 25%,var(--border))}
+@media(prefers-reduced-motion:reduce){#artGrid .card,.pillar-card{transition:none;opacity:1;transform:none}}
 </style>
 <header class="hero" style="padding-bottom:0">
   <div class="eyebrow">Applied Intelligence</div>
@@ -86,7 +105,7 @@
 </header>
 
 <section class="section-tight">
-  <a class="card" href="/resources/generative-engine-optimization-guide/" style="display:block">
+  <a class="card pillar-card" href="/resources/generative-engine-optimization-guide/" style="display:block">
     <span class="pill up">GEO · Pillar guide</span>
     <h3 style="font-family:Fraunces,serif;font-weight:500;font-size:1.6rem;margin-top:12px">The Complete Guide to Generative Engine Optimization (2026)</h3>
     <p style="margin-top:8px">What GEO is, how AI engines choose which brands to recommend, and the 90-day playbook we run for clients.</p>
@@ -263,6 +282,17 @@ function filterArticles(){
 }
 function clearArt(){var i=document.getElementById('artSearch');if(i)i.value='';artCat='all';
   document.querySelectorAll('#artChips .pill').forEach(function(p,n){p.classList.toggle('on',n===0)});filterArticles();}
+
+(function(){
+  var cards=document.querySelectorAll('#artGrid .card');
+  if(!('IntersectionObserver' in window)){cards.forEach(function(c){c.classList.add('reveal-in')});return;}
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){e.target.classList.add('reveal-in');io.unobserve(e.target)}
+    });
+  },{threshold:.08,rootMargin:'0px 0px -30px 0px'});
+  cards.forEach(function(c){io.observe(c)});
+})();
 </script>
 
 <div class="cta">
@@ -295,5 +325,6 @@ function clearArt(){var i=document.getElementById('artSearch');if(i)i.value='';a
   if(b)b.onclick=function(){var n=r.getAttribute('data-theme')==='dark'?'light':'dark';r.setAttribute('data-theme',n);localStorage.setItem('theme',n)};
 })();
 </script>
+<script src="/assets/chatbot.js" defer></script>
 </body>
 </html>
