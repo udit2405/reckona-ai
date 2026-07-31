@@ -421,11 +421,11 @@ a.res-row:hover .res-arrow{transform:translateX(5px);color:var(--brand)}
 .wk-metrics{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
 .wk-metric{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:10px 16px;font-size:.82rem;color:var(--ink2)}
 .wk-metric b{display:block;font-family:Fraunces,serif;font-size:1.25rem;font-weight:500;color:var(--ink)}
-.wk-mock{border:1px solid var(--border);border-radius:14px;overflow:hidden;background:var(--bg);margin-top:6px}
+.wk-mock{border:1px solid var(--border);border-radius:14px;overflow:hidden;background:var(--surface2);margin-top:6px}
 .wk-mock .mbar{display:flex;gap:6px;padding:10px 14px;border-bottom:1px solid var(--border)}
-.wk-mock .mbar i{width:9px;height:9px;border-radius:99px;background:var(--border)}
+.wk-mock .mbar i{width:9px;height:9px;border-radius:99px;background:color-mix(in srgb,var(--ink) 25%,var(--surface2))}
 .wk-mock .mbody{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:10px;padding:16px}
-.wk-mock .blk{border-radius:8px;background:linear-gradient(100deg,var(--surface2) 30%,var(--border) 50%,var(--surface2) 70%);background-size:200% 100%;animation:wkShimmer 2.4s linear infinite}
+.wk-mock .blk{border-radius:8px;background:linear-gradient(100deg,color-mix(in srgb,var(--ink) 12%,var(--surface2)) 30%,color-mix(in srgb,var(--ink) 26%,var(--surface2)) 50%,color-mix(in srgb,var(--ink) 12%,var(--surface2)) 70%);background-size:200% 100%;animation:wkShimmer 2.4s linear infinite}
 @keyframes wkShimmer{to{background-position:-200% 0}}
 .wk-tl{display:flex;flex-wrap:wrap;margin-top:8px}
 .wk-tl div{flex:1;min-width:140px;padding:10px 18px 0 0;border-top:2px solid var(--border);font-size:.8rem;color:var(--ink2);position:relative;opacity:0;transform:translateX(-12px);transition:opacity .45s,transform .45s}
