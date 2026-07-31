@@ -1,118 +1,289 @@
-/* Reckona AI — site-wide FAQ chatbot.
+/* Reckona AI — site-wide guided FAQ chatbot.
    Self-contained: injects its own CSS + DOM, no dependencies, no network calls.
-   Answers are keyword-matched against a fixed knowledge base built from this
-   site's own real content (services, pricing, process, contact) — it never
-   invents facts, and falls back to a human-contact prompt when unsure. */
+   Two ways in: a browsable topic menu ("What are you looking for?") that walks
+   the visitor to the exact answer, and free-text keyword search over the same
+   knowledge base — which is built only from this site's real content, so it
+   never invents facts. Unsure matches show "did you mean" topic chips; no
+   match falls back to human contact (WhatsApp / email / free audit). */
 (function(){
 'use strict';
 
 var WA_LINK = 'https://wa.me/919588859960';
 var WA_DISPLAY = '+91 95888 59960';
+var WA_A = "<a href=\""+WA_LINK+"\" target=\"_blank\" rel=\"noopener\">"+WA_DISPLAY+"</a>";
 
-/* ---------- Knowledge base ---------- */
-/* Each entry: trigger keywords (matched as substrings of the lowercased
-   question) and an HTML answer. Order matters only for tie-breaking. */
-var KB = [
-  { id:'greeting', kw:['hi','hello','hey','namaste','yo '],
-    a:"Hi! I'm the Reckona AI assistant. Ask me about our services, pricing, process, industries we work with, or how to get in touch — I'll do my best to answer directly." },
+/* ---------- Knowledge base ----------
+   T[id] = {label (chip text), kw (search keywords), a (answer HTML),
+            menu (child ids — renders as a chooser), follow (related ids)} */
+var T = {};
+function t(id, label, kw, a, extra){
+  T[id] = {id:id, label:label, kw:kw||[], a:a||"", menu:(extra&&extra.menu)||null, follow:(extra&&extra.follow)||[]};
+}
 
-  { id:'services-overview', kw:['what services','what do you do','what do you offer','offerings','practices','what can you help'],
-    a:"We run eight practices under one accountable pod: <b>GEO</b> (AI visibility — our flagship), SEO, Web design &amp; engineering, Social, Performance Marketing, Branding, AI Automation, and Consulting. See the full breakdown at <a href=\"/services/\">/services/</a>." },
+/* ----- Root ----- */
+t('root', "⌂ All topics", [],
+  "What exactly are you looking for? Pick a topic and I'll walk you to the answer — or just type your question.",
+  {menu:['m-services','m-pricing','m-industries','m-tools','m-process','m-policies','m-contact']});
 
-  { id:'geo', kw:['geo','generative engine optimization','ai visibility','chatgpt','cited by ai','ai overview','ai search'],
-    a:"GEO (Generative Engine Optimization) is our flagship practice — getting your brand cited, recommended and correctly described inside ChatGPT, Gemini, Claude, Perplexity and AI Overviews, measured with a monthly AI-visibility score across 4 engines. Details at <a href=\"/services/geo/\">/services/geo/</a>, or try our free <a href=\"/tools/ai-rank-tracker/\">AI Rank Tracker</a>." },
+/* ----- Services ----- */
+t('m-services', "Services & offerings",
+  ['service','services','offering','offerings','what do you do','what do you offer','practices','what can you help'],
+  "We run <b>eight practices under one accountable pod</b> — GEO (our flagship), SEO, Web, Social, Performance Ads, Branding, AI Automation and Consulting. Which one do you want to dig into?",
+  {menu:['svc-geo','svc-seo','svc-web','svc-social','svc-perf','svc-brand','svc-auto','svc-consult']});
 
-  { id:'seo', kw:['seo','search engine optimization','ranking','google ranking','organic traffic'],
-    a:"Our SEO practice covers technical health, content that matches intent, and authority-building link work — compounding organic growth. See <a href=\"/services/seo/\">/services/seo/</a> for the full scope." },
+t('svc-geo', "GEO — AI visibility",
+  ['geo','generative engine','ai visibility','get cited','cited by ai','chatgpt recommend','ai overviews','ai search','perplexity','gemini','recommended by ai'],
+  "<b>GEO (Generative Engine Optimization)</b> is our flagship: getting your brand cited, recommended and correctly described inside ChatGPT, Gemini, Claude, Perplexity and AI Overviews.<br><br>The engagement: a <b>GEO Audit &amp; AI Visibility Score</b> (40-prompt matrix × 4 engines, 1–2 wks), entity &amp; knowledge-graph work (4–6 wks), an AI citation strategy, retrieval-optimized content, and monthly re-scoring so you see share-of-voice actually move.<br><br>Full detail: <a href=\"/services/geo/\">/services/geo/</a> · Try the free <a href=\"/tools/ai-rank-tracker/\">AI Rank Tracker</a>",
+  {follow:['tool-tracker','pricing-how','start-audit']});
 
-  { id:'web', kw:['website','web design','web development','landing page','new site','build a site'],
-    a:"We design and build sites meant to convert, not just exist — analytics, SEO foundations and a CMS your team can run, from landing pages to full ecommerce builds. See <a href=\"/services/web/\">/services/web/</a>." },
+t('svc-seo', "SEO",
+  ['seo','search engine optimization','rank on google','google ranking','organic traffic','link building','local seo','technical seo','content seo','backlink'],
+  "Our <b>SEO practice</b> covers the whole stack: a 120-point audit with a prioritized 90-day roadmap (credited against a retainer), technical SEO (crawl/index/schema/Core Web Vitals), content SEO (8–16 expert-reviewed articles/mo), local SEO (map-pack: GBP, citations, review engine), enterprise programs (10K+ pages), and link building / digital PR (6–15 DR-40+ placements/mo).<br><br>Full detail: <a href=\"/services/seo/\">/services/seo/</a>",
+  {follow:['svc-geo','pricing-how','start-audit']});
 
-  { id:'social', kw:['social media','instagram','linkedin','youtube','content calendar','social content'],
-    a:"Our Social practice runs authority-building content engines on LinkedIn, Instagram, YouTube and more — on a calendar your team approves once a month. See <a href=\"/services/social/\">/services/social/</a>." },
+t('svc-web', "Website design & build",
+  ['website','web design','web development','landing page','new site','build a site','ecommerce','shopify','site speed','redesign'],
+  "Our <b>Web practice</b> builds sites meant to convert, not just exist: conversion-focused builds on Next.js/Framer with CMS, analytics and 90+ PageSpeed (4–6 wks); campaign landing pages with A/B variants (1 wk); ecommerce on Shopify/headless with Razorpay and GST invoicing (6–8 wks); enterprise corporate sites; plus maintenance (8 change-hrs/mo, 99.9% uptime) and zero-SEO-loss migrations / speed / WCAG 2.2 AA accessibility work.<br><br>Full detail: <a href=\"/services/web/\">/services/web/</a>",
+  {follow:['svc-seo','pricing-how','start-audit']});
 
-  { id:'performance', kw:['performance marketing','google ads','meta ads','paid ads','ppc','facebook ads','ad spend'],
-    a:"Our Performance Marketing practice runs full-funnel Google, Meta and LinkedIn ads with creative included and every rupee tracked to revenue — you always own the ad accounts. See <a href=\"/services/performance/\">/services/performance/</a>." },
+t('svc-social', "Social media",
+  ['social media','instagram','linkedin','youtube','reels','content calendar','posts per month','ghostwriting','social content'],
+  "Our <b>Social practice</b> runs authority-building content engines on a calendar your team approves once a month: LinkedIn Engine (12–16 posts/mo with founder ghostwriting and carousels), Instagram Engine (12 posts + 8 reels/mo with community management), YouTube Engine (2–4 edited videos/mo with thumbnails, SEO and shorts repurposing), or Full-stack Social across IG + LinkedIn + X/Threads + FB with 30+ assets/mo.<br><br>Full detail: <a href=\"/services/social/\">/services/social/</a>",
+  {follow:['svc-brand','pricing-how','start-audit']});
 
-  { id:'branding', kw:['branding','logo','brand identity','pitch deck','company profile'],
-    a:"Our Branding practice covers identity systems and sales assets — logo &amp; brand guide, pitch decks, company profiles — built to make the next conversation easier to win. See <a href=\"/services/branding/\">/services/branding/</a>." },
+t('svc-perf', "Performance ads",
+  ['performance marketing','google ads','meta ads','facebook ads','paid ads','ppc','ad spend','linkedin ads','roas','lead generation ads','cro'],
+  "Our <b>Performance Marketing practice</b> runs full-funnel paid media tracked to revenue, never vanity clicks: Google Ads (Search/PMax/YouTube, weekly optimization, call tracking), Meta Ads (full-funnel with 8+ creatives/mo included and CAPI), LinkedIn Ads (ABM lists, lead-gen forms), complete Lead-Gen Systems (ads + landing + WhatsApp/CRM routing + nurture), and a CRO program (heatmaps, 2–4 A/B tests/mo).<br><br><b>You always own the ad accounts</b> — they're created in your name. Full detail: <a href=\"/services/performance/\">/services/performance/</a>",
+  {follow:['policy-ip','pricing-how','start-audit']});
 
-  { id:'ai-automation', kw:['ai automation','automate','chatbot','ai agent','whatsapp automation','automation'],
-    a:"Our AI Automation practice deploys assistants and agents to your own cloud — knowledge assistants, WhatsApp automation, document processing, executive dashboards — documented and handed over, with your team trained to run them. See <a href=\"/services/ai-automation/\">/services/ai-automation/</a>." },
+t('svc-brand', "Branding & sales assets",
+  ['branding','logo','brand identity','pitch deck','sales deck','company profile','brand guide'],
+  "Our <b>Branding practice</b> builds identity systems and sales assets that make the next conversation easier to win: Logo &amp; Identity (3 concepts, final marks, usage rules), a Full Brand Guide (identity + voice + templates, 60+ pages), Pitch / Sales / Corporate decks (narrative + design + objection handling), and Company Profiles (8–12 pages, print + digital).<br><br>Full detail: <a href=\"/services/branding/\">/services/branding/</a>",
+  {follow:['svc-web','svc-social','start-audit']});
 
-  { id:'consulting', kw:['consulting','fractional ai officer','advisory','roadmap','ai strategy','training'],
-    a:"Our Consulting practice covers digital transformation roadmaps, a fractional AI officer retainer, and team training — priced as projects, not open-ended consulting. See <a href=\"/services/consulting/\">/services/consulting/</a>." },
+t('svc-auto', "AI automation",
+  ['ai automation','automate','automation','ai agent','ai assistant','whatsapp automation','document processing','knowledge assistant','ai employee','dashboard','rag','invoice automation'],
+  "Our <b>AI Automation practice</b> deploys working systems to your own cloud, documented and handed over: AI Readiness Audit (2–3 wks, quantified savings + 12-mo roadmap), Knowledge Assistants (internal ChatGPT on your docs, RAG, 4–6 wks), Sales/Support/HR/Finance assistants integrated with your CRM/HRMS/Tally, WhatsApp automation on the verified Business API, Document Processing (invoices/KYC/contracts, 95%+ accuracy target), Executive Dashboards with AI commentary, and the AI Employees bundle (3+ assistants, shared memory, SSO, 8–12 wks).<br><br>Your team is trained to run everything — dependency is a bug, not a business model. Full detail: <a href=\"/services/ai-automation/\">/services/ai-automation/</a>",
+  {follow:['tool-readiness','svc-consult','start-audit']});
 
-  { id:'pricing', kw:['price','pricing','cost','how much','rate card','budget','fee','quote'],
-    a:"We don't publish a fixed rate card — every engagement is scoped and quoted after a free audit, so you're never paying for more than you need. There are five tiers, from Launch (solopreneurs &amp; small business) through Enterprise (AI-native transformation) — see what's included at each at <a href=\"/pricing/\">/pricing/</a>." },
+t('svc-consult', "Consulting & AI leadership",
+  ['consulting','fractional ai officer','advisory','roadmap','ai strategy','training','workshop','transformation','cto','ai officer'],
+  "Our <b>Consulting practice</b> covers Digital Transformation Roadmaps (current-state audit, 18-month roadmap, business case), an AI Consulting Retainer (a fractional AI officer: strategy, vendor evaluation, governance — without a full-time executive salary), Innovation Workshops &amp; role-based AI training, and Market &amp; Competitive Intelligence briefs.<br><br>Priced as projects, not open-ended consulting. Full detail: <a href=\"/services/consulting/\">/services/consulting/</a>",
+  {follow:['svc-auto','pricing-how','contact-book']});
 
-  { id:'process', kw:['how does it work','process','how do you work','timeline','how long','kickoff'],
-    a:"Four steps: <b>Diagnose</b> (a free audit with a number attached) → <b>Design</b> (three fixed-scope options, written quote) → <b>Deploy</b> (working software or live campaigns within 14 days of kickoff) → <b>Drive</b> (we operate and report against your day-0 baseline). Weekly Friday demos throughout. More at <a href=\"/about/\">/about/</a>." },
+/* ----- Pricing ----- */
+t('m-pricing', "Pricing & plans",
+  ['price','pricing','cost','how much','rate card','budget','fee','quote','plans','tiers','package'],
+  "Every engagement is <b>scoped and quoted for your business after a free audit</b> — no rate card, no surprises. There are five tiers. Which would you like to see?",
+  {menu:['tier-launch','tier-starter','tier-growth','tier-pro','tier-ent','pricing-how','policy-term']});
 
-  { id:'audit', kw:['free audit','get started','start','begin','audit'],
-    a:"The fastest way to start is a free audit — pick Website, SEO, GEO, or an AI Readiness snapshot, and our team presents findings live in 20 minutes with no pitch unless you ask. <a href=\"/#audit\">Request your free audit →</a>" },
+t('pricing-how', "How pricing works",
+  ['how pricing works','custom quote','why no prices','no price','how do you charge'],
+  "We don't publish fixed prices because scope varies hugely between businesses — instead, every engagement starts with a <b>free audit</b>, after which you get <b>three options at fixed scope with a written quote</b>. You know what ships, when, and what it costs before any work begins. See all tiers at <a href=\"/pricing/\">/pricing/</a>.",
+  {follow:['start-audit','policy-term','m-pricing']});
 
-  { id:'guarantee', kw:['guarantee','promise results','no results','risk','what if it doesnt work',"what if it doesn't work"],
-    a:"No honest firm guarantees specific rankings or results — anyone who does is lying to you. What we guarantee is process, transparency, and measurable movement on agreed leading indicators by day 90, or we work free until there is (terms in the MSA)." },
+t('tier-launch', "Launch tier",
+  ['launch tier','solopreneur','very small business','first digital hire','smallest plan','cheapest'],
+  "<b>Launch</b> — for solopreneurs &amp; small businesses making their first digital hire. Includes: 1 core channel (SEO or social), Google Business Profile + local SEO, WhatsApp Business setup, a quarterly AI-visibility snapshot, and a monthly report. Quoted after a free audit — <a href=\"/pricing/\">/pricing/</a>.",
+  {follow:['tier-starter','pricing-how','start-audit']});
 
-  { id:'ip-ownership', kw:['who owns','ownership','my code','my accounts','ip transfer','vendor lock'],
-    a:"You do. Full IP transfer on final payment, and ad/analytics accounts are always created in your name from day one — never locked to our tooling." },
+t('tier-starter', "Starter tier",
+  ['starter tier','sme plan','small business plan','core digital engine'],
+  "<b>Starter</b> — for SMEs building their core digital engine. Includes: website care + local SEO, 1 social platform, AI-visibility tracking, 1 automation per quarter, and a monthly report + strategy call. Quoted after a free audit — <a href=\"/pricing/\">/pricing/</a>.",
+  {follow:['tier-growth','pricing-how','start-audit']});
 
-  { id:'minimum-engagement', kw:['minimum engagement','contract length','notice period','how long is the contract','commitment'],
-    a:"Standard engagements carry a 90-day minimum term with 30-day notice to end after that — long enough to see real movement, short enough that you're never trapped. Small, focused projects can fit outside that too — ask us." },
+t('tier-growth', "Growth tier",
+  ['growth tier','scaling leads','scale lead flow','mid plan'],
+  "<b>Growth</b> — for companies scaling lead flow. Includes: full SEO + GEO audit &amp; entity work, 2 social platforms + 1 ad channel, CRO testing, 1 automation per month, and a live dashboard with monthly strategy. Quoted after a free audit — <a href=\"/pricing/\">/pricing/</a>.",
+  {follow:['tier-pro','pricing-how','start-audit']});
 
-  { id:'industries', kw:['industry','industries','sector','do you work with','vertical'],
-    a:"We work across Restaurant/QSR, Hospital/Clinic, Manufacturing/B2B, Education/Coaching, Real Estate, Retail/D2C, Finance/BFSI, Startups (Series A–C), SME Digital Starter, and Enterprise AI Kickstart. See <a href=\"/industries/\">/industries/</a> for what we do in each." },
+t('tier-pro', "Professional tier",
+  ['professional tier','multi-channel','dedicated pod','bigger plan'],
+  "<b>Professional</b> — multi-channel growth plus your first AI systems. Includes: enterprise SEO + the full GEO program, 3 platforms + 2 ad channels + video, 1 AI assistant per quarter, weekly reporting from a dedicated pod of 5, and fortnightly strategy. Quoted after a free audit — <a href=\"/pricing/\">/pricing/</a>.",
+  {follow:['tier-ent','pricing-how','start-audit']});
 
-  { id:'tools', kw:['free tool','ai readiness','rank tracker','calculator','free report'],
-    a:"Two free, no-signup tools: the <a href=\"/tools/ai-readiness/\">AI Readiness Assessment</a> (5-question quiz, instant report) and the <a href=\"/tools/ai-rank-tracker/\">AI Rank Tracker</a> (generates test prompts to check if ChatGPT/Gemini/Claude/Perplexity recommend you)." },
+t('tier-ent', "Enterprise tier",
+  ['enterprise tier','ai-native','biggest plan','board reporting','transformation plan'],
+  "<b>Enterprise</b> — AI-native transformation. Everything in Professional, plus the AI Employees program, founder brand + the full channel stack, a fractional AI officer with weekly strategy, and executive QBRs with board reporting. Quoted after a free audit — <a href=\"/pricing/\">/pricing/</a>.",
+  {follow:['svc-consult','pricing-how','contact-book']});
 
-  { id:'contact', kw:['contact','talk to someone','reach you','phone number','call you','speak to','human'],
-    a:"Easiest way: WhatsApp us directly at <a href=\""+WA_LINK+"\" target=\"_blank\" rel=\"noopener\">"+WA_DISPLAY+"</a>. Or email reckonaai@gmail.com, or <a href=\"/#book\">book a 30-minute strategy call</a>." },
+/* ----- Industries ----- */
+t('m-industries', "Industries",
+  ['industry','industries','sector','vertical','do you work with','my business type'],
+  "We run playbooks for ten industries. Which is yours?",
+  {menu:['ind-restaurant','ind-hospital','ind-mfg','ind-edu','ind-realestate','ind-retail','ind-bfsi','ind-startup','ind-sme','ind-entkick']});
 
-  { id:'whatsapp', kw:['whatsapp','whats app','wa.me'],
-    a:"You can WhatsApp us anytime at <a href=\""+WA_LINK+"\" target=\"_blank\" rel=\"noopener\">"+WA_DISPLAY+"</a> — 4-hour response SLA, Mon–Sat 9:30–19:00 IST." },
+t('ind-restaurant', "Restaurant / QSR",
+  ['restaurant','qsr','cafe','food business','zomato','swiggy','delivery margins'],
+  "<b>Restaurant / QSR</b> — \"Fill tables and take back your delivery margins.\" Local SEO and map-pack visibility, a reels engine, WhatsApp ordering and review automation, so you stop losing margin to aggregators. Full playbook: <a href=\"/industries/restaurant-qsr/\">/industries/restaurant-qsr/</a>",
+  {follow:['m-industries','start-audit']});
+t('ind-hospital', "Hospital / Clinic",
+  ['hospital','clinic','doctor','healthcare','patients','opd','medical'],
+  "<b>Hospital / Clinic</b> — \"Fill OPD slots without buying every click.\" Doctor-profile SEO, WhatsApp appointment automation, reputation management and a medical-grade website. Full playbook: <a href=\"/industries/hospital-clinic/\">/industries/hospital-clinic/</a>",
+  {follow:['m-industries','start-audit']});
+t('ind-mfg', "Manufacturing / B2B",
+  ['manufacturing','manufacturer','b2b','industrial','factory','rfq','catalog'],
+  "<b>Manufacturing / B2B</b> — \"Turn a catalog PDF into an inbound RFQ engine.\" Product-page SEO, RFQ capture, document automation and AI visibility for spec-hunting buyers. Full playbook: <a href=\"/industries/manufacturing-b2b/\">/industries/manufacturing-b2b/</a>",
+  {follow:['m-industries','svc-auto','start-audit']});
+t('ind-edu', "Education / Coaching",
+  ['education','coaching','school','college','institute','admissions','edtech','students'],
+  "<b>Education / Coaching</b> — \"Lower your cost per admission, not your standards.\" Admissions-funnel ads, counsellor CRM automation, course-page SEO and nurture sequences reported by cost-per-admission. Full playbook: <a href=\"/industries/education-coaching/\">/industries/education-coaching/</a>",
+  {follow:['m-industries','start-audit']});
+t('ind-realestate', "Real Estate",
+  ['real estate','property','builder','site visits','realty','housing'],
+  "<b>Real Estate</b> — \"More site visits from the same ad spend.\" Project microsites, WhatsApp scheduling, CRM lead scoring/routing and stale-lead revival, tracked from click to site visit to sale. Full playbook: <a href=\"/industries/real-estate/\">/industries/real-estate/</a>",
+  {follow:['m-industries','start-audit']});
+t('ind-retail', "Retail / D2C",
+  ['retail','d2c','ecommerce brand','online store','roas plateau','cart abandonment'],
+  "<b>Retail / D2C</b> — \"Profitable growth after the ROAS plateau.\" Store CRO, a repeat-purchase engine on WhatsApp and email, creative volume that keeps Meta performing, and margin visibility — not just revenue. Full playbook: <a href=\"/industries/retail-d2c/\">/industries/retail-d2c/</a>",
+  {follow:['m-industries','svc-perf','start-audit']});
+t('ind-bfsi', "Finance / BFSI",
+  ['finance','bfsi','bank','nbfc','insurance','fintech','compliance'],
+  "<b>Finance / BFSI</b> — \"Grow the book without a compliance headache.\" Compliant content engines, lead capture with audit trails, and automation that respects regulatory constraints. Full playbook: <a href=\"/industries/finance-bfsi/\">/industries/finance-bfsi/</a>",
+  {follow:['m-industries','policy-privacy','start-audit']});
+t('ind-startup', "Startup (Series A–C)",
+  ['startup','series a','series b','funded','fundraise','venture'],
+  "<b>Startup (Series A–C)</b> — \"Look fundable. Grow measurable.\" A fundraise-ready brand and site, measurable growth engines, and AI visibility before your competitors get there. Full playbook: <a href=\"/industries/startup/\">/industries/startup/</a>",
+  {follow:['m-industries','svc-brand','start-audit']});
+t('ind-sme', "SME Digital Starter",
+  ['sme','small business','first website','digital presence','getting online'],
+  "<b>SME Digital Starter</b> — \"Your first serious digital presence — done right.\" Website, Google Business Profile, WhatsApp auto-replies and local SEO, then ads only once conversion is proven. Full playbook: <a href=\"/industries/sme-digital-starter/\">/industries/sme-digital-starter/</a>",
+  {follow:['m-industries','tier-launch','start-audit']});
+t('ind-entkick', "Enterprise AI Kickstart",
+  ['enterprise ai','ai kickstart','ai pilot','board mandate','large company ai'],
+  "<b>Enterprise AI Kickstart</b> — \"From board-level AI intent to two working pilots.\" Readiness audit, prioritized use-cases, and two production pilots with governance — proof, not decks. Full playbook: <a href=\"/industries/enterprise-ai-kickstart/\">/industries/enterprise-ai-kickstart/</a>",
+  {follow:['m-industries','svc-consult','contact-book']});
 
-  { id:'book-call', kw:['book a call','schedule a call','strategy call','meeting','book a meeting','consultation'],
-    a:"You can book a free 30-minute strategy call with a partner (not a salesperson) here: <a href=\"/#book\">/#book</a>." },
+/* ----- Free tools ----- */
+t('m-tools', "Free tools",
+  ['free tool','free tools','tools','calculator','free report','try free','no signup'],
+  "Two free, no-signup tools — which do you want?",
+  {menu:['tool-readiness','tool-tracker']});
 
-  { id:'location', kw:['location','where are you','office','based in','address'],
-    a:"We're based in Mumbai — Andheri East — and work with clients across India." },
+t('tool-readiness', "AI Readiness check",
+  ['ai readiness','readiness assessment','am i ready for ai','readiness quiz','readiness report'],
+  "The <b>AI Readiness Assessment</b> is a 5-question quiz that scores your business across data, process and team readiness, and gives you an instant category-by-category report — no email required. Try it: <a href=\"/tools/ai-readiness/\">/tools/ai-readiness/</a>",
+  {follow:['svc-auto','tool-tracker','start-audit']});
 
-  { id:'about', kw:['about reckona','who are you','company','who is behind','your team'],
-    a:"Reckona AI is an AI-first growth &amp; automation partner for India's mid-market — working AI systems plus the growth engine to feed them, at mid-market prices with enterprise discipline. More at <a href=\"/about/\">/about/</a>." },
+t('tool-tracker', "AI Rank Tracker",
+  ['rank tracker','ai rank','track ai','ai visibility check','am i cited','check chatgpt','test prompts'],
+  "The <b>AI Rank Tracker</b> generates a personalized panel of ~12 test prompts for your brand, category and competitors — you run them in ChatGPT, Gemini, Claude and Perplexity and score yourself Invisible / Mentioned / Recommended. Free, runs entirely in your browser: <a href=\"/tools/ai-rank-tracker/\">/tools/ai-rank-tracker/</a>",
+  {follow:['svc-geo','tool-readiness','start-audit']});
 
-  { id:'careers', kw:['career','job','hiring','vacancy','work at reckona','join the team'],
-    a:"We hire T-shaped operators who use AI like a power tool — remote-first, with a Mumbai hub and quarterly offsites. Write to reckonaai@gmail.com with something you've shipped (no cover letters needed). Open roles at <a href=\"/about/\">/about/</a>." },
+/* ----- Process ----- */
+t('m-process', "How we work",
+  ['how does it work','process','how do you work','methodology','engagement model','what happens after'],
+  "Our process and what to expect — pick one:",
+  {menu:['proc-steps','proc-speed','proc-demos','start-audit']});
 
-  { id:'privacy', kw:['privacy','my data','data policy','dpdp','gdpr'],
-    a:"We're DPDP Act 2023 aligned — your data is never sold or spammed. Full details at <a href=\"/privacy/\">/privacy/</a>." },
+t('proc-steps', "The 4-step process",
+  ['4 step','four step','diagnose','deploy','drive','steps'],
+  "Four steps: <b>Diagnose</b> — every engagement starts with an audit and a number (revenue to gain or cost to remove; no number, no proposal). <b>Design</b> — the smallest system that moves that number: three options, fixed scope, written quote. <b>Deploy</b> — working software or live campaigns within 14 days of kickoff. <b>Drive</b> — we operate the system, report against your day-0 baseline, and hand your team the keys. More at <a href=\"/about/\">/about/</a>.",
+  {follow:['proc-speed','proc-demos','start-audit']});
 
-  { id:'terms', kw:['terms','terms of service','legal'],
-    a:"You can read our full Terms of Service at <a href=\"/terms/\">/terms/</a>." },
+t('proc-speed', "How fast do you ship?",
+  ['how fast','how long','timeline','14 days','when do we see results','kickoff','speed'],
+  "<b>Working software or live campaigns within 14 days of kickoff</b> — that's the standard, not the exception. Results timelines vary by channel (paid ads move in weeks; SEO/GEO compound over months), which is why every proposal names the leading indicators you should expect to move by day 90.",
+  {follow:['proc-demos','policy-guarantee','start-audit']});
 
-  { id:'resources', kw:['blog','resources','articles','read more','guides'],
-    a:"We publish practical, numbers-first guides on GEO, SEO, AI automation and growth at <a href=\"/resources/\">/resources/</a>." },
+t('proc-demos', "Weekly demos & reporting",
+  ['demo','weekly demo','friday','reporting','updates','status','communication'],
+  "<b>Friday demos, every week, no exceptions</b> — working output you can see, not status decks. Depending on tier, reporting runs monthly to weekly, up to live dashboards and executive QBRs.",
+  {follow:['m-pricing','proc-steps','contact-book']});
 
-  { id:'thanks', kw:['thank','thanks','thank you','cheers','appreciate'],
-    a:"You're welcome! Anything else you'd like to know — or if you'd rather talk to a person, WhatsApp us at <a href=\""+WA_LINK+"\" target=\"_blank\" rel=\"noopener\">"+WA_DISPLAY+"</a> anytime." }
-];
+t('start-audit', "Get started (free audit)",
+  ['get started','start','begin','free audit','audit','first step','onboard','sign up'],
+  "The fastest way to start is a <b>free audit</b> — pick Website, SEO, GEO, or an AI Readiness snapshot, and our team presents findings live in 20 minutes with a number attached and no pitch unless you ask. <a href=\"/#audit\">Request your free audit →</a><br><br>Prefer to talk first? WhatsApp us at "+WA_A+".",
+  {follow:['contact-book','contact-wa','m-process']});
 
-var FALLBACK = "I don't have a confident answer for that one. You can ask me about our services, pricing, process, industries, or free tools — or go straight to a human: WhatsApp <a href=\""+WA_LINK+"\" target=\"_blank\" rel=\"noopener\">"+WA_DISPLAY+"</a>, email reckonaai@gmail.com, or <a href=\"/#audit\">request a free audit</a>.";
+/* ----- Policies ----- */
+t('m-policies', "Policies & guarantees",
+  ['policy','policies','guarantee','terms','legal','contract','ownership','privacy'],
+  "The fine print, in plain language — pick one:",
+  {menu:['policy-guarantee','policy-ip','policy-term','policy-privacy']});
 
-var SUGGESTED = ["What services do you offer?","How much does this cost?","How do I get started?","How can I contact you?"];
+t('policy-guarantee', "Do you guarantee results?",
+  ['guarantee','promise results','no results','risk','what if it doesnt work',"what if it doesn't work",'refund'],
+  "No honest firm guarantees specific rankings or engine outputs — anyone who does is lying to you. What we guarantee is <b>process, transparency, and measurable movement on agreed leading indicators by day 90 — or we work free until there is</b> (retainers; conditions in the MSA).",
+  {follow:['proc-steps','policy-term','start-audit']});
 
-function matchKB(input){
-  var q = input.toLowerCase();
-  var best = null, bestScore = 0;
-  for (var i=0;i<KB.length;i++){
-    var entry = KB[i], score = 0;
-    for (var j=0;j<entry.kw.length;j++){
-      if (q.indexOf(entry.kw[j]) !== -1) score += entry.kw[j].length; // longer/more specific phrase wins ties
+t('policy-ip', "Who owns the work?",
+  ['who owns','ownership','my code','my accounts','ip transfer','vendor lock','lock-in','locked in','do i own','own the ad account','ad accounts','own my account','keep the account','keep my data'],
+  "<b>You do.</b> Full IP transfer on final payment, and ad/analytics accounts are always created in your name from day one — never locked to our tooling. If we part ways, you keep the data, the history and the systems.",
+  {follow:['policy-term','policy-guarantee','m-policies']});
+
+t('policy-term', "Contract & notice period",
+  ['minimum engagement','contract length','notice period','how long is the contract','commitment','cancel','exit'],
+  "Standard engagements carry a <b>90-day minimum term with 30-day notice</b> to end after that — long enough to see real movement, short enough that you're never trapped. Small, focused projects can fit outside that too. Full terms: <a href=\"/terms/\">/terms/</a>",
+  {follow:['policy-ip','pricing-how','m-policies']});
+
+t('policy-privacy', "Privacy & your data",
+  ['privacy','my data','data policy','dpdp','gdpr','data protection','spam'],
+  "We're <b>DPDP Act 2023 aligned</b> — form data goes to a private sheet we control, is never sold, and you can ask for access, correction or deletion anytime at reckonaai@gmail.com. Full policy: <a href=\"/privacy/\">/privacy/</a>",
+  {follow:['m-policies','contact-email']});
+
+/* ----- Contact ----- */
+t('m-contact', "Contact us",
+  ['contact','talk to someone','reach you','phone number','call you','speak to','human','sales'],
+  "Happy to connect you. How do you want to reach us?",
+  {menu:['contact-wa','contact-email','contact-book','contact-loc','contact-careers']});
+
+t('contact-wa', "WhatsApp",
+  ['whatsapp','whats app','wa.me','message you','text you'],
+  "WhatsApp us anytime at "+WA_A+" — 4-hour response SLA, Mon–Sat 9:30–19:00 IST. It's the fastest way to reach a human.",
+  {follow:['contact-book','start-audit']});
+
+t('contact-email', "Email",
+  ['email','mail you','write to you'],
+  "Email us at <b>reckonaai@gmail.com</b> — we reply within 4 working hours (Mon–Sat). For data/privacy requests, use the subject line \"Data request\".",
+  {follow:['contact-wa','contact-book']});
+
+t('contact-book', "Book a strategy call",
+  ['book a call','schedule a call','strategy call','meeting','book a meeting','consultation','demo call'],
+  "Book a free <b>30-minute strategy call</b> with a partner (not a salesperson) — you'll leave with three specific recommendations whether or not we ever work together. <a href=\"/#book\">Pick a slot →</a>",
+  {follow:['start-audit','contact-wa']});
+
+t('contact-loc', "Location",
+  ['location','where are you','office','based in','address','mumbai'],
+  "We're based in <b>Mumbai — Andheri East</b>, and work with clients across India (remote-first).",
+  {follow:['contact-wa','contact-book']});
+
+t('contact-careers', "Careers",
+  ['career','job','hiring','vacancy','work at reckona','join the team','internship'],
+  "We hire T-shaped operators who use AI like a power tool — remote-first, Mumbai hub, quarterly offsites, ₹50K/yr learning budget. Open roles: GEO Analyst, Automation Engineer (n8n/LangChain), Growth Strategist, Content Editor. Write to <b>reckonaai@gmail.com</b> with something you've shipped — no cover letters. Details: <a href=\"/about/\">/about/</a>",
+  {follow:['m-contact']});
+
+/* ----- Small talk ----- */
+t('smalltalk-hi', "", ['hi','hello','hey','namaste','good morning','good evening'],
+  "Hi! I'm the Reckona AI assistant. Tell me what you're looking for, or pick a topic below.",
+  {follow:['m-services','m-pricing','m-contact']});
+t('smalltalk-thanks', "", ['thank','thanks','thank you','cheers','appreciate','great','awesome','perfect'],
+  "You're welcome! Anything else — or if you'd rather talk to a person, WhatsApp us at "+WA_A+" anytime.",
+  {follow:['root','contact-wa']});
+t('smalltalk-about', "About Reckona AI",
+  ['about reckona','who are you','your company','who is behind','your team','what is reckona'],
+  "<b>Reckona AI</b> is an AI-first growth &amp; automation partner for India's mid-market — working AI systems plus the growth engine to feed them, at mid-market prices with enterprise discipline. Senior pods, weekly shipping, everything founder-reviewed. More: <a href=\"/about/\">/about/</a>",
+  {follow:['m-services','m-process','contact-book']});
+t('res-blog', "Guides & articles",
+  ['blog','resources','articles','read more','guides','learn'],
+  "We publish practical, numbers-first guides on GEO, SEO, AI automation and growth — 120+ of them, searchable and filterable — at <a href=\"/resources/\">/resources/</a>.",
+  {follow:['m-tools','m-services']});
+
+var FALLBACK = "I couldn't match that to anything I know. Try a topic below — or go straight to a human: WhatsApp "+WA_A+", email reckonaai@gmail.com, or <a href=\"/#audit\">request a free audit</a>.";
+
+/* ---------- Search ---------- */
+function scoreAll(input){
+  var q = ' '+input.toLowerCase().replace(/[^\w\s']/g,' ').replace(/\s+/g,' ')+' ';
+  var scored = [];
+  for (var id in T){
+    var e = T[id], s = 0;
+    for (var j=0;j<e.kw.length;j++){
+      if (q.indexOf(e.kw[j]) !== -1) s += e.kw[j].length;
     }
-    if (score > bestScore){ bestScore = score; best = entry; }
+    if (s>0) scored.push({id:id, s:s});
   }
-  return best ? best.a : FALLBACK;
+  scored.sort(function(a,b){return b.s-a.s});
+  return scored;
 }
 
 /* ---------- CSS ---------- */
@@ -121,7 +292,7 @@ var css = ""
 +"#rkChatBtn:hover{transform:scale(1.06)}"
 +"#rkChatBtn svg{width:26px;height:26px}"
 +"#rkChatBtn .dot{position:absolute;top:6px;right:6px;width:11px;height:11px;border-radius:999px;background:#0F766E;border:2px solid var(--bg)}"
-+"#rkChatPanel{position:fixed;left:22px;bottom:92px;z-index:221;width:360px;max-width:calc(100vw - 32px);height:min(520px,calc(100vh - 140px));background:var(--surface);border:1px solid var(--border);border-radius:20px;box-shadow:var(--shadow,0 12px 40px rgba(0,0,0,.2));display:flex;flex-direction:column;overflow:hidden;opacity:0;transform:translateY(12px) scale(.98);pointer-events:none;transition:opacity .2s,transform .2s}"
++"#rkChatPanel{position:fixed;left:22px;bottom:92px;z-index:221;width:372px;max-width:calc(100vw - 32px);height:min(540px,calc(100vh - 140px));background:var(--surface);border:1px solid var(--border);border-radius:20px;box-shadow:var(--shadow,0 12px 40px rgba(0,0,0,.2));display:flex;flex-direction:column;overflow:hidden;opacity:0;transform:translateY(12px) scale(.98);pointer-events:none;transition:opacity .2s,transform .2s}"
 +"#rkChatPanel.open{opacity:1;transform:none;pointer-events:auto}"
 +"#rkChatHead{padding:16px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;background:var(--surface)}"
 +"#rkChatHead b{font-family:Fraunces,Georgia,serif;font-weight:600;font-size:1.02rem;color:var(--ink)}"
@@ -129,19 +300,20 @@ var css = ""
 +"#rkChatClose{margin-left:auto;background:none;border:none;color:var(--ink2);cursor:pointer;font-size:1.1rem;line-height:1;padding:4px 6px;border-radius:8px}"
 +"#rkChatClose:hover{background:var(--surface2,rgba(0,0,0,.05));color:var(--ink)}"
 +"#rkChatBody{flex:1;overflow-y:auto;padding:16px 14px;display:flex;flex-direction:column;gap:10px}"
-+".rkMsg{max-width:86%;padding:10px 13px;border-radius:14px;font-size:.88rem;line-height:1.5}"
++".rkMsg{max-width:88%;padding:10px 13px;border-radius:14px;font-size:.88rem;line-height:1.55}"
 +".rkMsg a{color:inherit;text-decoration:underline}"
++".rkMsg b{color:inherit}"
 +".rkMsg.bot{align-self:flex-start;background:var(--surface2,#F3F1EB);color:var(--ink);border-bottom-left-radius:4px}"
 +".rkMsg.user{align-self:flex-end;background:var(--brand);color:#fff;border-bottom-right-radius:4px}"
-+"#rkChips{display:flex;flex-wrap:wrap;gap:6px;padding:0 14px 12px}"
-+".rkChip{font-size:.76rem;padding:6px 11px;border-radius:999px;border:1px solid var(--border);background:var(--surface);color:var(--ink2);cursor:pointer}"
++".rkChipRow{align-self:flex-start;display:flex;flex-wrap:wrap;gap:6px;max-width:95%}"
++".rkChip{font-size:.76rem;padding:6px 11px;border-radius:999px;border:1px solid var(--border);background:var(--surface);color:var(--ink2);cursor:pointer;font-family:inherit}"
 +".rkChip:hover{color:var(--ink);border-color:var(--ink2)}"
 +"#rkChatForm{display:flex;gap:8px;padding:12px;border-top:1px solid var(--border)}"
 +"#rkChatInput{flex:1;padding:10px 13px;border-radius:999px;border:1px solid var(--border);background:var(--bg);color:var(--ink);font:inherit;font-size:.88rem;outline:none}"
 +"#rkChatInput:focus{border-color:var(--brand)}"
 +"#rkChatSend{width:38px;height:38px;border-radius:999px;background:var(--ink);color:var(--bg);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}"
 +"#rkChatSend:hover{opacity:.88}"
-+"@media(max-width:480px){#rkChatBtn{left:16px;bottom:16px;width:52px;height:52px}#rkChatPanel{left:12px;bottom:80px;width:calc(100vw - 24px);height:min(70vh,520px)}}";
++"@media(max-width:480px){#rkChatBtn{left:16px;bottom:16px;width:52px;height:52px}#rkChatPanel{left:12px;bottom:80px;width:calc(100vw - 24px);height:min(72vh,540px)}}";
 
 /* ---------- Build ---------- */
 function build(){
@@ -160,14 +332,12 @@ function build(){
   panel.innerHTML =
     '<div id="rkChatHead"><div><b>Reckona AI Assistant</b><span>Usually replies instantly</span></div><button id="rkChatClose" aria-label="Close chat">✕</button></div>'
     +'<div id="rkChatBody"></div>'
-    +'<div id="rkChips"></div>'
-    +'<form id="rkChatForm"><input id="rkChatInput" autocomplete="off" placeholder="Ask about services, pricing, process…" aria-label="Type your question"><button id="rkChatSend" type="submit" aria-label="Send"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg></button></form>';
+    +'<form id="rkChatForm"><input id="rkChatInput" autocomplete="off" placeholder="Type a question, or tap a topic…" aria-label="Type your question"><button id="rkChatSend" type="submit" aria-label="Send"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg></button></form>';
 
   document.body.appendChild(btn);
   document.body.appendChild(panel);
 
   var body = panel.querySelector('#rkChatBody');
-  var chips = panel.querySelector('#rkChips');
   var form = panel.querySelector('#rkChatForm');
   var input = panel.querySelector('#rkChatInput');
   var opened = false;
@@ -178,25 +348,74 @@ function build(){
     m.innerHTML = text;
     body.appendChild(m);
     body.scrollTop = body.scrollHeight;
+    return m;
   }
 
-  function renderChips(){
-    chips.innerHTML = '';
-    SUGGESTED.forEach(function(q){
+  function clearChips(){
+    var rows = body.querySelectorAll('.rkChipRow');
+    for (var i=0;i<rows.length;i++) rows[i].parentNode.removeChild(rows[i]);
+  }
+
+  function addChips(ids){
+    clearChips();
+    var row = document.createElement('div');
+    row.className = 'rkChipRow';
+    var seen = {};
+    ids.forEach(function(id){
+      var e = T[id];
+      if (!e || !e.label || seen[id]) return;
+      seen[id] = 1;
       var c = document.createElement('button');
       c.className = 'rkChip';
       c.type = 'button';
-      c.textContent = q;
-      c.onclick = function(){ ask(q); };
-      chips.appendChild(c);
+      c.textContent = e.label;
+      c.onclick = function(){ openTopic(id, true); };
+      row.appendChild(c);
     });
+    if (!seen['root'] && ids.indexOf('root')===-1){
+      var home = document.createElement('button');
+      home.className = 'rkChip';
+      home.type = 'button';
+      home.textContent = T['root'].label;
+      home.onclick = function(){ openTopic('root', true); };
+      row.appendChild(home);
+    }
+    body.appendChild(row);
+    body.scrollTop = body.scrollHeight;
+  }
+
+  function openTopic(id, echo){
+    var e = T[id];
+    if (!e) return;
+    if (echo && e.label) addMsg(e.label.replace(/</g,'&lt;'), 'user');
+    clearChips();
+    setTimeout(function(){
+      addMsg(e.a, 'bot');
+      addChips(e.menu ? e.menu : e.follow);
+    }, 240);
   }
 
   function ask(text){
     addMsg(text.replace(/</g,'&lt;'), 'user');
-    chips.style.display = 'none';
+    clearChips();
     setTimeout(function(){
-      addMsg(matchKB(text), 'bot');
+      var scored = scoreAll(text);
+      if (!scored.length){
+        addMsg(FALLBACK, 'bot');
+        addChips(T['root'].menu);
+        return;
+      }
+      var top = scored[0], second = scored[1];
+      // Confident: clear winner (or only one match) -> answer directly
+      if (!second || top.s >= second.s*2 || (T[top.id].menu && top.s>second.s)){
+        var e = T[top.id];
+        addMsg(e.a, 'bot');
+        addChips(e.menu ? e.menu : e.follow);
+      } else {
+        // Ambiguous: offer the closest topics to choose from
+        addMsg("I found a few things that might be what you're looking for — pick the closest:", 'bot');
+        addChips(scored.slice(0,4).map(function(x){return x.id}));
+      }
     }, 280);
   }
 
@@ -205,8 +424,8 @@ function build(){
     panel.classList.toggle('open', opened);
     if (opened){
       if (!body.childElementCount){
-        addMsg("Hi! I'm the Reckona AI assistant — ask me about services, pricing, process, or how to reach a human. Try a question below, or type your own.", 'bot');
-        renderChips();
+        addMsg(T['root'].a, 'bot');
+        addChips(T['root'].menu);
       }
       setTimeout(function(){ input.focus(); }, 150);
     }

@@ -74,8 +74,7 @@
 .pillar-card h3{position:relative}
 .pillar-card:hover .go{transform:translateX(5px)}
 
-#artGrid .card{position:relative;overflow:hidden;opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease,border-color .25s ease,box-shadow .25s ease}
-#artGrid .card.reveal-in{opacity:1;transform:translateY(0)}
+#artGrid .card{position:relative;transition:border-color .25s ease,box-shadow .25s ease}
 #artGrid .card h3{font-family:Fraunces,serif;font-weight:500;font-size:1.14rem;line-height:1.32;margin-top:12px}
 #artGrid .card p{font-size:.9rem}
 #artGrid .card .pill{transition:background .2s ease,color .2s ease,border-color .2s ease}
@@ -84,7 +83,7 @@
 #artGrid .card:hover .go{transform:translateX(4px);color:var(--signal)}
 #artGrid .card:nth-child(3n+1) .pill{background:color-mix(in srgb,var(--brand) 12%,var(--surface2));color:var(--brand);border-color:color-mix(in srgb,var(--brand) 25%,var(--border))}
 #artGrid .card:nth-child(3n+2) .pill{background:color-mix(in srgb,var(--signal) 12%,var(--surface2));color:var(--signal);border-color:color-mix(in srgb,var(--signal) 25%,var(--border))}
-@media(prefers-reduced-motion:reduce){#artGrid .card,.pillar-card{transition:none;opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){#artGrid .card,.pillar-card{transition:none}}
 </style>
 <header class="hero" style="padding-bottom:0">
   <div class="eyebrow">Applied Intelligence</div>
@@ -282,17 +281,6 @@ function filterArticles(){
 }
 function clearArt(){var i=document.getElementById('artSearch');if(i)i.value='';artCat='all';
   document.querySelectorAll('#artChips .pill').forEach(function(p,n){p.classList.toggle('on',n===0)});filterArticles();}
-
-(function(){
-  var cards=document.querySelectorAll('#artGrid .card');
-  if(!('IntersectionObserver' in window)){cards.forEach(function(c){c.classList.add('reveal-in')});return;}
-  var io=new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      if(e.isIntersecting){e.target.classList.add('reveal-in');io.unobserve(e.target)}
-    });
-  },{threshold:.08,rootMargin:'0px 0px -30px 0px'});
-  cards.forEach(function(c){io.observe(c)});
-})();
 </script>
 
 <div class="cta">
