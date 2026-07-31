@@ -422,16 +422,20 @@ a.res-row:hover .res-arrow{transform:translateX(5px);color:var(--brand)}
 .wk-metric{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:10px 16px;font-size:.82rem;color:var(--ink2)}
 .wk-metric b{display:block;font-family:Fraunces,serif;font-size:1.25rem;font-weight:500;color:var(--ink)}
 .wk-mock{border:1px solid var(--border);border-radius:14px;overflow:hidden;background:var(--surface2);margin-top:6px}
-.wk-mock .mbar{display:flex;gap:6px;padding:10px 14px;border-bottom:1px solid var(--border)}
+.wk-mock .mbar{display:flex;align-items:center;gap:6px;padding:10px 14px;border-bottom:1px solid var(--border)}
 .wk-mock .mbar i{width:9px;height:9px;border-radius:99px;background:color-mix(in srgb,var(--ink) 25%,var(--surface2))}
+.wk-mock .mbar .mtitle{margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:.66rem;letter-spacing:.03em;color:var(--ink2)}
 .wk-mock .mbody{display:grid;grid-template-columns:1.6fr 1fr;gap:12px;padding:16px}
-.wk-mock .mchart{display:flex;align-items:flex-end;gap:7px;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px;min-height:110px}
-.wk-mock .mchart span{flex:1;border-radius:4px 4px 1px 1px;background:linear-gradient(180deg,var(--brand),color-mix(in srgb,var(--brand) 20%,transparent))}
-.wk-mock .mchart span:nth-child(3n+2){background:linear-gradient(180deg,var(--signal),color-mix(in srgb,var(--signal) 20%,transparent))}
+.wk-mock .mchart{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px}
+.wk-mock .mbars{display:flex;align-items:flex-end;gap:7px;height:90px}
+.wk-mock .mbars span{flex:1;border-radius:4px 4px 1px 1px;background:linear-gradient(180deg,var(--brand),color-mix(in srgb,var(--brand) 20%,transparent))}
+.wk-mock .mbars span:nth-child(3n+2){background:linear-gradient(180deg,var(--signal),color-mix(in srgb,var(--signal) 20%,transparent))}
+.wk-mock .mlabels{display:flex;gap:7px;margin-top:6px}
+.wk-mock .mlabels i{flex:1;text-align:center;font-size:.62rem;color:var(--ink2);font-style:normal}
 .wk-mock .mstats{display:flex;flex-direction:column;gap:10px}
 .wk-mock .mstat{flex:1;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px 14px;display:flex;flex-direction:column;justify-content:center}
 .wk-mock .mstat b{font-family:Fraunces,serif;font-weight:500;font-size:1.2rem;color:var(--ink)}
-.wk-mock .mstat i{display:block;margin-top:8px;height:5px;width:65%;border-radius:3px;background:color-mix(in srgb,var(--ink) 14%,var(--surface2));font-style:normal}
+.wk-mock .mstat small{display:block;margin-top:4px;font-size:.72rem;color:var(--ink2)}
 .wk-tl{display:flex;flex-wrap:wrap;margin-top:8px}
 .wk-tl div{flex:1;min-width:140px;padding:10px 18px 0 0;border-top:2px solid var(--border);font-size:.8rem;color:var(--ink2);position:relative;opacity:0;transform:translateX(-12px);transition:opacity .45s,transform .45s}
 .wk-card.open .wk-tl div{opacity:1;transform:none}
@@ -1773,9 +1777,11 @@ function wkCard(p,i){
    ${block('What we built',`<p>${p.sol}</p>`,.17)}${arrow}
    ${block('Technology stack',`<p>${p.stack}</p>`,.24)}${arrow}
    ${block('Business impact',`<div class="wk-metrics">${p.met.map(m=>`<div class="wk-metric"><b>${m[0]}</b>${m[1]}</div>`).join('')}</div>`,.31)}${arrow}
-   ${block('A look inside',`<div class="wk-mock"><div class="mbar"><i></i><i></i><i></i></div>
-     <div class="mbody"><div class="mchart">${[38,62,48,85,58,72,90].map(h=>`<span style="height:${h}%"></span>`).join('')}</div>
-     <div class="mstats"><div class="mstat"><b>↑ 34%</b><i></i></div><div class="mstat"><b>128</b><i></i></div></div></div></div>
+   ${block('A look inside',`<div class="wk-mock"><div class="mbar"><i></i><i></i><i></i><span class="mtitle">Weekly activity</span></div>
+     <div class="mbody"><div class="mchart">
+       <div class="mbars">${[38,62,48,85,58,72,90].map(h=>`<span style="height:${h}%"></span>`).join('')}</div>
+       <div class="mlabels">${['M','T','W','T','F','S','S'].map(d=>`<i>${d}</i>`).join('')}</div></div>
+     <div class="mstats"><div class="mstat"><b>↑ 34%</b><small>This month</small></div><div class="mstat"><b>128</b><small>Completed</small></div></div></div></div>
      <p style="font-size:.78rem;margin-top:8px">Representative dashboard mockup — client data stays confidential.</p>`,.38)}${arrow}
    ${block('Timeline',`<div class="wk-tl">${p.tl.map((s,j)=>`<div style="transition-delay:${wkRM?0:.45+j*.08}s"><b>${s[0]}</b>${s[1]}</div>`).join('')}</div>`,.45)}
    <div class="wk-block" style="transition-delay:${wkRM?0:.55}s;display:flex;align-items:center;gap:16px;flex-wrap:wrap">
