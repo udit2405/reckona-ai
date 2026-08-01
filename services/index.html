@@ -62,6 +62,10 @@
     <div class="stat"><b>Weekly</b><span>Friday demos — output you see, not status decks</span></div>
     <div class="stat"><b>100%</b><span>founder-reviewed — every project, no hand-offs</span></div>
   </div>
+  <div style="margin-top:28px;max-width:480px;position:relative">
+    <input id="svcSearch" type="text" placeholder="Search what you need — e.g. basic website, getting traffic, LinkedIn posts…" style="width:100%;padding:14px 20px;border-radius:999px;border:1px solid var(--border);background:var(--surface);color:var(--ink);font:inherit;font-size:.95rem;outline:none" autocomplete="off">
+  </div>
+  <p id="svcNoResult" style="display:none;margin-top:14px;font-size:.9rem">No exact match — but every practice is scoped to your business, so tell us what you need and we'll point you to the right one. <a href="/#audit">Get a free audit</a>.</p>
 </header>
 
 <section class="section-tight">
@@ -73,10 +77,10 @@
   </div>
 </section>
 
-<section>
+<section class="svc-section">
   <h2>Start here: our flagship practice</h2>
   <p style="max-width:680px">Most clients start with this one, then add the practices below as the growth engine needs feeding.</p>
-  <a class="card accent" href="/services/geo/" style="display:block;padding:32px;margin-top:18px">
+  <a class="card accent" href="/services/geo/" style="display:block;padding:32px;margin-top:18px" data-kw="geo ai visibility generative engine optimization chatgpt gemini claude perplexity ai search ai overviews cited recommended by ai">
     <span class="pill up">01 · Flagship — most clients start here</span>
     <h3 style="font-size:1.5rem;margin-top:16px">GEO — Generative Engine Optimization (AI Visibility)</h3>
     <p style="max-width:640px">Your buyers now ask ChatGPT, Gemini, Claude and Perplexity before they open Google. GEO gets your brand cited, recommended and correctly described inside those answers — proven with a monthly AI-visibility score, not a promise.</p>
@@ -89,33 +93,60 @@
   </a>
 </section>
 
-<section>
+<section class="svc-section">
   <h2>Get found — organic &amp; paid</h2>
   <p style="max-width:680px">The channels that put you in front of buyers who are already looking.</p>
   <div class="grid g2" style="margin-top:20px">
-    <a class="card accent" href="/services/seo/"><span class="ic-num">02</span><h3>SEO — Search Visibility</h3><p style="font-size:.92rem">Compounding organic growth: technical health, intent-matched content, and authority that earns rankings.</p><p class="fine" style="margin-top:10px">You get: technical fixes, 8–16 expert-reviewed articles/mo, DR-40+ link building</p><span class="go">Explore SEO →</span></a>
-    <a class="card accent" href="/services/performance/"><span class="ic-num">03</span><h3>Performance Marketing Agency</h3><p style="font-size:.92rem">Full-funnel paid media with creative included, tracked to revenue — never vanity clicks. You own the ad accounts.</p><p class="fine" style="margin-top:10px">You get: Google/Meta/LinkedIn Ads, 8+ creatives/mo, lead routing + CRO</p><span class="go">Explore Performance →</span></a>
+    <a class="card accent" href="/services/seo/" data-kw="seo search engine optimization organic traffic getting traffic rank on google ranking backlinks link building technical seo content seo local seo"><span class="ic-num">02</span><h3>SEO — Search Visibility</h3><p style="font-size:.92rem">Compounding organic growth: technical health, intent-matched content, and authority that earns rankings.</p><p class="fine" style="margin-top:10px">You get: technical fixes, 8–16 expert-reviewed articles/mo, DR-40+ link building</p><span class="go">Explore SEO →</span></a>
+    <a class="card accent" href="/services/performance/" data-kw="performance marketing google ads meta ads facebook ads paid ads ppc lead generation ads roas getting traffic"><span class="ic-num">03</span><h3>Performance Marketing Agency</h3><p style="font-size:.92rem">Full-funnel paid media with creative included, tracked to revenue — never vanity clicks. You own the ad accounts.</p><p class="fine" style="margin-top:10px">You get: Google/Meta/LinkedIn Ads, 8+ creatives/mo, lead routing + CRO</p><span class="go">Explore Performance →</span></a>
   </div>
 </section>
 
-<section>
+<section class="svc-section">
   <h2>Look credible — site, brand &amp; content</h2>
   <p style="max-width:680px">What a buyer sees once they've found you — built to convert, not just to exist.</p>
   <div class="grid g3" style="margin-top:20px">
-    <a class="card accent" href="/services/web/"><span class="ic-num">04</span><h3>Web — Design &amp; Engineering</h3><p style="font-size:.92rem">Sites built to convert — analytics, SEO foundations and a CMS your team can run.</p><p class="fine" style="margin-top:10px">You get: Next.js/Framer builds, 90+ PageSpeed, CMS handover</p><span class="go">Explore Web →</span></a>
-    <a class="card accent" href="/services/branding/"><span class="ic-num">05</span><h3>Branding — Identity &amp; Sales Assets</h3><p style="font-size:.92rem">Identity systems and sales assets that make the next conversation easier to win.</p><p class="fine" style="margin-top:10px">You get: logo &amp; brand guide, pitch decks, company profile</p><span class="go">Explore Branding →</span></a>
-    <a class="card accent" href="/services/social/"><span class="ic-num">06</span><h3>Social — Content &amp; Community</h3><p style="font-size:.92rem">Authority-building content engines, run on a calendar your team approves once a month.</p><p class="fine" style="margin-top:10px">You get: 12–16 LinkedIn posts/mo, Instagram &amp; YouTube engines</p><span class="go">Explore Social →</span></a>
+    <a class="card accent" href="/services/web/" data-kw="website design website designing web development basic website new website landing page ecommerce site build a site"><span class="ic-num">04</span><h3>Web — Design &amp; Engineering</h3><p style="font-size:.92rem">Sites built to convert — analytics, SEO foundations and a CMS your team can run.</p><p class="fine" style="margin-top:10px">You get: Next.js/Framer builds, 90+ PageSpeed, CMS handover</p><span class="go">Explore Web →</span></a>
+    <a class="card accent" href="/services/branding/" data-kw="branding logo brand identity pitch deck company profile brand guide"><span class="ic-num">05</span><h3>Branding — Identity &amp; Sales Assets</h3><p style="font-size:.92rem">Identity systems and sales assets that make the next conversation easier to win.</p><p class="fine" style="margin-top:10px">You get: logo &amp; brand guide, pitch decks, company profile</p><span class="go">Explore Branding →</span></a>
+    <a class="card accent" href="/services/social/" data-kw="social media instagram linkedin post linkedin channel youtube content calendar posts reels"><span class="ic-num">06</span><h3>Social — Content &amp; Community</h3><p style="font-size:.92rem">Authority-building content engines, run on a calendar your team approves once a month.</p><p class="fine" style="margin-top:10px">You get: 12–16 LinkedIn posts/mo, Instagram &amp; YouTube engines</p><span class="go">Explore Social →</span></a>
   </div>
 </section>
 
-<section>
+<section class="svc-section">
   <h2>Run leaner — AI &amp; strategy</h2>
   <p style="max-width:680px">Where the growth engine meets the operating model — automation and leadership for the transition.</p>
   <div class="grid g2" style="margin-top:20px">
-    <a class="card accent" href="/services/ai-automation/"><span class="ic-num">07 · Core</span><h3>AI Automation</h3><p style="font-size:.92rem">Assistants and agents deployed to your cloud, documented and handed over — with your team trained to run them.</p><p class="fine" style="margin-top:10px">You get: knowledge assistants, WhatsApp automation, document processing</p><span class="go">Explore AI Automation →</span></a>
-    <a class="card accent" href="/services/consulting/"><span class="ic-num">08</span><h3>Consulting &amp; Enablement</h3><p style="font-size:.92rem">Roadmaps, fractional AI leadership and training that de-risk the transition — priced as projects, not open-ended consulting.</p><p class="fine" style="margin-top:10px">You get: 18-month roadmap, fractional AI officer, team training</p><span class="go">Explore Consulting →</span></a>
+    <a class="card accent" href="/services/ai-automation/" data-kw="ai automation chatbot whatsapp automation ai agent knowledge assistant document processing"><span class="ic-num">07 · Core</span><h3>AI Automation</h3><p style="font-size:.92rem">Assistants and agents deployed to your cloud, documented and handed over — with your team trained to run them.</p><p class="fine" style="margin-top:10px">You get: knowledge assistants, WhatsApp automation, document processing</p><span class="go">Explore AI Automation →</span></a>
+    <a class="card accent" href="/services/consulting/" data-kw="consulting fractional ai officer cto roadmap training workshop advisory"><span class="ic-num">08</span><h3>Consulting &amp; Enablement</h3><p style="font-size:.92rem">Roadmaps, fractional AI leadership and training that de-risk the transition — priced as projects, not open-ended consulting.</p><p class="fine" style="margin-top:10px">You get: 18-month roadmap, fractional AI officer, team training</p><span class="go">Explore Consulting →</span></a>
   </div>
 </section>
+<script>
+(function(){
+  var input = document.getElementById('svcSearch');
+  var sections = Array.prototype.slice.call(document.querySelectorAll('.svc-section'));
+  var noResult = document.getElementById('svcNoResult');
+  if(!input) return;
+  var stop = {and:1,the:1,for:1,with:1,from:1,that:1,this:1,your:1,you:1,are:1,was:1,were:1,have:1,has:1,not:1,but:1,all:1,any:1,can:1,get:1,our:1,out:1,into:1,over:1,than:1,then:1,them:1,who:1,how:1,what:1,when:1,where:1,why:1,per:1,via:1};
+  input.addEventListener('input', function(){
+    var q = input.value.trim().toLowerCase();
+    var words = q.split(/\s+/).filter(function(w){return w.length>2 && !stop[w]});
+    var anyShown = false;
+    sections.forEach(function(sec){
+      var cards = Array.prototype.slice.call(sec.querySelectorAll('[data-kw]'));
+      var sectionHasMatch = false;
+      cards.forEach(function(c){
+        var hay = (c.getAttribute('data-kw')+' '+c.textContent).toLowerCase();
+        var match = !q || (hay.indexOf(q)!==-1) || words.some(function(w){return hay.indexOf(w)!==-1});
+        c.style.display = match ? '' : 'none';
+        if(match) sectionHasMatch = true;
+      });
+      sec.style.display = (!q || sectionHasMatch) ? '' : 'none';
+      if(sectionHasMatch) anyShown = true;
+    });
+    noResult.style.display = (q && !anyShown) ? 'block' : 'none';
+  });
+})();
+</script>
 
 <section>
   <h2>Common questions</h2>

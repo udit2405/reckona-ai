@@ -67,7 +67,7 @@
     <a class="card" href="/industries/manufacturing-b2b/" data-kw="manufacturing manufacturer factory industrial b2b engineering machinery components exporter export supplier plant fabrication oem auto parts steel chemical textile bearings msme industry workshop tooling casting moulding packaging pharma api foundry"><span class="ic-num">03</span><h3>Manufacturing / B2B</h3><p style="font-size:.92rem">Turn a catalog PDF into an inbound RFQ engine.</p><span class="go">See everything we'd build →</span></a>
     <a class="card" href="/industries/education-coaching/" data-kw="education coaching school college institute university academy tuition training edtech student admission preschool classes iit neet mba upsc playschool kindergarten k12 skilling vocational exam prep tutor teacher"><span class="ic-num">04</span><h3>Education / Coaching</h3><p style="font-size:.92rem">Lower your cost per admission, not your standards.</p><span class="go">See everything we'd build →</span></a>
     <a class="card" href="/industries/real-estate/" data-kw="real estate property builder developer broker realtor housing apartment flats villa plots construction rera commercial leasing township society redevelopment channel partner property dealer land warehouse"><span class="ic-num">05</span><h3>Real Estate</h3><p style="font-size:.92rem">More site visits from the same ad spend.</p><span class="go">See everything we'd build →</span></a>
-    <a class="card" href="/industries/retail-d2c/" data-kw="retail d2c ecommerce shop store brand shopify online seller apparel fashion cosmetics skincare jewellery furniture wellness fmcg amazon marketplace kirana supermarket showroom outlet garments footwear toys grocery quick commerce"><span class="ic-num">06</span><h3>Retail / D2C</h3><p style="font-size:.92rem">Profitable growth after the ROAS plateau.</p><span class="go">See everything we'd build →</span></a>
+    <a class="card" href="/industries/retail-d2c/" data-kw="retail d2c ecommerce shop store brand shopify online seller apparel fashion cosmetics skincare jewellery jewelry jewellers gold silver diamond ornaments furniture wellness fmcg amazon marketplace kirana supermarket showroom outlet garments footwear toys grocery quick commerce"><span class="ic-num">06</span><h3>Retail / D2C</h3><p style="font-size:.92rem">Profitable growth after the ROAS plateau.</p><span class="go">See everything we'd build →</span></a>
     <a class="card" href="/industries/finance-bfsi/" data-kw="finance bfsi bank nbfc insurance broker wealth advisor mutual fund lending loans fintech investment portfolio pms cooperative credit society dsa lic agent gold loan microfinance stock trading demat wealth management"><span class="ic-num">07</span><h3>Finance / BFSI</h3><p style="font-size:.92rem">Grow the book without a compliance headache.</p><span class="go">See everything we'd build →</span></a>
     <a class="card" href="/industries/legal-professional-services/" data-kw="law firm lawyer advocate legal attorney solicitor litigation ca chartered accountant company secretary cs consultant consultancy audit firm tax consultant notary corporate law immigration law family law compliance firm architects interior designer professional services"><span class="ic-num">08</span><h3>Legal &amp; Professional Services</h3><p style="font-size:.92rem">Win the client search that happens before the referral call.</p><span class="go">See everything we'd build →</span></a>
     <a class="card" href="/industries/hospitality-travel/" data-kw="hotel resort hospitality travel tourism travel agency tour operator homestay guesthouse bnb bed and breakfast lodge villa rental banquet hall event venue destination wedding venue holiday package airbnb host serviced apartments"><span class="ic-num">09</span><h3>Hospitality &amp; Travel</h3><p style="font-size:.92rem">Win direct bookings back from the OTAs.</p><span class="go">See everything we'd build →</span></a>
@@ -83,12 +83,14 @@
   var cards = Array.prototype.slice.call(document.querySelectorAll('#indGrid .card'));
   var noResult = document.getElementById('indNoResult');
   if(!input) return;
+  var stop = {and:1,the:1,for:1,with:1,from:1,that:1,this:1,your:1,you:1,are:1,was:1,were:1,have:1,has:1,not:1,but:1,all:1,any:1,can:1,get:1,our:1,out:1,into:1,over:1,than:1,then:1,them:1,who:1,how:1,what:1,when:1,where:1,why:1,per:1,via:1};
   input.addEventListener('input', function(){
     var q = input.value.trim().toLowerCase();
+    var words = q.split(/\s+/).filter(function(w){return w.length>2 && !stop[w]});
     var shown = 0;
     cards.forEach(function(c){
       var hay = (c.getAttribute('data-kw')+' '+c.textContent).toLowerCase();
-      var match = !q || hay.indexOf(q) !== -1;
+      var match = !q || (hay.indexOf(q) !== -1) || words.some(function(w){return hay.indexOf(w)!==-1});
       c.style.display = match ? '' : 'none';
       if(match) shown++;
     });
