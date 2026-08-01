@@ -110,8 +110,8 @@ t('tier-ent', "Enterprise tier",
 /* ----- Industries ----- */
 t('m-industries', "Industries",
   ['industry','industries','sector','vertical','do you work with','my business type'],
-  "We run playbooks for ten industries. Which is yours?",
-  {menu:['ind-restaurant','ind-hospital','ind-mfg','ind-edu','ind-realestate','ind-retail','ind-bfsi','ind-startup','ind-sme','ind-entkick']});
+  "We run playbooks for 13 industries. Which is yours?",
+  {menu:['ind-restaurant','ind-hospital','ind-mfg','ind-edu','ind-realestate','ind-retail','ind-bfsi','ind-legal','ind-hospitality','ind-beauty','ind-startup','ind-sme','ind-entkick']});
 
 t('ind-restaurant', "Restaurant / QSR",
   ['restaurant','qsr','cafe','food business','zomato','swiggy','delivery margins'],
@@ -141,6 +141,18 @@ t('ind-bfsi', "Finance / BFSI",
   ['finance','bfsi','bank','nbfc','insurance','fintech','compliance'],
   "<b>Finance / BFSI</b> — \"Grow the book without a compliance headache.\" Compliant content engines, lead capture with audit trails, and automation that respects regulatory constraints. Full playbook: <a href=\"/industries/finance-bfsi/\">/industries/finance-bfsi/</a>",
   {follow:['m-industries','policy-privacy','start-audit']});
+t('ind-legal', "Legal & Professional Services",
+  ['law firm','lawyer','advocate','legal','attorney','consultant','ca firm','company secretary','professional services'],
+  "<b>Legal &amp; Professional Services</b> — \"Win the client search that happens long before a referral call.\" Practice-area SEO, thought-leadership content, AI-visibility scoring and WhatsApp consultation booking. Full playbook: <a href=\"/industries/legal-professional-services/\">/industries/legal-professional-services/</a>",
+  {follow:['m-industries','start-audit']});
+t('ind-hospitality', "Hospitality & Travel",
+  ['hotel','resort','hospitality','travel','travel agency','tour operator','homestay','bnb'],
+  "<b>Hospitality &amp; Travel</b> — \"Win direct bookings back from the OTAs.\" Local SEO, a direct-booking funnel, retargeting ads and WhatsApp guest-comms automation — so fewer bookings pay OTA commission. Full playbook: <a href=\"/industries/hospitality-travel/\">/industries/hospitality-travel/</a>",
+  {follow:['m-industries','start-audit']});
+t('ind-beauty', "Beauty & Wellness",
+  ['salon','spa','beauty','parlour','parlor','wellness','gym','fitness studio'],
+  "<b>Beauty &amp; Wellness</b> — \"Fill your appointment book without discounting every slot.\" Local SEO, an Instagram content engine, and WhatsApp booking + waitlist automation that cuts no-shows. Full playbook: <a href=\"/industries/beauty-wellness/\">/industries/beauty-wellness/</a>",
+  {follow:['m-industries','start-audit']});
 t('ind-startup', "Startup (Series A–C)",
   ['startup','series a','series b','funded','fundraise','venture'],
   "<b>Startup (Series A–C)</b> — \"Look fundable. Grow measurable.\" A fundraise-ready brand and site, measurable growth engines, and AI visibility before your competitors get there. Full playbook: <a href=\"/industries/startup/\">/industries/startup/</a>",
