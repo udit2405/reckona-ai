@@ -325,7 +325,12 @@ var css = ""
 +"#rkChatInput:focus{border-color:var(--brand)}"
 +"#rkChatSend{width:38px;height:38px;border-radius:999px;background:var(--ink);color:var(--bg);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}"
 +"#rkChatSend:hover{opacity:.88}"
-+"@media(max-width:480px){#rkChatBtn{left:16px;bottom:16px;width:52px;height:52px}#rkChatPanel{left:12px;bottom:80px;width:calc(100vw - 24px);height:min(72vh,540px)}}";
++"@media(max-width:480px){#rkChatBtn{left:16px;bottom:16px;width:52px;height:52px}#rkChatPanel{left:12px;bottom:80px;width:calc(100vw - 24px);height:min(72vh,540px)}}"
+/* Hidden until the visitor scrolls (or a short fallback delay) — a hero's
+   own CTA buttons can sit in this exact fixed corner on first paint,
+   especially on mobile, and appearing instantly on load would cover them. */
++"#rkChatBtn{opacity:0;transform:scale(.7);pointer-events:none}"
++"#rkChatBtn.show{opacity:1;transform:none;pointer-events:auto;transition:opacity .3s ease,transform .3s cubic-bezier(.22,1,.36,1)}";
 
 /* ---------- Build ---------- */
 function build(){
@@ -348,6 +353,33 @@ function build(){
 
   document.body.appendChild(btn);
   document.body.appendChild(panel);
+
+  /* Reveal only once the button's exact corner is empty on screen — a hero's
+     own CTA can sit right there on load (any page, any content length), and
+     a blind time-based fallback would just cover it a few seconds later
+     instead of instantly. Real hit-testing has no such edge case. */
+  var revealed = false, pollTimer, pollCount = 0;
+  function cornerClear(){
+    var small = window.innerWidth <= 480;
+    var size = small ? 52 : 58, left = small ? 16 : 22, bottom = small ? 16 : 22;
+    var el = document.elementFromPoint(left + size/2, window.innerHeight - bottom - size/2);
+    return !el || el === document.body || el === document.documentElement;
+  }
+  function tryReveal(force){
+    if (revealed) return;
+    if (force || cornerClear()){
+      revealed = true;
+      btn.classList.add('show');
+      window.removeEventListener('scroll', tryReveal);
+      clearInterval(pollTimer);
+    }
+  }
+  window.addEventListener('scroll', tryReveal, {passive:true});
+  pollTimer = setInterval(function(){
+    pollCount++;
+    tryReveal();
+    if (pollCount > 40){ clearInterval(pollTimer); setTimeout(function(){ tryReveal(true); }, 100); }
+  }, 400);
 
   var body = panel.querySelector('#rkChatBody');
   var form = panel.querySelector('#rkChatForm');

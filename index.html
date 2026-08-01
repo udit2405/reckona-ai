@@ -349,7 +349,7 @@ blockquote{border-left:2px solid var(--brand);padding-left:20px;font-family:Frau
 #vwChip{position:fixed;right:22px;bottom:22px;z-index:200;width:46px;height:46px;border-radius:999px;border:1px solid var(--border);
   background:var(--ink);color:var(--bg);font-size:1rem;cursor:pointer;display:none;place-items:center;box-shadow:var(--shadow)}
 #vwChip.on{display:grid}
-@media(max-width:640px){#vw{width:122px;right:14px;bottom:14px}#vw.big{width:min(44vh,88vw)}}
+@media(max-width:640px){#vw,#vwChip{display:none!important}}
 /* RESOURCES (links to standalone article pages) */
 .res-read{display:inline-block;margin-top:14px;font-size:.86rem;font-weight:600;color:var(--brand)}
 a.res-feat{display:grid;grid-template-columns:1.4fr .6fr;gap:30px;align-items:center;color:inherit;position:relative;overflow:hidden}
