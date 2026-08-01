@@ -82,8 +82,13 @@ section{padding:104px 0}
 nav{position:fixed;top:18px;left:50%;transform:translateX(-50%);width:min(1180px,calc(100% - 36px));z-index:100;
   background:var(--glass);backdrop-filter:blur(20px) saturate(1.4);-webkit-backdrop-filter:blur(20px) saturate(1.4);
   border:1px solid var(--border);border-radius:999px;display:flex;align-items:center;gap:4px;padding:9px 12px 9px 24px}
-.logo{font-family:Fraunces,serif;font-weight:600;font-size:1.4rem;color:var(--ink);margin-right:auto;cursor:pointer;letter-spacing:-.01em;white-space:nowrap}
+.logo{font-family:Fraunces,serif;font-weight:600;font-size:1.4rem;color:var(--ink);margin-right:auto;cursor:pointer;letter-spacing:-.01em;white-space:nowrap;position:relative;overflow:hidden;display:inline-block}
 .logo span{color:var(--brand)}
+.logo::after{content:"";position:absolute;top:0;bottom:0;left:-60%;width:40%;
+  background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--brand) 60%,transparent),transparent);
+  filter:blur(2px);animation:logoScan 5s cubic-bezier(.4,0,.2,1) infinite;pointer-events:none}
+@keyframes logoScan{0%{left:-60%}45%{left:120%}100%{left:120%}}
+@media(prefers-reduced-motion:reduce){.logo::after{display:none}}
 nav a.nl{color:var(--ink2);font-size:.9rem;font-weight:500;padding:8px 13px;border-radius:999px;transition:color .15s,background .15s}
 nav a.nl:hover,nav a.nl.active{color:var(--ink);background:var(--surface2)}
 .btn{display:inline-block;background:var(--ink);color:var(--bg);font-weight:600;font-size:.94rem;
