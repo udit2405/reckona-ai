@@ -769,7 +769,7 @@ a.res-row:hover .res-arrow{transform:translateX(5px);color:var(--brand)}
       <p class="lead" style="max-width:640px;margin-top:14px">AI platforms, automations and digital products — built to remove cost, save hours and grow revenue. Click any project to see the problem, the build, and the business impact.</p>
 
       <div class="wk-stats reveal">
-        <div class="wk-stat"><b data-n="14">14</b><span>Projects &amp; platforms shipped</span></div>
+        <div class="wk-stat"><b data-n="20">20</b><span>Projects &amp; platforms shipped</span></div>
         <div class="wk-stat"><b data-n="8">8</b><span>Industries served</span></div>
         <div class="wk-stat"><b data-n="99" data-suf="%">99%</b><span>Peak automation accuracy</span></div>
         <div class="wk-stat"><b data-n="100" data-suf="%">100%</b><span>Client-owned code &amp; accounts</span></div>
@@ -1790,8 +1790,56 @@ const WK=[
  sol:"A full GEO program: structured content and schema rewrites, an AI-citation tracking dashboard, entity and authority building, and a content calendar built around what AI engines actually cite.",
  stack:"Claude for content structuring, Schema.org markup across key pages, a Python tracker polling AI engines weekly, dashboards in the existing reporting stack.",
  met:[["Cited","in AI answers across 3 engines"],["Weekly","AI-visibility tracking dashboard"],["Ranked","content calendar by citation gap"]],
- tl:[["Week 1","AI-visibility audit & citation gaps"],["Weeks 2–3","Schema + content rewrites"],["Week 4","Tracking dashboard live"],["Ongoing","Monthly citation reporting"]]}];
-const WK_FILTERS=["All","AI","Automation","Web","Marketing","Manufacturing","HR","Consulting","Food","Retail"];
+ tl:[["Week 1","AI-visibility audit & citation gaps"],["Weeks 2–3","Schema + content rewrites"],["Week 4","Tracking dashboard live"],["Ongoing","Monthly citation reporting"]]},
+{ind:"Startup / Fundraising",tags:["Web","Consulting"],t:"Investor-First Company Website",
+ one:"A company site built to survive the moment a VC associate opens it mid-diligence, not just a marketing page.",
+ tech:["Next.js","JavaScript","CMS","Analytics","Cloud"],out:"One site that reads correctly to customers and investors on the same page.",
+ prob:"The founder's site was a template — thin on traction, no data-room link, nothing that would survive a 90-second scan before a first investor call.",
+ sol:"A positioning-led rebuild: traction and metrics on the homepage, a real team page, a data-room link surfaced for diligence, and copy written to work for a customer and an investor reading the same sentence differently.",
+ stack:"Next.js front-end, headless CMS for team/press updates, analytics segmented to separate investor referral traffic from customer traffic.",
+ met:[["1","site serving two audiences at once"],["Data room","linked directly from the homepage"],["2 wks","positioning to launch"]],
+ tl:[["Week 1","Positioning workshop & content audit"],["Week 2","Build & data-room wiring"],["Ongoing","Update alongside the raise"]]},
+{ind:"Finance / Trading",tags:["Web","Finance"],t:"Trading Portfolio Management System",
+ one:"A PMS that shows a trader their real exposure across positions in one screen, not five spreadsheets.",
+ tech:["JavaScript","Python","Postgres","Charts","Cloud"],out:"Position, P&L and risk visible in one place, updated live.",
+ prob:"Positions were tracked across broker exports and manual spreadsheets — P&L and exposure were always a day stale, and reconciling them ate hours every evening.",
+ sol:"A portfolio management dashboard: live position tracking, P&L by instrument and portfolio, exposure and concentration views, and exportable statements — built around how the desk actually reviews risk.",
+ stack:"Python services normalising broker/exchange data into Postgres, a JavaScript dashboard with live charts, scheduled statement exports.",
+ met:[["Live","P&L and exposure, not end-of-day"],["1","screen instead of five spreadsheets"],["Auto","statement generation"]],
+ tl:[["Weeks 1–2","Data model & broker feed integration"],["Week 3","Dashboard & charting build"],["Week 4","Statements & reconciliation checks"],["Ongoing","New instrument types as needed"]]},
+{ind:"Apparel / Export",tags:["Web","Retail"],t:"Apparel Export Company Website",
+ one:"A B2B storefront and catalogue for a Philippines-based apparel exporter selling to buyers who'd never seen the factory.",
+ tech:["JavaScript","CMS","SEO","Analytics","Cloud"],out:"International buyers can evaluate the catalogue and place enquiries without a site visit.",
+ prob:"The exporter sold entirely through trade shows and agent relationships — buyers researching online found nothing that matched the quality of what the factory actually shipped.",
+ sol:"A catalogue-led B2B site: product lines by category and MOQ, certifications and compliance documents surfaced up front, an RFQ flow instead of a generic contact form, and SEO built for international buyer search terms.",
+ stack:"CMS-driven catalogue for the merchandising team to update directly, RFQ form routed to sales, analytics on buyer-country traffic.",
+ met:[["RFQ flow","replacing a generic contact form"],["Certs","& compliance docs surfaced upfront"],["Global","SEO for buyer-side search terms"]],
+ tl:[["Weeks 1–2","Catalogue structure & content"],["Week 3","Build & RFQ flow"],["Week 4","SEO & launch"],["Ongoing","Seasonal catalogue updates"]]},
+{ind:"Manufacturing / Logistics",tags:["Automation","Manufacturing"],t:"Inventory & Warehousing Tracking System",
+ one:"Real-time stock levels and bin locations across multiple warehouses, instead of a monthly physical count.",
+ tech:["Python","Barcode/QR","Postgres","JavaScript","Cloud"],out:"Stock levels trusted enough to plan production against, without walking the warehouse.",
+ prob:"Inventory lived in a spreadsheet updated after physical counts — stockouts and overordering were routine, and nobody could say what was actually on a given shelf without walking the warehouse.",
+ sol:"A tracking system with barcode/QR scanning at intake and dispatch, live stock-by-location views, low-stock alerts, and a reorder dashboard tied to actual movement instead of guesswork.",
+ stack:"Python backend on Postgres, barcode/QR scanning at intake and dispatch points, a JavaScript dashboard for stock and reorder views.",
+ met:[["Live","stock by warehouse & bin location"],["Alerts","before a stockout, not after"],["0","manual monthly recounts needed"]],
+ tl:[["Week 1","Warehouse & SKU mapping"],["Weeks 2–3","Scanning workflow & backend build"],["Week 4","Dashboard, alerts & staff training"],["Ongoing","New warehouse rollouts"]]},
+{ind:"Food Delivery",tags:["Web","Food"],t:"Home-Style Meal Delivery Platform",
+ one:"A 'ghar ka khana' marketplace connecting home cooks to subscribers who are tired of restaurant food and swiggy fatigue.",
+ tech:["JavaScript","Payments","WhatsApp","CMS","Cloud"],out:"A subscription meal platform launched with cook onboarding and delivery logistics solved, not just a menu page.",
+ prob:"The founder had home cooks lined up and subscriber demand validated on WhatsApp groups, but no way to take payments, manage weekly menus, or route delivery at any scale.",
+ sol:"A subscription ordering platform: weekly rotating menus per cook, subscription and one-off ordering, payments, delivery-slot routing, and WhatsApp order confirmations and reminders.",
+ stack:"JavaScript ordering front-end, payment gateway for subscriptions, WhatsApp Business API for confirmations, admin CMS for cooks to manage weekly menus.",
+ met:[["Subscriptions","+ one-off ordering, both live"],["WhatsApp","confirmations & delivery reminders"],["Multi-cook","menu management from day 1"]],
+ tl:[["Week 1","Cook onboarding flow & menu structure"],["Weeks 2–3","Ordering, payments & delivery routing"],["Week 4","WhatsApp automation & launch"],["Ongoing","New cook & area rollouts"]]},
+{ind:"Marketing AI",tags:["AI","Marketing"],t:"Trend-Spotter Market Signal Dashboard",
+ one:"Flags which topics are gaining traction in a category before competitors are already posting about them.",
+ tech:["Python","Claude","APIs","Charts","Cloud"],out:"The marketing team leads on trends instead of reacting to competitors' posts.",
+ prob:"The team found out about category trends by watching competitors publish first — no systematic way to scan what was actually gaining traction versus what just felt trendy.",
+ sol:"A signal-monitoring dashboard that scans social and search activity in a category, scores rising topics by momentum, and pushes a ranked shortlist to the content team weekly, before the topic peaks.",
+ stack:"Python scrapers/APIs feeding a momentum-scoring model, Claude for topic summarisation, a charting dashboard for the weekly shortlist.",
+ met:[["Weekly","ranked trend shortlist, not ad-hoc"],["Early","flagged before competitors post"],["Scored","by momentum, not gut feel"]],
+ tl:[["Week 1","Signal sources & category scope"],["Weeks 2–3","Scoring model & dashboard build"],["Week 4","Pilot with weekly shortlist"],["Ongoing","New categories & tuning"]]}];
+const WK_FILTERS=["All","AI","Automation","Web","Marketing","Manufacturing","HR","Consulting","Food","Retail","Finance"];
 const wkGrid=document.getElementById('wkGrid'),wkFbar=document.getElementById('wkFilters');
 const wkRM=matchMedia('(prefers-reduced-motion:reduce)').matches;
 
