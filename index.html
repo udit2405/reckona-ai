@@ -302,20 +302,16 @@ blockquote{border-left:2px solid var(--brand);padding-left:20px;font-family:Frau
   .hero{padding:150px 0 80px}
   .stat{border-left:none;padding:4px 24px 4px 0}
 }
-/* PROOF (before -> after) */
-.proof-list{margin-top:30px;border-top:1px solid var(--border)}
-.proof-row{padding:28px 0;border-bottom:1px solid var(--border);display:grid;grid-template-columns:200px 1fr;gap:24px;align-items:center}
-.proof-tag{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink2);line-height:1.6}
-.proof-flow{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
-.proof-before,.proof-after{flex:1;min-width:220px}
-.proof-before .lbl,.proof-after .lbl{display:block;font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:5px}
-.proof-before .lbl{color:var(--ink2)}
-.proof-after .lbl{color:var(--brand)}
-.proof-before{color:var(--ink2);font-size:.94rem;line-height:1.5}
-.proof-after{color:var(--ink);font-size:.94rem;line-height:1.5}
-.proof-after b{font-family:Fraunces,serif;font-weight:500;font-size:1.35rem;color:var(--ink);display:block;margin-top:4px}
-.proof-arrow{color:var(--brand);font-size:1.3rem;flex-shrink:0}
-@media(max-width:760px){.proof-row{grid-template-columns:1fr;gap:12px}}
+/* PROOF (metric cards) */
+.proof-card{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:30px;position:relative;overflow:hidden;transition:transform .25s,box-shadow .25s,border-color .25s}
+.proof-card:hover{transform:translateY(-4px);box-shadow:0 2px 4px rgba(22,21,15,.04),0 20px 44px rgba(22,21,15,.09);border-color:var(--ink2)}
+.proof-card::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:linear-gradient(90deg,var(--brand),var(--signal))}
+.proof-metric{font-family:Fraunces,serif;font-weight:500;font-size:2.9rem;color:var(--ink);margin-top:20px;line-height:1;letter-spacing:-.01em}
+.proof-metric small{font-size:1.3rem;color:var(--ink2);font-weight:400;margin-left:1px}
+.proof-metric-label{font-size:.92rem;color:var(--ink2);margin-top:8px;line-height:1.5;min-height:2.9em}
+.proof-divider{height:1px;background:var(--border);margin:20px 0 16px}
+.proof-before{font-size:.85rem;color:var(--ink2);line-height:1.55}
+.proof-before b{color:var(--ink);font-weight:700;display:block;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:5px}
 /* TRUST STRIP */
 .trust{padding:34px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
 .trust-row{display:flex;align-items:center;gap:28px;flex-wrap:wrap}
@@ -555,33 +551,30 @@ a.res-row:hover .res-arrow{transform:translateX(5px);color:var(--brand)}
       <div class="eyebrow">Proof</div>
       <h2>What we've actually shipped</h2>
       <p class="lead" style="max-width:600px;margin-top:8px;font-size:1.05rem">Not case studies with stock photos — the actual before and after, with the number attached.</p>
-      <div class="proof-list">
-        <div class="proof-row reveal">
-          <div class="proof-tag">Manufacturing<br>Listed auto-components client</div>
-          <div class="proof-flow">
-            <div class="proof-before"><span class="lbl">Before</span>Test &amp; warranty certificates typed by hand — hours of clerical work per batch</div>
-            <div class="proof-arrow">→</div>
-            <div class="proof-after"><span class="lbl">After</span>Automated generation pipeline<b>99% accuracy</b></div>
-          </div>
+      <div class="grid g3" style="margin-top:28px">
+        <div class="proof-card reveal">
+          <span class="pill">Manufacturing · Listed auto-components client</span>
+          <div class="proof-metric">99<small>%</small></div>
+          <p class="proof-metric-label">accuracy on an automated test &amp; warranty certificate pipeline</p>
+          <div class="proof-divider"></div>
+          <p class="proof-before"><b>Before</b>Certificates typed by hand — hours of clerical work per batch</p>
         </div>
-        <div class="proof-row reveal">
-          <div class="proof-tag">Operations<br>Internal</div>
-          <div class="proof-flow">
-            <div class="proof-before"><span class="lbl">Before</span>Daily ops numbers compiled by hand into spreadsheets every morning</div>
-            <div class="proof-arrow">→</div>
-            <div class="proof-after"><span class="lbl">After</span>A Power BI report that pulls itself<b>Zero manual compilation</b></div>
-          </div>
+        <div class="proof-card reveal">
+          <span class="pill">Operations · Internal</span>
+          <div class="proof-metric">Daily</div>
+          <p class="proof-metric-label">ops report that pulls itself in Power BI, zero manual compilation</p>
+          <div class="proof-divider"></div>
+          <p class="proof-before"><b>Before</b>Numbers compiled by hand into spreadsheets every morning</p>
         </div>
-        <div class="proof-row reveal">
-          <div class="proof-tag">Web<br>5 small-business clients</div>
-          <div class="proof-flow">
-            <div class="proof-before"><span class="lbl">Before</span>No site, or one that actively cost them credibility with prospects</div>
-            <div class="proof-arrow">→</div>
-            <div class="proof-after"><span class="lbl">After</span>Production sites, design to deploy<b>5 for 5 shipped</b></div>
-          </div>
+        <div class="proof-card reveal">
+          <span class="pill">Web · 5 small-business clients</span>
+          <div class="proof-metric">5 <small>for 5</small></div>
+          <p class="proof-metric-label">production sites shipped — design to deploy, every one live</p>
+          <div class="proof-divider"></div>
+          <p class="proof-before"><b>Before</b>No site, or one that actively cost them credibility</p>
         </div>
       </div>
-      <p style="margin-top:22px"><a href="#work">See how we'd approach bigger engagements →</a></p>
+      <p style="margin-top:26px"><a href="#work">See how we'd approach bigger engagements →</a></p>
     </div>
   </section>
 
