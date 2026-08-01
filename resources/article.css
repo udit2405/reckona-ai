@@ -33,6 +33,7 @@ nav a.nl:hover{color:var(--ink);text-decoration:none}
 .btn:hover{text-decoration:none;opacity:.9}
 .btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--border)}
 .btn.ghost:hover{border-color:var(--ink);opacity:1}
+@media(max-width:640px){.btn+.btn{margin-top:10px}}
 @media(max-width:640px){
   nav .row{padding:0 16px;gap:10px}
   nav a.nl{display:none}
