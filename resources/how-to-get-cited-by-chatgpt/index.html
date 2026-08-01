@@ -35,10 +35,22 @@
 <nav><div class="row">
   <a class="logo" href="/">Reckona<span> AI</span></a>
   <a class="nl" href="/services/">Services</a>
+  <a class="nl" href="/industries/">Industries</a>
   <a class="nl" href="/#work">Work</a>
+  <a class="nl" href="/pricing/">Pricing</a>
   <a class="nl" href="/resources/">Resources</a>
+  <a class="nl" href="/about/">About</a>
   <a class="btn" href="/#book">Book a Call</a>
+  <button id="navToggle" class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav"><span></span><span></span><span></span></button>
 </div></nav>
+<div id="mobileNav" aria-label="Mobile">
+  <a class="nl" href="/services/">Services</a>
+  <a class="nl" href="/industries/">Industries</a>
+  <a class="nl" href="/#work">Work</a>
+  <a class="nl" href="/pricing/">Pricing</a>
+  <a class="nl" href="/resources/">Resources</a>
+  <a class="nl" href="/about/">About</a>
+</div>
 <main>
 <p class="crumb"><a href="/">Home</a> / <a href="/resources/">Resources</a> / Get cited by ChatGPT</p>
 <span class="pill">GEO · Playbook</span>
@@ -85,8 +97,17 @@
 </aside>
 <footer><div class="row">
   <span>© 2026 Reckona AI</span><a href="https://www.linkedin.com/company/reckona-ai/" target="_blank" rel="noopener">LinkedIn</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a>
-  <a href="/">Home</a><a href="/services/">Services</a><a href="/services/consulting/">Fractional AI Officer</a><a href="/pricing/">Pricing</a><a href="/#book">Book a Call</a>
+  <a href="/">Home</a><a href="/services/">Services</a><a href="/industries/">Industries</a><a href="/#work">Work</a><a href="/pricing/">Pricing</a><a href="/resources/">Resources</a><a href="/about/">About</a><a href="/#book">Book a Call</a>
 </div></footer>
+<script>
+(function(){
+  var m=document.getElementById('navToggle'), mm=document.getElementById('mobileNav');
+  if(m&&mm){
+    m.onclick=function(){var o=mm.classList.toggle('open');m.classList.toggle('open',o);m.setAttribute('aria-expanded',o)};
+    mm.querySelectorAll('a').forEach(function(a){a.onclick=function(){mm.classList.remove('open');m.classList.remove('open');m.setAttribute('aria-expanded','false')}});
+  }
+})();
+</script>
 <script src="/assets/chatbot.js" defer></script>
 </body>
 </html>

@@ -42,12 +42,24 @@
   <a class="logo" href="/">Reckona<span> AI</span></a>
   <a class="nl" href="/services/">Services</a>
   <a class="nl" href="/industries/">Industries</a>
+  <a class="nl" href="/#work">Work</a>
   <a class="nl" href="/pricing/">Pricing</a>
+  <a class="nl" href="/#tools">Free Tools</a>
   <a class="nl" href="/resources/">Resources</a>
   <a class="nl" href="/about/">About</a>
   <button id="themeBtn" class="btn ghost sm" aria-label="Toggle theme" style="padding:8px 12px">◐</button>
   <a class="btn sm keep" href="/#book">Book a Call</a>
+  <button id="navToggle" class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav"><span></span><span></span><span></span></button>
 </nav>
+<div id="mobileNav" aria-label="Mobile">
+  <a class="nl" href="/services/">Services</a>
+  <a class="nl" href="/industries/">Industries</a>
+  <a class="nl" href="/#work">Work</a>
+  <a class="nl" href="/pricing/">Pricing</a>
+  <a class="nl" href="/#tools">Free Tools</a>
+  <a class="nl" href="/resources/">Resources</a>
+  <a class="nl" href="/about/">About</a>
+</div>
 <main>
 <p class="crumb"><a href="/">Home</a> / <a href="/industries/">Industries</a> / Hospital / Clinic</p>
 
@@ -109,8 +121,8 @@
         <p style="font-size:.9rem;max-width:280px;margin-top:10px">Intelligence, Applied. AI-first growth &amp; automation partner for India's ambitious mid-market.</p><div class="ft-social"><a href="https://www.linkedin.com/company/reckona-ai/" target="_blank" rel="noopener" aria-label="Reckona AI on LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.45-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></a></div>
       </div>
       <div><span class="ft-b">Services</span><a href="/services/geo/">GEO / AI Visibility</a><a href="/services/ai-automation/">AI Automation</a><a href="/services/seo/">SEO</a><a href="/services/consulting/">Fractional AI Officer</a><a href="/services/">All services</a></div>
-      <div><span class="ft-b">Explore</span><a href="/industries/">Industries</a><a href="/pricing/">Pricing</a><a href="/resources/">Resources</a><a href="/about/">About</a></div>
-      <div><span class="ft-b">Start</span><a href="/#audit">Free audit</a><a href="/#tools">AI Visibility Score</a><a href="/#book">Book a call</a></div>
+      <div><span class="ft-b">Explore</span><a href="/industries/">Industries</a><a href="/#work">Work</a><a href="/pricing/">Pricing</a><a href="/resources/">Resources</a><a href="/about/">About</a></div>
+      <div><span class="ft-b">Start</span><a href="/#audit">Free audit</a><a href="/#tools">Free Tools</a><a href="/#book">Book a call</a></div>
     </div>
     <p class="fine">© 2026 Reckona AI Pvt. Ltd. · <a href="/privacy/">Privacy</a> · <a href="/terms/">Terms</a> · Every engagement is scoped and quoted for your business — no rate card, no surprises.</p>
   </div>
@@ -122,6 +134,11 @@
   else r.setAttribute('data-theme',matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');
   var b=document.getElementById('themeBtn');
   if(b)b.onclick=function(){var n=r.getAttribute('data-theme')==='dark'?'light':'dark';r.setAttribute('data-theme',n);localStorage.setItem('theme',n)};
+  var m=document.getElementById('navToggle'), mm=document.getElementById('mobileNav');
+  if(m&&mm){
+    m.onclick=function(){var o=mm.classList.toggle('open');m.classList.toggle('open',o);m.setAttribute('aria-expanded',o)};
+    mm.querySelectorAll('a').forEach(function(a){a.onclick=function(){mm.classList.remove('open');m.classList.remove('open');m.setAttribute('aria-expanded','false')}});
+  }
 })();
 </script>
 <script src="/assets/chatbot.js" defer></script>
