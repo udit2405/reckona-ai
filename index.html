@@ -296,6 +296,20 @@ blockquote{border-left:2px solid var(--brand);padding-left:20px;font-family:Frau
   .hero{padding:150px 0 80px}
   .stat{border-left:none;padding:4px 24px 4px 0}
 }
+/* PROOF (before -> after) */
+.proof-list{margin-top:30px;border-top:1px solid var(--border)}
+.proof-row{padding:28px 0;border-bottom:1px solid var(--border);display:grid;grid-template-columns:200px 1fr;gap:24px;align-items:center}
+.proof-tag{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink2);line-height:1.6}
+.proof-flow{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.proof-before,.proof-after{flex:1;min-width:220px}
+.proof-before .lbl,.proof-after .lbl{display:block;font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:5px}
+.proof-before .lbl{color:var(--ink2)}
+.proof-after .lbl{color:var(--brand)}
+.proof-before{color:var(--ink2);font-size:.94rem;line-height:1.5}
+.proof-after{color:var(--ink);font-size:.94rem;line-height:1.5}
+.proof-after b{font-family:Fraunces,serif;font-weight:500;font-size:1.35rem;color:var(--ink);display:block;margin-top:4px}
+.proof-arrow{color:var(--brand);font-size:1.3rem;flex-shrink:0}
+@media(max-width:760px){.proof-row{grid-template-columns:1fr;gap:12px}}
 /* TRUST STRIP */
 .trust{padding:34px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
 .trust-row{display:flex;align-items:center;gap:28px;flex-wrap:wrap}
@@ -534,10 +548,32 @@ a.res-row:hover .res-arrow{transform:translateX(5px);color:var(--brand)}
     <div class="container">
       <div class="eyebrow">Proof</div>
       <h2>What we've actually shipped</h2>
-      <div class="grid g3" style="margin-top:26px">
-        <div class="card reveal"><span class="pill">Manufacturing · Listed auto-components client</span><h3 style="margin-top:10px">99% accurate certificate automation</h3><p>Replaced manual test & warranty certificate creation with an automated generation pipeline — 99% accuracy, hours of clerical work removed per batch.</p></div>
-        <div class="card reveal"><span class="pill">Operations · Internal</span><h3 style="margin-top:10px">Daily ops reporting, automated</h3><p>Built a Power BI report that pulls day-to-day operational data automatically — no more manual spreadsheet compilation for daily updates.</p></div>
-        <div class="card reveal"><span class="pill">Web · 5 clients</span><h3 style="margin-top:10px">Client websites shipped</h3><p>Designed and built production websites end-to-end for small business clients — design, build, deploy.</p></div>
+      <p class="lead" style="max-width:600px;margin-top:8px;font-size:1.05rem">Not case studies with stock photos — the actual before and after, with the number attached.</p>
+      <div class="proof-list">
+        <div class="proof-row reveal">
+          <div class="proof-tag">Manufacturing<br>Listed auto-components client</div>
+          <div class="proof-flow">
+            <div class="proof-before"><span class="lbl">Before</span>Test &amp; warranty certificates typed by hand — hours of clerical work per batch</div>
+            <div class="proof-arrow">→</div>
+            <div class="proof-after"><span class="lbl">After</span>Automated generation pipeline<b>99% accuracy</b></div>
+          </div>
+        </div>
+        <div class="proof-row reveal">
+          <div class="proof-tag">Operations<br>Internal</div>
+          <div class="proof-flow">
+            <div class="proof-before"><span class="lbl">Before</span>Daily ops numbers compiled by hand into spreadsheets every morning</div>
+            <div class="proof-arrow">→</div>
+            <div class="proof-after"><span class="lbl">After</span>A Power BI report that pulls itself<b>Zero manual compilation</b></div>
+          </div>
+        </div>
+        <div class="proof-row reveal">
+          <div class="proof-tag">Web<br>5 small-business clients</div>
+          <div class="proof-flow">
+            <div class="proof-before"><span class="lbl">Before</span>No site, or one that actively cost them credibility with prospects</div>
+            <div class="proof-arrow">→</div>
+            <div class="proof-after"><span class="lbl">After</span>Production sites, design to deploy<b>5 for 5 shipped</b></div>
+          </div>
+        </div>
       </div>
       <p style="margin-top:22px"><a href="#work">See how we'd approach bigger engagements →</a></p>
     </div>
