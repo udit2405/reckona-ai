@@ -100,6 +100,7 @@
       <span class="pill" data-cat="consulting" onclick="setArtCat('consulting',this)">Consulting</span>
       <span class="pill" data-cat="leadership" onclick="setArtCat('leadership',this)">Leadership</span>
     </div>
+    <p id="artLive" style="display:none;font-size:.85rem;margin-top:10px"></p>
   </div>
 </header>
 
@@ -278,6 +279,13 @@ function filterArticles(){
     var hit=catOk&&qOk;c.style.display=hit?'':'none';if(hit)shown++;
   });
   document.getElementById('artNone').style.display=shown?'none':'block';
+  var live=document.getElementById('artLive');
+  if(q||artCat!=='all'){
+    live.style.display='block';
+    live.innerHTML=(shown?'<b style="color:var(--ink)">'+shown+'</b> article'+(shown===1?'':'s')+' match':'No articles match')+' — <a href="#artGrid">jump to results ↓</a>';
+  }else{
+    live.style.display='none';
+  }
 }
 function clearArt(){var i=document.getElementById('artSearch');if(i)i.value='';artCat='all';
   document.querySelectorAll('#artChips .pill').forEach(function(p,n){p.classList.toggle('on',n===0)});filterArticles();}
