@@ -30,6 +30,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 <noscript><link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet"></noscript>
 <link rel="stylesheet" href="/page.css">
+<link rel="stylesheet" href="/locations/mumbai/mumbai.css">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"LocalBusiness","name":"Reckona AI","image":"https://reckonaai.com/assets/og-image.png","url":"https://reckonaai.com/locations/mumbai/","email":"reckonaai@gmail.com","address":{"@type":"PostalAddress","addressLocality":"Andheri East, Mumbai","addressRegion":"Maharashtra","addressCountry":"IN"},"areaServed":["Mumbai","Mumbai Metropolitan Region"],"makesOffer":[{"@type":"Offer","itemOffered":{"@type":"Service","name":"Generative Engine Optimization (GEO)","url":"https://reckonaai.com/services/geo/"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"SEO","url":"https://reckonaai.com/services/seo/"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"AI Automation","url":"https://reckonaai.com/services/ai-automation/"}}]}
 </script>
@@ -40,7 +41,7 @@
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Do you only work with Mumbai companies?","acceptedAnswer":{"@type":"Answer","text":"No — Reckona serves clients across India, but Mumbai is home base, which means faster in-person kickoffs, on-site audits when useful, and a team that understands the local competitive set without a briefing document."}},{"@type":"Question","name":"Can we meet in person?","acceptedAnswer":{"@type":"Answer","text":"Yes. The team is based in Andheri East and regularly meets Mumbai clients on-site for kickoff, audit walkthroughs, or quarterly reviews — most fully remote agencies serving Mumbai can't offer this."}},{"@type":"Question","name":"Do you understand Mumbai's specific industries — BFSI, trading, manufacturing?","acceptedAnswer":{"@type":"Answer","text":"Yes. Reckona's 15 industry packages include sector-specific problem framing, and several of our shipped case studies are Mumbai and Maharashtra-based businesses."}},{"@type":"Question","name":"How is GEO different from the SEO we're already doing?","acceptedAnswer":{"@type":"Answer","text":"Traditional SEO and AI-search visibility are measured and won differently — a business ranking #1 on Google can still be completely invisible when the same buyer asks ChatGPT. Get a free 10-prompt GEO audit to see where you actually stand."}},{"@type":"Question","name":"What does it cost?","acceptedAnswer":{"@type":"Answer","text":"Every engagement is scoped and quoted after a free audit — no rate card, no surprises."}}]}
 </script>
 </head>
-<body>
+<body class="mumbai-page">
 <nav aria-label="Main">
   <a class="logo" href="/">Reckona<span> AI</span></a>
   <a class="nl" href="/services/">Services</a>
@@ -66,46 +67,252 @@
 <main>
 <p class="crumb"><a href="/">Home</a> / Mumbai</p>
 
-<header class="hero">
-  <div class="eyebrow">Mumbai · Andheri East</div>
-  <h1>AI Growth &amp; AI Visibility Partner,<br>Based in <em>Mumbai.</em></h1>
-  <p class="lead" style="max-width:700px;margin-top:16px">Reckona AI is headquartered in Andheri East — this isn't a satellite page for a Bangalore or Delhi team chasing a keyword. If you're a Mumbai-based business, your account team is a local commute away, not a time-zone-adjusted Slack message.</p>
-  <p style="margin-top:22px"><a class="btn" href="/#audit">Get a free audit</a><a class="btn ghost" href="/#book" style="margin-left:10px">Book a strategy call</a></p>
+<header class="mumbai-hero">
+  <div class="sun" aria-hidden="true"></div>
+  <svg class="stars" viewBox="0 0 1440 480" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+    <circle cx="90" cy="36" r="1.6" style="animation-delay:.2s"/>
+    <circle cx="230" cy="70" r="1.2" style="animation-delay:1.1s"/>
+    <circle cx="360" cy="30" r="1.5" style="animation-delay:.6s"/>
+    <circle cx="520" cy="55" r="1.1" style="animation-delay:1.6s"/>
+    <circle cx="700" cy="24" r="1.6" style="animation-delay:.4s"/>
+    <circle cx="980" cy="46" r="1.3" style="animation-delay:1.3s"/>
+    <circle cx="1180" cy="28" r="1.5" style="animation-delay:.9s"/>
+    <circle cx="1340" cy="60" r="1.2" style="animation-delay:.3s"/>
+    <circle cx="150" cy="110" r="1.1" style="animation-delay:1.8s"/>
+    <circle cx="1250" cy="100" r="1.2" style="animation-delay:.7s"/>
+  </svg>
+
+  <svg class="skyline" viewBox="0 0 1440 480" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+    <defs>
+      <mask id="archCut" maskUnits="userSpaceOnUse">
+        <rect x="0" y="0" width="1440" height="480" fill="#fff"/>
+        <path d="M180,432 L180,300 A30,30 0 0 1 240,300 L240,432 Z" fill="#000"/>
+      </mask>
+      <pattern id="winGrid" width="16" height="22" patternUnits="userSpaceOnUse">
+        <rect x="3" y="4" width="6" height="8" fill="#F0B84B"/>
+      </pattern>
+      <pattern id="trainPattern" width="108" height="34" patternUnits="userSpaceOnUse">
+        <rect x="0" y="2" width="100" height="30" rx="4" fill="#0B0A14"/>
+        <rect x="10" y="10" width="22" height="14" rx="2" fill="#F0B84B" class="win"/>
+        <rect x="40" y="10" width="22" height="14" rx="2" fill="#F0B84B" class="win" style="animation-delay:1s"/>
+        <rect x="70" y="10" width="22" height="14" rx="2" fill="#F0B84B" class="win" style="animation-delay:2s"/>
+      </pattern>
+      <linearGradient id="waterGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#2B2360"/>
+        <stop offset="100%" stop-color="#120E2E"/>
+      </linearGradient>
+    </defs>
+
+    <!-- seagulls -->
+    <path d="M110,64 q8,-10 16,0 q8,-10 16,0" stroke="#fff" stroke-width="2" fill="none" opacity=".45"/>
+    <path d="M300,42 q7,-9 14,0 q7,-9 14,0" stroke="#fff" stroke-width="2" fill="none" opacity=".4"/>
+    <path d="M1120,80 q7,-9 14,0 q7,-9 14,0" stroke="#fff" stroke-width="2" fill="none" opacity=".4"/>
+
+    <!-- background skyscraper cluster -->
+    <g fill="#0B0A14" opacity=".55">
+      <rect x="380" y="260" width="60" height="136"/>
+      <rect x="380" y="260" width="60" height="136" fill="url(#winGrid)" opacity=".6"/>
+      <rect x="445" y="320" width="40" height="76"/>
+      <rect x="445" y="320" width="40" height="76" fill="url(#winGrid)" opacity=".6"/>
+      <rect x="500" y="230" width="30" height="12"/>
+    </g>
+
+    <!-- Gateway of India -->
+    <g fill="#0B0A14">
+      <rect x="70" y="382" width="260" height="50"/>
+      <rect x="95" y="250" width="30" height="150"/>
+      <ellipse cx="110" cy="248" rx="17" ry="14"/>
+      <rect x="108" y="212" width="4" height="26"/>
+      <rect x="315" y="250" width="30" height="150"/>
+      <ellipse cx="330" cy="248" rx="17" ry="14"/>
+      <rect x="328" y="212" width="4" height="26"/>
+      <rect x="140" y="210" width="160" height="222" mask="url(#archCut)"/>
+      <ellipse cx="210" cy="206" rx="34" ry="18"/>
+      <rect x="207" y="176" width="6" height="26"/>
+    </g>
+
+    <!-- mid + foreground skyscrapers -->
+    <g fill="#0B0A14" opacity=".82">
+      <rect x="565" y="280" width="50" height="116"/>
+      <rect x="565" y="280" width="50" height="116" fill="url(#winGrid)" opacity=".55"/>
+      <rect x="620" y="340" width="34" height="56"/>
+      <rect x="800" y="300" width="42" height="96"/>
+      <rect x="800" y="300" width="42" height="96" fill="url(#winGrid)" opacity=".55"/>
+      <rect x="920" y="270" width="48" height="126"/>
+      <rect x="920" y="270" width="48" height="126" fill="url(#winGrid)" opacity=".55"/>
+    </g>
+    <g fill="#0B0A14" opacity="1">
+      <!-- twin towers -->
+      <rect x="660" y="150" width="34" height="246"/>
+      <rect x="660" y="150" width="34" height="246" fill="url(#winGrid)" opacity=".6"/>
+      <rect x="675" y="140" width="4" height="14"/>
+      <rect x="700" y="150" width="34" height="246"/>
+      <rect x="700" y="150" width="34" height="246" fill="url(#winGrid)" opacity=".6"/>
+      <rect x="715" y="140" width="4" height="14"/>
+      <!-- stepped tower -->
+      <rect x="848" y="280" width="65" height="116"/>
+      <rect x="858" y="220" width="45" height="60"/>
+      <rect x="848" y="280" width="65" height="116" fill="url(#winGrid)" opacity=".55"/>
+      <rect x="858" y="220" width="45" height="60" fill="url(#winGrid)" opacity=".55"/>
+    </g>
+
+    <!-- Bandra-Worli Sea Link -->
+    <g stroke="#5EEAD4" stroke-width="1" opacity=".55">
+      <line x1="1084" y1="192" x2="1000" y2="380"/>
+      <line x1="1084" y1="192" x2="1030" y2="380"/>
+      <line x1="1084" y1="192" x2="1060" y2="380"/>
+      <line x1="1084" y1="192" x2="1090" y2="380"/>
+      <line x1="1084" y1="192" x2="1120" y2="380"/>
+      <line x1="1084" y1="192" x2="1150" y2="380"/>
+      <line x1="1286" y1="192" x2="1190" y2="380"/>
+      <line x1="1286" y1="192" x2="1230" y2="380"/>
+      <line x1="1286" y1="192" x2="1270" y2="380"/>
+      <line x1="1286" y1="192" x2="1300" y2="380"/>
+      <line x1="1286" y1="192" x2="1340" y2="380"/>
+      <line x1="1286" y1="192" x2="1380" y2="380"/>
+    </g>
+    <g fill="#0B0A14">
+      <polygon points="1075,190 1095,190 1102,394 1068,394"/>
+      <polygon points="1277,190 1297,190 1304,394 1270,394"/>
+      <rect x="990" y="380" width="450" height="10"/>
+      <rect x="1030" y="390" width="8" height="16"/>
+      <rect x="1200" y="390" width="8" height="16"/>
+      <rect x="1370" y="390" width="8" height="16"/>
+    </g>
+
+    <!-- local train, foreground -->
+    <rect x="0" y="394" width="1440" height="34" fill="url(#trainPattern)"/>
+    <line x1="0" y1="393" x2="1440" y2="393" stroke="#0B0A14" stroke-width="2" opacity=".6"/>
+
+    <!-- water -->
+    <rect x="0" y="428" width="1440" height="52" fill="url(#waterGrad)"/>
+    <path d="M0,440 Q60,432 120,440 T240,440 T360,440 T480,440 T600,440 T720,440 T840,440 T960,440 T1080,440 T1200,440 T1320,440 T1440,440" stroke="#5EEAD4" stroke-width="1.2" fill="none" opacity=".22"/>
+    <path d="M0,458 Q60,450 120,458 T240,458 T360,458 T480,458 T600,458 T720,458 T840,458 T960,458 T1080,458 T1200,458 T1320,458 T1440,458" stroke="#5EEAD4" stroke-width="1" fill="none" opacity=".14"/>
+  </svg>
+
+  <div class="stamp-wrap" aria-hidden="true">
+    <svg viewBox="0 0 160 160">
+      <defs><path id="stampCircle" d="M 80,80 m -60,0 a 60,60 0 1,1 120,0 a 60,60 0 1,1 -120,0"/></defs>
+      <circle cx="80" cy="80" r="76" fill="none" stroke="currentColor" stroke-width="1.4" stroke-dasharray="2 5"/>
+      <circle cx="80" cy="80" r="56" fill="none" stroke="currentColor" stroke-width="1"/>
+      <text font-size="10.5" letter-spacing="2.6" fill="currentColor">
+        <textPath href="#stampCircle" startOffset="1%">ANDHERI EAST · MUMBAI · HOME BASE ·</textPath>
+      </text>
+      <g transform="translate(80,78)">
+        <path d="M0,-20 C11,-20 18,-12 18,-2 C18,12 0,26 0,26 C0,26 -18,12 -18,-2 C-18,-12 -11,-20 0,-20 Z" fill="none" stroke="currentColor" stroke-width="2"/>
+        <circle cx="0" cy="-3" r="5.5" fill="currentColor"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Mumbai · Andheri East</div>
+    <h1>AI Growth &amp; AI Visibility Partner,<br>Based in <em>Mumbai.</em></h1>
+    <p class="lead" style="max-width:700px;margin-top:16px">Reckona AI is headquartered in Andheri East — this isn't a satellite page for a Bangalore or Delhi team chasing a keyword. If you're a Mumbai-based business, your account team is a local commute away, not a time-zone-adjusted Slack message.</p>
+    <p style="margin-top:22px"><a class="btn" href="/#audit">Get a free audit</a><a class="btn ghost" href="/#book" style="margin-left:10px">Book a strategy call</a></p>
+  </div>
 </header>
 
-<section class="section-tight">
+<section class="section-tight tile-band">
   <h2>Why Mumbai businesses are behind on AI search — even the good ones</h2>
   <p style="max-width:760px">Mumbai is India's densest, most competitive market for almost every category Reckona serves — BFSI, D2C and retail, manufacturing and trading houses headquartered here but operating pan-India, media and entertainment, professional services. That density used to mean visibility was a Google Ads and SEO fight. It's now also an AI-search fight: when a Mumbai buyer asks ChatGPT or Gemini "best [category] in Mumbai," most locally dominant brands — the ones who've spent a decade winning the Google fight — aren't showing up at all, because AI visibility and search-engine rankings are measured completely differently.</p>
   <p style="max-width:760px">That gap is wider in Mumbai than in most Indian cities precisely because competition for traditional SEO is so fierce here that everyone's spent years optimizing for the wrong finish line.</p>
+  <div class="sticker-row" aria-hidden="true">
+    <span class="sticker">BFSI &amp; fintech</span>
+    <span class="sticker">D2C &amp; retail</span>
+    <span class="sticker">Manufacturing &amp; trading</span>
+    <span class="sticker">Professional services</span>
+  </div>
 </section>
 
 <section>
   <h2>What we do for Mumbai companies</h2>
-  <div class="grid g2" style="margin-top:20px">
-    <a class="card accent" href="/services/geo/"><h3>AI Visibility (GEO)</h3><p style="font-size:.92rem">Get cited correctly when Mumbai buyers ask ChatGPT, Gemini, Perplexity or Google AI Overviews about your category — measured monthly with a 40-prompt visibility panel, benchmarked against your actual Mumbai competitors, not a generic industry average.</p><span class="go">Explore GEO →</span></a>
-    <a class="card accent" href="/services/"><h3>Growth Marketing</h3><p style="font-size:.92rem">Websites that convert, SEO that compounds, performance ads that pay for themselves, social that builds authority — run as one pod against one number, not five vendors each optimizing their own slice.</p><span class="go">Explore services →</span></a>
-    <a class="card accent" href="/services/ai-automation/"><h3>AI Automation</h3><p style="font-size:.92rem">Knowledge assistants, WhatsApp automation, document processing, executive dashboards — built for how Mumbai businesses actually operate, including WhatsApp-first customer communication and GST/compliance-aware workflows.</p><span class="go">Explore AI Automation →</span></a>
-    <a class="card accent" href="/services/consulting/"><h3>Fractional AI Officer</h3><p style="font-size:.92rem">For Mumbai mid-market firms investing seriously in AI without hiring a full-time Chief AI Officer — strategy, vendor evaluation and governance from a team that can be in your office the same week.</p><span class="go">Explore Consulting →</span></a>
+  <p style="max-width:760px">Four stops on one line — GEO, growth, automation and consulting, run by one accountable pod instead of five vendors each optimizing their own slice.</p>
+  <div class="railway">
+    <div class="rail-track" aria-hidden="true"></div>
+    <div class="rail-stops">
+      <div class="rail-stop">
+        <div class="dot" aria-hidden="true"></div>
+        <a class="card accent" href="/services/geo/">
+          <span class="icon-tag" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/></svg></span>
+          <h3>AI Visibility (GEO)</h3>
+          <p style="font-size:.92rem">Get cited correctly when Mumbai buyers ask ChatGPT, Gemini, Perplexity or Google AI Overviews about your category — measured monthly with a 40-prompt visibility panel, benchmarked against your actual Mumbai competitors, not a generic industry average.</p>
+          <span class="go">Explore GEO →</span>
+        </a>
+      </div>
+      <div class="rail-stop">
+        <div class="dot" aria-hidden="true"></div>
+        <a class="card accent" href="/services/">
+          <span class="icon-tag" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 18 L9.5 11.5 13 14.5 20 5.5"/><path d="M14 5.5 L20 5.5 20 11.5"/></svg></span>
+          <h3>Growth Marketing</h3>
+          <p style="font-size:.92rem">Websites that convert, SEO that compounds, performance ads that pay for themselves, social that builds authority — run as one pod against one number, not five vendors each optimizing their own slice.</p>
+          <span class="go">Explore services →</span>
+        </a>
+      </div>
+      <div class="rail-stop">
+        <div class="dot" aria-hidden="true"></div>
+        <a class="card accent" href="/services/ai-automation/">
+          <span class="icon-tag" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 13a8 8 0 1 0 2.6-5.9"/><path d="M4 4v4.5H8.5"/></svg></span>
+          <h3>AI Automation</h3>
+          <p style="font-size:.92rem">Knowledge assistants, WhatsApp automation, document processing, executive dashboards — built for how Mumbai businesses actually operate, including WhatsApp-first customer communication and GST/compliance-aware workflows.</p>
+          <span class="go">Explore AI Automation →</span>
+        </a>
+      </div>
+      <div class="rail-stop">
+        <div class="dot" aria-hidden="true"></div>
+        <a class="card accent" href="/services/consulting/">
+          <span class="icon-tag" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><polygon points="15,9 13,13 9,15 11,11" fill="currentColor" stroke="none"/></svg></span>
+          <h3>Fractional AI Officer</h3>
+          <p style="font-size:.92rem">For Mumbai mid-market firms investing seriously in AI without hiring a full-time Chief AI Officer — strategy, vendor evaluation and governance from a team that can be in your office the same week.</p>
+          <span class="go">Explore Consulting →</span>
+        </a>
+      </div>
+    </div>
   </div>
-  <p style="margin-top:20px"><a href="/services/">Explore the full service catalogue →</a></p>
+  <p style="margin-top:26px"><a href="/services/">Explore the full service catalogue →</a></p>
 </section>
 
-<section>
+<section class="tile-band">
   <h2>Built for how Mumbai industries actually buy</h2>
   <p style="max-width:760px">Mumbai's business base skews toward a few categories where Reckona already has depth: <b>BFSI and fintech</b> — compliance-aware content and AI monitoring, see our <a href="/resources/bfsi-content-marketing-compliance/">BFSI content marketing guide</a>; <b>D2C and retail</b> — performance and CRO for brands past their initial paid-ads plateau, see <a href="/resources/d2c-roas-plateau-india/">Beating the ROAS Plateau</a>; <b>manufacturing and trading houses</b> headquartered in Mumbai with pan-India buyers who increasingly research suppliers via AI before ever calling — the same pattern behind our <a href="/#work">listed auto-components client's automation work</a>; and <b>professional services and consulting firms</b> competing for visibility in one of India's most saturated advisory markets.</p>
 </section>
 
-<section style="background:var(--surface)">
+<section style="position:relative;overflow:hidden">
   <h2>Proof, not promises</h2>
-  <div class="stat-row">
-    <div class="stat"><b>99%</b><span>accuracy — automated certificate generation for a listed auto-components manufacturer</span></div>
-    <div class="stat"><b>15 for 15</b><span>production websites shipped for Mumbai and pan-India small-business clients, design to deploy</span></div>
-    <div class="stat"><b>Daily</b><span>ops reporting automated in Power BI for an internal Mumbai operations team</span></div>
+  <p style="max-width:760px">Live from the Mumbai ops board — no case-study gloss, just the shipped numbers.</p>
+  <div class="board">
+    <div class="board-head"><span><span class="dotblink"></span>MUMBAI OPERATIONS · LIVE</span><span>ON TIME</span></div>
+    <div class="board-row">
+      <div class="flap-num">99%</div>
+      <div class="route"><b>Automated certificate pipeline</b><span>Accuracy — listed auto-components manufacturer</span></div>
+      <div class="plat">PLATFORM 1</div>
+    </div>
+    <div class="board-row">
+      <div class="flap-num">15/15</div>
+      <div class="route"><b>Production websites shipped</b><span>Mumbai and pan-India small-business clients, design to deploy</span></div>
+      <div class="plat">PLATFORM 2</div>
+    </div>
+    <div class="board-row">
+      <div class="flap-num">DAILY</div>
+      <div class="route"><b>Ops reporting, zero manual work</b><span>Automated in Power BI for an internal Mumbai operations team</span></div>
+      <div class="plat">PLATFORM 3</div>
+    </div>
   </div>
   <p style="margin-top:22px"><a href="/#work">See the full work →</a></p>
 </section>
 
-<section>
+<section style="position:relative;overflow:hidden">
+  <svg class="gateway-watermark" viewBox="0 0 400 400" aria-hidden="true">
+    <g fill="currentColor">
+      <rect x="30" y="330" width="260" height="40"/>
+      <rect x="55" y="210" width="26" height="130"/>
+      <ellipse cx="68" cy="208" rx="15" ry="12"/>
+      <rect x="255" y="210" width="26" height="130"/>
+      <ellipse cx="268" cy="208" rx="15" ry="12"/>
+      <path d="M120,330 L120,180 A40,40 0 0 1 200,180 L200,330 Z"/>
+      <ellipse cx="160" cy="175" rx="30" ry="16"/>
+    </g>
+  </svg>
   <h2>Common questions</h2>
   <div class="faq">
     <details open><summary>Do you only work with Mumbai companies?</summary><p>No — Reckona serves clients across India, but Mumbai is home base, which means faster in-person kickoffs, on-site audits when useful, and a team that understands the local competitive set without a briefing document.</p></details>
@@ -116,7 +323,16 @@
   </div>
 </section>
 
-<div class="cta">
+<section class="mumbai-inspire">
+  <video autoplay muted loop playsinline preload="metadata" poster="/locations/mumbai/mumbai-bg-poster.webp" src="/locations/mumbai/mumbai-bg.mp4"></video>
+  <div class="mumbai-inspire-overlay"></div>
+  <div class="mumbai-inspire-content">
+    <blockquote>The city that never stops moving is already asking AI where to go next.</blockquote>
+    <cite>Make sure it says your name.</cite>
+  </div>
+</section>
+
+<div class="cta" style="position:relative">
   <h2>Start with a free audit</h2>
   <p>Get a free, no-pitch AI Readiness or GEO snapshot — Mumbai-specific competitor benchmarking included.</p>
   <a class="btn" href="/#audit">Get my free audit</a>
