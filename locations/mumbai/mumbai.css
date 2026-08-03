@@ -50,7 +50,7 @@
 .rail-stop{text-align:center}
 .rail-stop .card{text-align:left;height:100%}
 @media(max-width:820px){.rail-stops{grid-template-columns:1fr}.rail-track{display:none}
-  .rail-stop .dot{margin-left:0}.rail-stop{text-align:left}}
+  .rail-stop .dot{margin-left:0}.rail-stop{text-align:left}.rail-stop .card{height:auto}}
 
 /* ---------- DEPARTURE BOARD (stats) ---------- */
 .board{background:var(--ink-art);border-radius:20px;padding:28px 30px;margin-top:26px;
