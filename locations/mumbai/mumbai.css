@@ -47,10 +47,10 @@
 .rail-stops{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
 .rail-stop .dot{width:14px;height:14px;border-radius:50%;background:var(--brand);border:3px solid var(--bg);
   box-shadow:0 0 0 2px var(--brand);margin:16px auto 18px}
-.rail-stop{text-align:center}
-.rail-stop .card{text-align:left;height:100%}
+.rail-stop{text-align:center;display:flex;flex-direction:column}
+.rail-stop .card{text-align:left;flex:1}
 @media(max-width:820px){.rail-stops{grid-template-columns:1fr}.rail-track{display:none}
-  .rail-stop .dot{margin-left:0}.rail-stop{text-align:left}.rail-stop .card{height:auto}}
+  .rail-stop .dot{margin-left:0}.rail-stop{text-align:left}}
 
 /* ---------- DEPARTURE BOARD (stats) ---------- */
 .board{background:var(--ink-art);border-radius:20px;padding:28px 30px;margin-top:26px;
