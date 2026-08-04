@@ -30,6 +30,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 <noscript><link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet"></noscript>
 <link rel="stylesheet" href="/page.css">
+<link rel="stylesheet" href="/locations/bangalore/bangalore.css">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Service","serviceType":"AI Automation","provider":{"@type":"Organization","name":"Reckona AI","url":"https://reckonaai.com/"},"areaServed":"Bangalore","description":"AI automation, Fractional AI Officer retainers and AI-search visibility (GEO) for Bangalore's startups and mid-market firms.","url":"https://reckonaai.com/locations/bangalore/"}
 </script>
@@ -43,7 +44,7 @@
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"You don't have a Bangalore office — does that affect delivery?","acceptedAnswer":{"@type":"Answer","text":"No — the same weekly Friday demo cadence, 4-hour WhatsApp SLA, and fortnightly strategy calls apply everywhere Reckona works. What Bangalore clients get instead of an office visit is a team that can talk fluently about the actual architecture of what's being built, not just the marketing outcome."}},{"@type":"Question","name":"Can you actually explain how the automation works, technically?","acceptedAnswer":{"@type":"Answer","text":"Yes — this is explicitly built for a technical audience. Ask about the RAG setup, model choice, or evaluation approach directly in a free audit call rather than getting a generic sales answer."}},{"@type":"Question","name":"We already do SEO and content well — why would we need GEO too?","acceptedAnswer":{"@type":"Answer","text":"Ranking on Google and being cited correctly inside an AI-generated answer are measured and won differently. A free 10-prompt GEO audit shows exactly where the gap is for your specific category."}},{"@type":"Question","name":"Is the Fractional AI Officer retainer really cheaper than hiring?","acceptedAnswer":{"@type":"Answer","text":"Yes — a full-time Chief AI Officer at a Bangalore-scale company runs well into seven figures annually before ramp time and hiring risk; the retainer delivers the same strategic oversight at a fraction of that, scoped to what the company actually needs right now."}},{"@type":"Question","name":"What does it cost?","acceptedAnswer":{"@type":"Answer","text":"Every engagement is scoped and quoted after a free audit — no rate card, no surprises."}}]}
 </script>
 </head>
-<body>
+<body class="bangalore-page">
 <nav aria-label="Main">
   <a class="logo" href="/">Reckona<span> AI</span></a>
   <a class="nl" href="/services/">Services</a>
@@ -69,46 +70,230 @@
 <main>
 <p class="crumb"><a href="/">Home</a> / Bangalore</p>
 
-<header class="hero">
-  <div class="eyebrow">Bangalore · Startups &amp; Mid-Market</div>
-  <h1>AI Automation &amp; AI Visibility Partner<br>for <em>Bangalore.</em></h1>
-  <p class="lead" style="max-width:720px;margin-top:16px">Reckona AI doesn't have a Bangalore office, and a Bangalore founder is the last person worth pretending to that in front of — this market checks. What actually matters here instead: Reckona runs its own company on the exact AI systems it sells (this website, its lead capture, its dashboards are the live demo), which is a very different pitch than a traditional marketing agency bolting "AI" onto a service list.</p>
-  <p style="margin-top:22px"><a class="btn" href="/#audit">Get a free audit</a><a class="btn ghost" href="/#book" style="margin-left:10px">Book a strategy call</a></p>
+<header class="bangalore-hero">
+  <div class="sun" aria-hidden="true"></div>
+  <svg class="stars" viewBox="0 0 1440 480" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+    <circle cx="110" cy="40" r="1.6" style="animation-delay:.2s"/>
+    <circle cx="260" cy="76" r="1.2" style="animation-delay:1.1s"/>
+    <circle cx="420" cy="34" r="1.5" style="animation-delay:.6s"/>
+    <circle cx="600" cy="60" r="1.1" style="animation-delay:1.6s"/>
+    <circle cx="760" cy="26" r="1.6" style="animation-delay:.4s"/>
+    <circle cx="1000" cy="50" r="1.3" style="animation-delay:1.3s"/>
+    <circle cx="1200" cy="30" r="1.5" style="animation-delay:.9s"/>
+    <circle cx="1360" cy="66" r="1.2" style="animation-delay:.3s"/>
+    <circle cx="180" cy="118" r="1.1" style="animation-delay:1.8s"/>
+    <circle cx="1280" cy="108" r="1.2" style="animation-delay:.7s"/>
+  </svg>
+
+  <svg class="skyline" viewBox="0 0 1440 480" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+    <defs>
+      <pattern id="bWin" width="16" height="22" patternUnits="userSpaceOnUse">
+        <rect x="3" y="4" width="6" height="8" fill="#22D3EE"/>
+      </pattern>
+      <pattern id="bCircuit" width="60" height="60" patternUnits="userSpaceOnUse">
+        <path d="M0,30 H22 M38,30 H60 M30,0 V22 M30,38 V60" stroke="#2DD4BF" stroke-width="1"/>
+        <circle cx="30" cy="30" r="2.4" fill="#2DD4BF"/>
+      </pattern>
+    </defs>
+
+    <!-- floating signal packets -->
+    <g class="pulse" fill="#22D3EE" opacity=".8"><circle cx="180" cy="90" r="3"/></g>
+    <g class="pulse" fill="#34D399" opacity=".7" style="animation-delay:1s"><circle cx="1230" cy="70" r="2.6"/></g>
+    <g class="pulse" fill="#FBBF24" opacity=".6" style="animation-delay:1.8s"><circle cx="960" cy="110" r="2.4"/></g>
+
+    <!-- left tech-park glass towers -->
+    <g fill="#070B14" opacity=".6">
+      <rect x="150" y="250" width="60" height="170"/>
+      <rect x="150" y="250" width="60" height="170" fill="url(#bWin)" opacity=".7"/>
+      <rect x="220" y="300" width="42" height="120"/>
+      <rect x="220" y="300" width="42" height="120" fill="url(#bWin)" opacity=".6"/>
+      <rect x="272" y="220" width="30" height="200"/>
+      <rect x="272" y="220" width="30" height="200" fill="url(#bWin)" opacity=".7"/>
+    </g>
+
+    <!-- Vidhana Soudha (center) -->
+    <g fill="#070B14">
+      <rect x="540" y="392" width="360" height="28"/>
+      <rect x="560" y="360" width="320" height="34"/>
+      <!-- colonnade -->
+      <g opacity=".92">
+        <rect x="580" y="270" width="14" height="92"/>
+        <rect x="614" y="270" width="14" height="92"/>
+        <rect x="648" y="270" width="14" height="92"/>
+        <rect x="682" y="270" width="14" height="92"/>
+        <rect x="716" y="270" width="14" height="92"/>
+        <rect x="750" y="270" width="14" height="92"/>
+        <rect x="784" y="270" width="14" height="92"/>
+        <rect x="818" y="270" width="14" height="92"/>
+        <rect x="852" y="270" width="14" height="92"/>
+      </g>
+      <rect x="562" y="256" width="316" height="16" rx="2"/>
+      <path d="M562,256 L720,206 L878,256 Z"/>
+      <!-- central dome -->
+      <path d="M676,206 Q676,160 720,150 Q764,160 764,206 Z"/>
+      <rect x="712" y="126" width="16" height="26" rx="2"/>
+      <circle cx="720" cy="122" r="6"/>
+      <rect x="717" y="104" width="6" height="18"/>
+    </g>
+
+    <!-- right tech-park glass towers -->
+    <g fill="#070B14" opacity=".6">
+      <rect x="1140" y="256" width="46" height="164"/>
+      <rect x="1140" y="256" width="46" height="164" fill="url(#bWin)" opacity=".6"/>
+      <rect x="1200" y="300" width="38" height="120"/>
+      <rect x="1200" y="300" width="38" height="120" fill="url(#bWin)" opacity=".55"/>
+      <rect x="1252" y="230" width="52" height="190"/>
+      <rect x="1252" y="230" width="52" height="190" fill="url(#bWin)" opacity=".6"/>
+      <rect x="1320" y="286" width="40" height="134"/>
+      <rect x="1320" y="286" width="40" height="134" fill="url(#bWin)" opacity=".55"/>
+    </g>
+
+    <!-- circuit ground strip -->
+    <rect x="0" y="420" width="1440" height="60" fill="#0C1424"/>
+    <rect x="0" y="420" width="1440" height="60" fill="url(#bCircuit)" opacity=".7"/>
+  </svg>
+
+  <div class="stamp-wrap" aria-hidden="true">
+    <svg viewBox="0 0 160 160">
+      <defs><path id="bStampCircle" d="M 80,80 m -60,0 a 60,60 0 1,1 120,0 a 60,60 0 1,1 -120,0"/></defs>
+      <circle cx="80" cy="80" r="76" fill="none" stroke="currentColor" stroke-width="1.4" stroke-dasharray="2 5"/>
+      <circle cx="80" cy="80" r="56" fill="none" stroke="currentColor" stroke-width="1"/>
+      <text font-size="10.5" letter-spacing="2.6" fill="currentColor">
+        <textPath href="#bStampCircle" startOffset="1%">BANGALORE · KARNATAKA · TECH HUB ·</textPath>
+      </text>
+      <g transform="translate(80,80)">
+        <polygon points="0,-22 15,0 0,22 -15,0" fill="none" stroke="currentColor" stroke-width="2"/>
+        <line x1="0" y1="-22" x2="0" y2="22" stroke="currentColor" stroke-width="1.2"/>
+        <line x1="-15" y1="0" x2="15" y2="0" stroke="currentColor" stroke-width="1.2"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Bangalore · Startups &amp; Mid-Market</div>
+    <h1>AI Automation &amp; AI Visibility Partner<br>for <em>Bangalore.</em></h1>
+    <p class="lead" style="max-width:720px;margin-top:16px">Reckona AI doesn't have a Bangalore office, and a Bangalore founder is the last person worth pretending to that in front of — this market checks. What actually matters here instead: Reckona runs its own company on the exact AI systems it sells (this website, its lead capture, its dashboards are the live demo), which is a very different pitch than a traditional marketing agency bolting "AI" onto a service list.</p>
+    <p style="margin-top:22px"><a class="btn" href="/#audit">Get a free audit</a><a class="btn ghost" href="/#book" style="margin-left:10px">Book a strategy call</a></p>
+  </div>
 </header>
 
-<section class="section-tight">
+<section class="section-tight circuit-band">
   <h2>Why Bangalore is a different sale than everywhere else</h2>
   <p style="max-width:760px">Bangalore's buyers — founders, product leads, growth teams — are the most AI-literate audience in India. That cuts two ways. Generic "AI-powered" marketing language that works on a first-time buyer in a smaller city gets seen through immediately here. But it also means Bangalore is the easiest market to win with real technical proof instead of buzzwords: an actual accuracy number, an actual automation pipeline, an actual explanation of how a knowledge assistant is built — not a deck.</p>
   <p style="max-width:760px">There's also a real gap most Bangalore companies haven't closed yet: heavy investment in product-led SEO and content, almost none in AI-search visibility specifically. A SaaS company that's spent years ranking on Google can still be entirely absent when a buyer asks ChatGPT to compare tools in its category — and in a market this crowded with SaaS and startups competing for the same categories, that gap compounds fast.</p>
+  <div class="sticker-row" aria-hidden="true">
+    <span class="sticker">SaaS &amp; product</span>
+    <span class="sticker">Startups &amp; scale-ups</span>
+    <span class="sticker">Consulting &amp; B2B</span>
+    <span class="sticker">Technical buyers</span>
+  </div>
 </section>
 
 <section>
   <h2>What we do for Bangalore companies</h2>
-  <div class="grid g2" style="margin-top:20px">
-    <a class="card accent" href="/services/ai-automation/"><h3>AI Automation</h3><p style="font-size:.92rem">Knowledge assistants, sales and support agents, document processing, executive dashboards — built and explained with the same technical transparency this market expects, deployed to your own cloud, not a black box.</p><span class="go">Explore AI Automation →</span></a>
-    <a class="card accent" href="/services/consulting/"><h3>Fractional AI Officer</h3><p style="font-size:.92rem">For Bangalore startups and mid-market companies that need real AI strategy and governance — vendor evaluation, build-vs-buy calls, roadmap sequencing — without hiring a full-time CAIO before the company is ready for one.</p><span class="go">Explore Consulting →</span></a>
-    <a class="card accent" href="/services/geo/"><h3>AI Visibility (GEO)</h3><p style="font-size:.92rem">Get correctly cited when buyers ask ChatGPT, Gemini or Perplexity to compare tools or vendors in your category — measured monthly, benchmarked against your real competitive set, not a generic SaaS-category average.</p><span class="go">Explore GEO →</span></a>
-    <a class="card accent" href="/services/"><h3>Growth Marketing</h3><p style="font-size:.92rem">Performance and content that doesn't stop at rankings — built to also perform inside AI-generated answers, which is where a growing share of Bangalore's own buyer research already happens.</p><span class="go">Explore services →</span></a>
+  <p style="max-width:760px">Four nodes on one signal — automation, AI leadership, GEO and growth, run by one accountable pod. Tap into any node; it's the same operator end to end.</p>
+  <div class="network">
+    <div class="network-track" aria-hidden="true"></div>
+    <div class="network-stops">
+      <div class="network-stop" style="--line-color:#22D3EE">
+        <div class="dot" aria-hidden="true"></div>
+        <div class="node-tag" aria-hidden="true">Node 01</div>
+        <a class="card" href="/services/ai-automation/">
+          <span class="icon-tag" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 13a8 8 0 1 0 2.6-5.9"/><path d="M4 4v4.5H8.5"/></svg></span>
+          <h3>AI Automation</h3>
+          <p style="font-size:.92rem">Knowledge assistants, sales and support agents, document processing, executive dashboards — built and explained with the same technical transparency this market expects, deployed to your own cloud, not a black box.</p>
+          <span class="go">Explore AI Automation →</span>
+        </a>
+      </div>
+      <div class="network-stop" style="--line-color:#34D399">
+        <div class="dot" aria-hidden="true"></div>
+        <div class="node-tag" aria-hidden="true">Node 02</div>
+        <a class="card" href="/services/consulting/">
+          <span class="icon-tag" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><polygon points="15,9 13,13 9,15 11,11" fill="currentColor" stroke="none"/></svg></span>
+          <h3>Fractional AI Officer</h3>
+          <p style="font-size:.92rem">For Bangalore startups and mid-market companies that need real AI strategy and governance — vendor evaluation, build-vs-buy calls, roadmap sequencing — without hiring a full-time CAIO before the company is ready for one.</p>
+          <span class="go">Explore Consulting →</span>
+        </a>
+      </div>
+      <div class="network-stop" style="--line-color:#FBBF24">
+        <div class="dot" aria-hidden="true"></div>
+        <div class="node-tag" aria-hidden="true">Node 03</div>
+        <a class="card" href="/services/geo/">
+          <span class="icon-tag" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/></svg></span>
+          <h3>AI Visibility (GEO)</h3>
+          <p style="font-size:.92rem">Get correctly cited when buyers ask ChatGPT, Gemini or Perplexity to compare tools or vendors in your category — measured monthly, benchmarked against your real competitive set, not a generic SaaS-category average.</p>
+          <span class="go">Explore GEO →</span>
+        </a>
+      </div>
+      <div class="network-stop" style="--line-color:#2DD4BF">
+        <div class="dot" aria-hidden="true"></div>
+        <div class="node-tag" aria-hidden="true">Node 04</div>
+        <a class="card" href="/services/">
+          <span class="icon-tag" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 18 L9.5 11.5 13 14.5 20 5.5"/><path d="M14 5.5 L20 5.5 20 11.5"/></svg></span>
+          <h3>Growth Marketing</h3>
+          <p style="font-size:.92rem">Performance and content that doesn't stop at rankings — built to also perform inside AI-generated answers, which is where a growing share of Bangalore's own buyer research already happens.</p>
+          <span class="go">Explore services →</span>
+        </a>
+      </div>
+    </div>
   </div>
-  <p style="margin-top:20px"><a href="/services/">Explore the full service catalogue →</a></p>
+  <p style="margin-top:26px"><a href="/services/">Explore the full service catalogue →</a></p>
 </section>
 
-<section>
+<section class="circuit-band">
   <h2>Built for Bangalore's actual business mix</h2>
   <p style="max-width:760px"><b>SaaS and product companies</b> competing for AI-search visibility in increasingly crowded categories, where being cited correctly by an AI engine is becoming as important as ranking on Google. <b>Startups and scale-ups</b> evaluating AI adoption seriously but not ready to hire a full-time AI leadership function — the exact gap the Fractional AI Officer retainer is built for. <b>Consulting and B2B services firms</b> that need the same growth-plus-automation bundle Reckona already runs for mid-market clients elsewhere in India, applied to a more technically demanding buyer.</p>
 </section>
 
-<section style="background:var(--surface)">
+<section style="position:relative;overflow:hidden">
   <h2>Proof, not hype</h2>
-  <ul class="checklist" style="max-width:700px">
-    <li><b>99% accuracy</b> — automated document/certificate generation pipeline, the same category of engineering work behind any Bangalore-grade automation build</li>
-    <li><b>Daily</b> ops reporting automated in Power BI, zero manual compilation</li>
-    <li><b>This website</b> — Reckona's own GEO tooling, llms.txt implementation, and free AI-visibility tools are live, working proof of the same systems sold to clients, not a case-study slide</li>
-  </ul>
-  <p style="margin-top:16px"><a href="/#work">See the full work →</a></p>
+  <p style="max-width:760px">No sales deck required — the engineering and the systems this claim rests on are checkable.</p>
+  <div class="board">
+    <div class="board-head"><span><span class="dotblink"></span>BANGALORE SYSTEMS · LIVE</span><span>UPTIME</span></div>
+    <div class="board-row">
+      <div class="flap-num">99%</div>
+      <div class="route"><b>Automated document/certificate pipeline</b><span>Accuracy — the same category of engineering work behind any Bangalore-grade automation build</span></div>
+      <div class="plat">NODE 1</div>
+    </div>
+    <div class="board-row">
+      <div class="flap-num">ZERO</div>
+      <div class="route"><b>Black-box explanations</b><span>RAG setup, model choice and evaluation approach explained on every call, not just an outcome deck</span></div>
+      <div class="plat">NODE 2</div>
+    </div>
+    <div class="board-row">
+      <div class="flap-num">LIVE</div>
+      <div class="route"><b>This website is the case study</b><span>Reckona's own GEO tooling, llms.txt implementation and free AI-visibility tools, running in production right now</span></div>
+      <div class="plat">NODE 3</div>
+    </div>
+  </div>
+  <p style="margin-top:22px"><a href="/#work">See the full work →</a></p>
 </section>
 
-<section>
+<section style="position:relative;overflow:hidden">
+  <svg class="soudha-watermark" viewBox="0 0 400 400" aria-hidden="true">
+    <g fill="currentColor">
+      <rect x="60" y="352" width="280" height="24"/>
+      <rect x="76" y="330" width="248" height="20"/>
+      <g opacity=".92">
+        <rect x="90" y="230" width="10" height="86"/>
+        <rect x="112" y="230" width="10" height="86"/>
+        <rect x="134" y="230" width="10" height="86"/>
+        <rect x="156" y="230" width="10" height="86"/>
+        <rect x="178" y="230" width="10" height="86"/>
+        <rect x="200" y="230" width="10" height="86"/>
+        <rect x="222" y="230" width="10" height="86"/>
+        <rect x="244" y="230" width="10" height="86"/>
+        <rect x="266" y="230" width="10" height="86"/>
+        <rect x="288" y="230" width="10" height="86"/>
+        <rect x="310" y="230" width="10" height="86"/>
+      </g>
+      <rect x="80" y="218" width="248" height="14" rx="2"/>
+      <path d="M80,218 L204,176 L328,218 Z"/>
+      <path d="M168,176 Q168,138 204,130 Q240,138 240,176 Z"/>
+      <rect x="198" y="112" width="12" height="20" rx="2"/>
+      <circle cx="204" cy="108" r="5"/>
+    </g>
+  </svg>
   <h2>Common questions</h2>
   <div class="faq">
     <details open><summary>You don't have a Bangalore office — does that affect delivery?</summary><p>No — the same weekly Friday demo cadence, 4-hour WhatsApp SLA, and fortnightly strategy calls apply everywhere Reckona works. What Bangalore clients get instead of an office visit is a team that can talk fluently about the actual architecture of what's being built, not just the marketing outcome.</p></details>
@@ -116,6 +301,14 @@
     <details><summary>We already do SEO and content well — why would we need GEO too?</summary><p>Ranking on Google and being cited correctly inside an AI-generated answer are measured and won differently. A free 10-prompt GEO audit shows exactly where the gap is for your specific category. <a href="/resources/generative-engine-optimization-guide/">Learn more about GEO →</a></p></details>
     <details><summary>Is the Fractional AI Officer retainer really cheaper than hiring?</summary><p>Yes — a full-time Chief AI Officer at a Bangalore-scale company runs well into seven figures annually before ramp time and hiring risk; the retainer delivers the same strategic oversight at a fraction of that, scoped to what the company actually needs right now.</p></details>
     <details><summary>What does it cost?</summary><p>Every engagement is scoped and quoted after a free audit — no rate card, no surprises. See <a href="/pricing/">how pricing works</a>.</p></details>
+  </div>
+</section>
+
+<section class="bangalore-inspire">
+  <div class="bangalore-inspire-overlay"></div>
+  <div class="bangalore-inspire-content">
+    <blockquote>Every system here runs on proof, not pitch decks. This one's no different.</blockquote>
+    <cite>Check the source, not the slide.</cite>
   </div>
 </section>
 
@@ -135,7 +328,8 @@
         <p style="font-size:.9rem;max-width:280px;margin-top:10px">Intelligence, Applied. AI-first growth &amp; automation partner for India's ambitious mid-market.</p><div class="ft-social"><a href="https://www.linkedin.com/company/reckona-ai/" target="_blank" rel="noopener" aria-label="Reckona AI on LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.45-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></a></div>
       </div>
       <div><span class="ft-b">Services</span><a href="/services/geo/">GEO / AI Visibility</a><a href="/services/ai-automation/">AI Automation</a><a href="/services/seo/">SEO</a><a href="/services/consulting/">Fractional AI Officer</a><a href="/services/">All services</a></div>
-      <div><span class="ft-b">Explore</span><a href="/industries/">Industries</a><a href="/#work">Work</a><a href="/pricing/">Pricing</a><a href="/resources/">Resources</a><a href="/about/">About</a></div><div><span class="ft-b">Locations</span><a href="/locations/mumbai/">Mumbai</a><a href="/locations/delhi-ncr/">Delhi NCR</a><a href="/locations/rajasthan/">Rajasthan</a></div>
+      <div><span class="ft-b">Explore</span><a href="/industries/">Industries</a><a href="/#work">Work</a><a href="/pricing/">Pricing</a><a href="/resources/">Resources</a><a href="/about/">About</a></div>
+      <div><span class="ft-b">Locations</span><a href="/locations/mumbai/">Mumbai</a><a href="/locations/delhi-ncr/">Delhi NCR</a><a href="/locations/rajasthan/">Rajasthan</a></div>
       <div><span class="ft-b">Start</span><a href="/#audit">Free audit</a><a href="/#tools">Free Tools</a><a href="/#book">Book a call</a></div>
     </div>
     <p class="fine">© 2026 Reckona AI Pvt. Ltd. · <a href="/privacy/">Privacy</a> · <a href="/terms/">Terms</a> · Every engagement is scoped and quoted for your business — no rate card, no surprises.</p>
