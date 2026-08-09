@@ -85,33 +85,29 @@ a.ind-card:hover{text-decoration:none;transform:translateY(-6px);
   box-shadow:0 4px 10px rgba(22,21,15,.05),0 22px 46px color-mix(in srgb,var(--acc) 16%,transparent)}
 a.ind-card.hide{display:none}
 
-/* art panel */
-.ind-art{position:relative;height:104px;flex:none;overflow:hidden;
+/* art panel — real sector photography */
+.ind-art{position:relative;height:138px;flex:none;overflow:hidden;
+  background:var(--surface2);border-bottom:1px solid var(--border)}
+.ind-art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .55s cubic-bezier(.22,1,.36,1)}
+a.ind-card:hover .ind-art img{transform:scale(1.07)}
+/* accent scrim: carries the sector colour and keeps the number chip legible */
+.ind-art::after{content:"";position:absolute;inset:0;pointer-events:none;
   background:
-    radial-gradient(120% 120% at 82% 12%,color-mix(in srgb,var(--acc) 26%,transparent),transparent 62%),
-    linear-gradient(135deg,color-mix(in srgb,var(--acc) 13%,var(--surface2)),var(--surface2));
-  border-bottom:1px solid var(--border)}
-/* faint grid texture */
-.ind-art::before{content:"";position:absolute;inset:0;opacity:.5;
-  background-image:linear-gradient(color-mix(in srgb,var(--acc) 12%,transparent) 1px,transparent 1px),
-    linear-gradient(90deg,color-mix(in srgb,var(--acc) 12%,transparent) 1px,transparent 1px);
-  background-size:22px 22px;
-  -webkit-mask-image:linear-gradient(200deg,#000,transparent 72%);mask-image:linear-gradient(200deg,#000,transparent 72%)}
-/* oversized watermark icon */
-.ind-art .ind-wm{position:absolute;right:-14px;bottom:-22px;width:118px;height:118px;
-  color:var(--acc);opacity:.16;transition:transform .45s cubic-bezier(.22,1,.36,1),opacity .3s}
-a.ind-card:hover .ind-wm{transform:scale(1.1) rotate(-6deg);opacity:.24}
+    linear-gradient(175deg,color-mix(in srgb,var(--acc) 42%,transparent) 0%,transparent 46%),
+    linear-gradient(0deg,color-mix(in srgb,var(--surface) 55%,transparent) 0%,transparent 38%)}
 /* icon tile */
-.ind-tile{position:absolute;left:20px;bottom:-21px;width:52px;height:52px;border-radius:15px;
+.ind-tile{position:absolute;left:20px;top:112px;z-index:3;width:52px;height:52px;border-radius:15px;
   display:grid;place-items:center;background:var(--surface);
   border:1px solid color-mix(in srgb,var(--acc) 32%,var(--border));
-  box-shadow:0 6px 18px color-mix(in srgb,var(--acc) 18%,transparent);
+  box-shadow:0 6px 18px color-mix(in srgb,var(--acc) 22%,transparent),0 2px 6px rgba(0,0,0,.12);
   color:var(--acc);transition:transform .35s cubic-bezier(.34,1.56,.64,1)}
 a.ind-card:hover .ind-tile{transform:translateY(-3px) scale(1.06)}
 .ind-tile svg{width:25px;height:25px}
-.ind-n{position:absolute;top:14px;left:20px;font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:700;
-  letter-spacing:.06em;color:var(--acc);background:color-mix(in srgb,var(--acc) 12%,var(--surface));
-  border:1px solid color-mix(in srgb,var(--acc) 26%,transparent);border-radius:999px;padding:3px 10px}
+.ind-n{position:absolute;top:14px;left:20px;z-index:2;font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:700;
+  letter-spacing:.06em;color:#fff;background:color-mix(in srgb,var(--acc) 82%,#000);
+  border:1px solid color-mix(in srgb,#fff 30%,transparent);border-radius:999px;padding:3px 10px;
+  box-shadow:0 2px 8px rgba(0,0,0,.28)}
 
 /* body */
 .ind-body{padding:32px 20px 20px;display:flex;flex-direction:column;flex:1}
@@ -137,7 +133,7 @@ a.ind-card:hover .ind-go em{transform:translateX(5px)}
 .ind-band div b{display:block;font-family:Fraunces,serif;font-weight:600;font-size:1.75rem;color:var(--ink);line-height:1.15}
 .ind-band div span{display:block;font-size:.82rem;color:var(--ink2);margin-top:3px;line-height:1.4}
 @media(max-width:780px){.ind-band{grid-template-columns:repeat(2,1fr);padding:24px}}
-@media(prefers-reduced-motion:reduce){a.ind-card,.ind-tile,.ind-wm,.ind-go em{transition:none!important}}
+@media(prefers-reduced-motion:reduce){a.ind-card,.ind-tile,.ind-art img,.ind-go em{transition:none!important}}
 </style>
 </head>
 <body>
@@ -206,10 +202,10 @@ a.ind-card:hover .ind-go em{transform:translateX(5px)}
 
     <a class="ind-card" href="/industries/restaurant-qsr/" data-cat="consumer" style="--acc:#E11D48" data-kw="restaurant qsr cafe bakery cloud kitchen food dhaba bar pub catering swiggy zomato dine takeaway coffee pizza restro eatery mess canteen sweets juice icecream biryani tiffin banquet">
       <div class="ind-art">
+        <img src="/assets/industries/restaurant.webp" alt="Chef cooking over a flame in a professional restaurant kitchen" loading="lazy" decoding="async" width="800" height="426">
         <span class="ind-n">01</span>
-        <svg class="ind-wm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 2v9a3 3 0 0 0 6 0V2"/><path d="M10 2v20"/><path d="M18 2c-1.5 2-2 4-2 7v4h4V9c0-3-.5-5-2-7Z"/><path d="M18 15v7"/></svg>
-        <div class="ind-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M7 2v9a3 3 0 0 0 6 0V2"/><path d="M10 2v20"/><path d="M18 2c-1.5 2-2 4-2 7v4h4V9c0-3-.5-5-2-7Z"/><path d="M18 15v7"/></svg></div>
       </div>
+      <div class="ind-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M7 2v9a3 3 0 0 0 6 0V2"/><path d="M10 2v20"/><path d="M18 2c-1.5 2-2 4-2 7v4h4V9c0-3-.5-5-2-7Z"/><path d="M18 15v7"/></svg></div>
       <div class="ind-body">
         <h3>Restaurant / QSR</h3>
         <p class="ind-lede">Fill tables and take back your delivery margins.</p>
@@ -224,10 +220,10 @@ a.ind-card:hover .ind-go em{transform:translateX(5px)}
 
     <a class="ind-card" href="/industries/hospital-clinic/" data-cat="healthcare" style="--acc:#0891B2" data-kw="hospital clinic doctor medical health healthcare dental dentist diagnostic lab pharmacy nursing ivf physio ayurveda surgeon polyclinic eye skin child ortho cardiac veterinary vet chemist medicos">
       <div class="ind-art">
+        <img src="/assets/industries/hospital.webp" alt="Clinical staff consulting with a patient in a modern clinic" loading="lazy" decoding="async" width="800" height="426">
         <span class="ind-n">02</span>
-        <svg class="ind-wm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .2.3"/><path d="M8 15v1a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6v-4"/><circle cx="20" cy="10" r="2"/></svg>
-        <div class="ind-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .2.3"/><path d="M8 15v1a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6v-4"/><circle cx="20" cy="10" r="2"/></svg></div>
       </div>
+      <div class="ind-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .2.3"/><path d="M8 15v1a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6v-4"/><circle cx="20" cy="10" r="2"/></svg></div>
       <div class="ind-body">
         <h3>Hospital / Clinic</h3>
         <p class="ind-lede">Fill OPD slots without buying every click.</p>
@@ -242,10 +238,10 @@ a.ind-card:hover .ind-go em{transform:translateX(5px)}
 
     <a class="ind-card" href="/industries/manufacturing-b2b/" data-cat="b2b" style="--acc:#EA580C" data-kw="manufacturing manufacturer factory industrial b2b engineering machinery components exporter export supplier plant fabrication oem auto parts steel chemical textile bearings msme industry workshop tooling casting moulding packaging pharma api foundry">
       <div class="ind-art">
+        <img src="/assets/industries/manufacturing.webp" alt="Robotic welding arms on a modern automotive assembly line" loading="lazy" decoding="async" width="800" height="426">
         <span class="ind-n">03</span>
-        <svg class="ind-wm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20"/><path d="M4 20V9l6 4V9l6 4V6l4-2v16"/><path d="M8 20v-4"/><path d="M14 20v-4"/></svg>
-        <div class="ind-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20"/><path d="M4 20V9l6 4V9l6 4V6l4-2v16"/><path d="M8 20v-4"/><path d="M14 20v-4"/></svg></div>
       </div>
+      <div class="ind-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20"/><path d="M4 20V9l6 4V9l6 4V6l4-2v16"/><path d="M8 20v-4"/><path d="M14 20v-4"/></svg></div>
       <div class="ind-body">
         <h3>Manufacturing / B2B</h3>
         <p class="ind-lede">Turn a catalogue PDF into an inbound RFQ engine.</p>
@@ -260,10 +256,10 @@ a.ind-card:hover .ind-go em{transform:translateX(5px)}
 
     <a class="ind-card" href="/industries/education-coaching/" data-cat="professional" style="--acc:#7C3AED" data-kw="education coaching school college institute university academy tuition training edtech student admission preschool classes iit neet mba upsc playschool kindergarten k12 skilling vocational exam prep tutor teacher">
       <div class="ind-art">
+        <img src="/assets/industries/education.webp" alt="Teacher taking questions from students in a bright classroom" loading="lazy" decoding="async" width="800" height="426">
         <span class="ind-n">04</span>
-        <svg class="ind-wm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg>
-        <div class="ind-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg></div>
       </div>
+      <div class="ind-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg></div>
       <div class="ind-body">
         <h3>Education / Coaching</h3>
         <p class="ind-lede">Lower your cost per admission, not your standards.</p>
@@ -278,10 +274,10 @@ a.ind-card:hover .ind-go em{transform:translateX(5px)}
 
     <a class="ind-card" href="/industries/real-estate/" data-cat="b2b" style="--acc:#0F766E" data-kw="real estate property builder developer broker realtor housing apartment flats villa plots construction rera commercial leasing township society redevelopment channel partner property dealer land warehouse">
       <div class="ind-art">
+        <img src="/assets/industries/realestate.webp" alt="Modern residential apartment buildings lit at dusk" loading="lazy" decoding="async" width="800" height="426">
         <span class="ind-n">05</span>
-        <svg class="ind-wm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 21v-6h6v6"/><path d="M9 10h.01M15 10h.01"/></svg>
-        <div class="ind-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 21v-6h6v6"/></svg></div>
       </div>
+      <div class="ind-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 21v-6h6v6"/></svg></div>
       <div class="ind-body">
         <h3>Real Estate</h3>
         <p class="ind-lede">More site visits from the same ad spend.</p>
@@ -296,10 +292,10 @@ a.ind-card:hover .ind-go em{transform:translateX(5px)}
 
     <a class="ind-card" href="/industries/retail-d2c/" data-cat="consumer" style="--acc:#DB2777" data-kw="retail d2c ecommerce shop store brand shopify online seller apparel fashion cosmetics skincare jewellery jewelry jewellers gold silver diamond ornaments furniture wellness fmcg amazon marketplace kirana supermarket showroom outlet garments footwear toys grocery quick commerce">
       <div class="ind-art">
+        <img src="/assets/industries/retail.webp" alt="Shopper carrying paper bags through a retail store" loading="lazy" decoding="async" width="800" height="426">
         <span class="ind-n">06</span>
-        <svg class="ind-wm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4H6Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-        <div class="ind-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4H6Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
       </div>
+      <div class="ind-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4H6Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
       <div class="ind-body">
         <h3>Retail / D2C</h3>
         <p class="ind-lede">Profitable growth after the ROAS plateau.</p>
@@ -314,10 +310,10 @@ a.ind-card:hover .ind-go em{transform:translateX(5px)}
 
     <a class="ind-card" href="/industries/finance-bfsi/" data-cat="professional" style="--acc:#1D4ED8" data-kw="finance bfsi bank nbfc insurance broker wealth advisor mutual fund lending loans fintech investment portfolio pms cooperative credit society dsa lic agent gold loan microfinance stock trading demat wealth management">
       <div class="ind-art">
+        <img src="/assets/industries/finance.webp" alt="Finance team reviewing figures around a meeting table" loading="lazy" decoding="async" width="800" height="426">
         <span class="ind-n">07</span>
-        <svg class="ind-wm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M3 10h18"/><path d="m12 3 9 7H3l9-7Z"/><path d="M6 10v11M10 10v11M14 10v11M18 10v11"/></svg>
-        <div class="ind-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M3 10h18"/><path d="m12 3 9 7H3l9-7Z"/><path d="M6 10v11M12 10v11M18 10v11"/></svg></div>
       </div>
+      <div class="ind-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M3 10h18"/><path d="m12 3 9 7H3l9-7Z"/><path d="M6 10v11M12 10v11M18 10v11"/></svg></div>
       <div class="ind-body">
         <h3>Finance / BFSI</h3>
         <p class="ind-lede">Grow the book without a compliance headache.</p>
@@ -332,10 +328,10 @@ a.ind-card:hover .ind-go em{transform:translateX(5px)}
 
     <a class="ind-card" href="/industries/legal-professional-services/" data-cat="professional" style="--acc:#4338CA" data-kw="law firm lawyer advocate legal attorney solicitor litigation ca chartered accountant company secretary cs consultant consultancy audit firm tax consultant notary corporate law immigration law family law compliance firm architects interior designer professional services">
       <div class="ind-art">
+        <img src="/assets/industries/legal.webp" alt="Gavel, scales of justice and law books on a wooden desk" loading="lazy" decoding="async" width="800" height="426">
         <span class="ind-n">08</span>
-        <svg class="ind-wm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="M7 21h10"/><path d="M3 7h18"/><path d="m6 7-3 6h6l-3-6Z"/><path d="m18 7-3 6h6l-3-6Z"/></svg>
-        <div class="ind-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="M7 21h10"/><path d="M3 7h18"/><path d="m6 7-3 6h6l-3-6Z"/><path d="m18 7-3 6h6l-3-6Z"/></svg></div>
       </div>
+      <div class="ind-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="M7 21h10"/><path d="M3 7h18"/><path d="m6 7-3 6h6l-3-6Z"/><path d="m18 7-3 6h6l-3-6Z"/></svg></div>
       <div class="ind-body">
         <h3>Legal &amp; Professional Services</h3>
         <p class="ind-lede">Win the client search that happens before the referral call.</p>
@@ -350,10 +346,10 @@ a.ind-card:hover .ind-go em{transform:translateX(5px)}
 
     <a class="ind-card" href="/industries/hospitality-travel/" data-cat="consumer" style="--acc:#D97706" data-kw="hotel resort hospitality travel tourism travel agency tour operator homestay guesthouse bnb bed and breakfast lodge villa rental banquet hall event venue destination wedding venue holiday package airbnb host serviced apartments">
       <div class="ind-art">
+        <img src="/assets/industries/hospitality.webp" alt="Interior of a modern luxury hotel suite" loading="lazy" decoding="async" width="800" height="426">
         <span class="ind-n">09</span>
-        <svg class="ind-wm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20"/><path d="M4 20v-8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8"/><path d="M4 14h16"/><path d="M7 10V7a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v3"/></svg>
-        <div class="ind-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20"/><path d="M4 20v-8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8"/><path d="M4 14h16"/><path d="M7 10V7a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v3"/></svg></div>
       </div>
+      <div class="ind-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20"/><path d="M4 20v-8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8"/><path d="M4 14h16"/><path d="M7 10V7a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v3"/></svg></div>
       <div class="ind-body">
         <h3>Hospitality &amp; Travel</h3>
         <p class="ind-lede">Win direct bookings back from the OTAs.</p>
@@ -368,10 +364,10 @@ a.ind-card:hover .ind-go em{transform:translateX(5px)}
 
     <a class="ind-card" href="/industries/beauty-wellness/" data-cat="consumer" style="--acc:#C026D3" data-kw="salon spa beauty parlour parlor wellness center centre gym fitness studio yoga aesthetic clinic hair studio nail bar barber unisex salon skincare clinic massage therapy weight loss clinic dietician nutritionist personal trainer">
       <div class="ind-art">
+        <img src="/assets/industries/beauty.webp" alt="Client having their hair washed at a professional salon" loading="lazy" decoding="async" width="800" height="426">
         <span class="ind-n">10</span>
-        <svg class="ind-wm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c2.5 4 4 6.5 4 9a4 4 0 0 1-8 0c0-2.5 1.5-5 4-9Z"/><path d="M12 22v-7"/><path d="M8.5 19c-2 0-3.5-1-4.5-2.5 1.8-1 3.6-.8 4.9.4"/><path d="M15.5 19c2 0 3.5-1 4.5-2.5-1.8-1-3.6-.8-4.9.4"/></svg>
-        <div class="ind-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c2.5 4 4 6.5 4 9a4 4 0 0 1-8 0c0-2.5 1.5-5 4-9Z"/><path d="M12 22v-7"/></svg></div>
       </div>
+      <div class="ind-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c2.5 4 4 6.5 4 9a4 4 0 0 1-8 0c0-2.5 1.5-5 4-9Z"/><path d="M12 22v-7"/></svg></div>
       <div class="ind-body">
         <h3>Beauty &amp; Wellness</h3>
         <p class="ind-lede">Fill your appointment book without discounting every slot.</p>
@@ -386,10 +382,10 @@ a.ind-card:hover .ind-go em{transform:translateX(5px)}
 
     <a class="ind-card" href="/industries/startup/" data-cat="enterprise" style="--acc:#16A34A" data-kw="startup saas series a b c funded vc venture founder tech product scaleup app platform b2b saas growth seed preseed angel bootstrapped founder cto product market fit">
       <div class="ind-art">
+        <img src="/assets/industries/startup.webp" alt="Startup team working together around a shared table" loading="lazy" decoding="async" width="800" height="426">
         <span class="ind-n">11</span>
-        <svg class="ind-wm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.3-2 5-2 5s3.7-.5 5-2c.7-.8.7-2.1-.1-2.9a2 2 0 0 0-2.9-.1Z"/><path d="M12 15 9 12a11 11 0 0 1 6-8c2.5-1 5 0 5 0s1 2.5 0 5a11 11 0 0 1-8 6Z"/><path d="M9 12H5s.5-2.8 2-4c1.7-1.3 5-1 5-1"/><path d="M12 15v4s2.8-.5 4-2c1.3-1.7 1-5 1-5"/></svg>
-        <div class="ind-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.3-2 5-2 5s3.7-.5 5-2c.7-.8.7-2.1-.1-2.9a2 2 0 0 0-2.9-.1Z"/><path d="M12 15 9 12a11 11 0 0 1 6-8c2.5-1 5 0 5 0s1 2.5 0 5a11 11 0 0 1-8 6Z"/></svg></div>
       </div>
+      <div class="ind-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.3-2 5-2 5s3.7-.5 5-2c.7-.8.7-2.1-.1-2.9a2 2 0 0 0-2.9-.1Z"/><path d="M12 15 9 12a11 11 0 0 1 6-8c2.5-1 5 0 5 0s1 2.5 0 5a11 11 0 0 1-8 6Z"/></svg></div>
       <div class="ind-body">
         <h3>Startup (Series A–C)</h3>
         <p class="ind-lede">Look fundable. Grow measurable.</p>
@@ -404,10 +400,10 @@ a.ind-card:hover .ind-go em{transform:translateX(5px)}
 
     <a class="ind-card" href="/industries/sme-digital-starter/" data-cat="enterprise" style="--acc:#0284C7" data-kw="sme small business shop local trader dealer distributor agency consultant service provider startup cheap basic first website printing press event planner photographer freelancer solopreneur small">
       <div class="ind-art">
+        <img src="/assets/industries/sme.webp" alt="Small business owner standing by an open shop sign" loading="lazy" decoding="async" width="800" height="426">
         <span class="ind-n">12</span>
-        <svg class="ind-wm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M4 21V10h16v11"/><path d="M2 10 4 4h16l2 6"/><path d="M2 10a3 3 0 0 0 5 0 3 3 0 0 0 5 0 3 3 0 0 0 5 0 3 3 0 0 0 5 0"/><path d="M9 21v-6h6v6"/></svg>
-        <div class="ind-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M4 21V10h16v11"/><path d="M2 10 4 4h16l2 6"/><path d="M9 21v-6h6v6"/></svg></div>
       </div>
+      <div class="ind-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M4 21V10h16v11"/><path d="M2 10 4 4h16l2 6"/><path d="M9 21v-6h6v6"/></svg></div>
       <div class="ind-body">
         <h3>SME Digital Starter</h3>
         <p class="ind-lede">Your first serious digital presence — done right.</p>
@@ -422,10 +418,10 @@ a.ind-card:hover .ind-go em{transform:translateX(5px)}
 
     <a class="ind-card" href="/industries/enterprise-ai-kickstart/" data-cat="enterprise" style="--acc:#475569" data-kw="enterprise corporate group conglomerate large company board cxo transformation governance pilot ai strategy listed plc mnc multinational psu holding company family office promoter chairman">
       <div class="ind-art">
+        <img src="/assets/industries/enterprise.webp" alt="Executives reviewing documents in a corporate boardroom" loading="lazy" decoding="async" width="800" height="426">
         <span class="ind-n">13</span>
-        <svg class="ind-wm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
-        <div class="ind-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></div>
       </div>
+      <div class="ind-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></div>
       <div class="ind-body">
         <h3>Enterprise AI Kickstart</h3>
         <p class="ind-lede">From board-level AI intent to two working pilots.</p>
@@ -440,10 +436,10 @@ a.ind-card:hover .ind-go em{transform:translateX(5px)}
 
     <a class="ind-card" href="/industries/logistics-transport/" data-cat="b2b" style="--acc:#CA8A04" data-kw="logistics transport freight courier 3pl fleet trucking shipping cargo warehousing supply chain haulage carrier last mile delivery">
       <div class="ind-art">
+        <img src="/assets/industries/logistics.webp" alt="Fleet of cargo trucks loading at a distribution centre" loading="lazy" decoding="async" width="800" height="426">
         <span class="ind-n">14</span>
-        <svg class="ind-wm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 17V6a1 1 0 0 1 1-1h11v12"/><path d="M14 9h4l3 4v4h-7"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg>
-        <div class="ind-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M2 17V6a1 1 0 0 1 1-1h11v12"/><path d="M14 9h4l3 4v4h-7"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg></div>
       </div>
+      <div class="ind-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M2 17V6a1 1 0 0 1 1-1h11v12"/><path d="M14 9h4l3 4v4h-7"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg></div>
       <div class="ind-body">
         <h3>Logistics / Transport</h3>
         <p class="ind-lede">Inbound enquiries instead of tender-chasing.</p>
@@ -458,10 +454,10 @@ a.ind-card:hover .ind-go em{transform:translateX(5px)}
 
     <a class="ind-card" href="/industries/automotive/" data-cat="consumer" style="--acc:#DC2626" data-kw="automotive car bike dealer dealership showroom service center centre garage workshop vehicle two wheeler four wheeler used car car service bike service test drive spare parts tyre car wash detailing">
       <div class="ind-art">
+        <img src="/assets/industries/automotive.webp" alt="Salesperson showing a car to customers at a dealership" loading="lazy" decoding="async" width="800" height="426">
         <span class="ind-n">15</span>
-        <svg class="ind-wm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17h14"/><path d="M3 17v-4l2-5a2 2 0 0 1 2-1.4h10A2 2 0 0 1 19 8l2 5v4"/><path d="M4 13h16"/><circle cx="7.5" cy="17" r="1.8"/><circle cx="16.5" cy="17" r="1.8"/></svg>
-        <div class="ind-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17v-4l2-5a2 2 0 0 1 2-1.4h10A2 2 0 0 1 19 8l2 5v4"/><path d="M4 13h16"/><circle cx="7.5" cy="17" r="1.8"/><circle cx="16.5" cy="17" r="1.8"/></svg></div>
       </div>
+      <div class="ind-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17v-4l2-5a2 2 0 0 1 2-1.4h10A2 2 0 0 1 19 8l2 5v4"/><path d="M4 13h16"/><circle cx="7.5" cy="17" r="1.8"/><circle cx="16.5" cy="17" r="1.8"/></svg></div>
       <div class="ind-body">
         <h3>Automotive</h3>
         <p class="ind-lede">Fill the showroom and the service bay.</p>
