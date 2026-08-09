@@ -84,10 +84,10 @@ nav{position:fixed;top:18px;left:50%;transform:translateX(-50%);width:min(1180px
   border:1px solid var(--border);border-radius:999px;display:flex;align-items:center;gap:4px;padding:9px 12px 9px 24px}
 .logo{font-family:Fraunces,serif;font-weight:600;font-size:1.4rem;color:var(--ink);margin-right:auto;cursor:pointer;letter-spacing:-.01em;white-space:nowrap;position:relative;overflow:hidden;display:inline-block}
 .logo span{color:var(--brand)}
-.logo::after{content:"";position:absolute;top:0;bottom:0;left:-60%;width:40%;
+.logo::after{content:"";position:absolute;top:0;bottom:0;left:0;width:40%;
   background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--brand) 60%,transparent),transparent);
-  filter:blur(2px);animation:logoScan 5s cubic-bezier(.4,0,.2,1) infinite;pointer-events:none}
-@keyframes logoScan{0%{left:-60%}45%{left:120%}100%{left:120%}}
+  filter:blur(2px);transform:translateX(-150%);will-change:transform;animation:logoScan 5s cubic-bezier(.4,0,.2,1) infinite;pointer-events:none}
+@keyframes logoScan{0%{transform:translateX(-150%)}45%{transform:translateX(300%)}100%{transform:translateX(300%)}}
 @media(prefers-reduced-motion:reduce){.logo::after{display:none}}
 nav a.nl{color:var(--ink2);font-size:.9rem;font-weight:500;padding:8px 13px;border-radius:999px;transition:color .15s,background .15s}
 nav a.nl:hover,nav a.nl.active{color:var(--ink);background:var(--surface2)}
@@ -414,9 +414,8 @@ a.res-row:hover .res-arrow{transform:translateX(5px);color:var(--brand)}
 /* animated conic border */
 .wk-card::after{content:"";position:absolute;inset:-1px;border-radius:21px;padding:1.5px;pointer-events:none;opacity:0;transition:opacity .35s;
   background:conic-gradient(from var(--wk-ang),transparent 0 30%,var(--brand) 50%,transparent 70% 100%);
-  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;
-  animation:wkSpin 3.6s linear infinite}
-.wk-card:hover::after,.wk-card.open::after{opacity:.9}
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+.wk-card:hover::after,.wk-card.open::after{opacity:.9;animation:wkSpin 3.6s linear infinite}
 @keyframes wkSpin{to{--wk-ang:360deg}}
 .wk-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
 .wk-x{width:36px;height:36px;border-radius:999px;border:1px solid var(--border);background:var(--surface2);color:var(--ink);font-size:1.15rem;line-height:1;cursor:pointer;display:grid;place-items:center;flex:none;transition:transform .35s,background .2s,color .2s}
@@ -479,7 +478,7 @@ a.res-row:hover .res-arrow{transform:translateX(5px);color:var(--brand)}
 <div class="page" id="p-home">
   <header class="hero">
     <div class="hero-media" aria-hidden="true">
-      <video autoplay muted loop playsinline preload="metadata" poster="assets/hero-poster.webp" src="assets/hero-bg.mp4" fetchpriority="high"></video>
+      <video autoplay muted loop playsinline preload="none" poster="assets/hero-poster.webp" src="assets/hero-bg.mp4"></video>
     </div>
     <div class="container">
       <div class="eyebrow">AI-First Growth & Automation Partner · India</div>
@@ -608,7 +607,7 @@ a.res-row:hover .res-arrow{transform:translateX(5px);color:var(--brand)}
   <div class="container">
     <div class="pagehead">
       <div class="pagehead-media" aria-hidden="true">
-        <video autoplay muted loop playsinline preload="metadata" poster="assets/svc-poster.webp" src="assets/svc-bg.mp4"></video>
+        <video autoplay muted loop playsinline preload="none" poster="assets/svc-poster.webp" src="assets/svc-bg.mp4"></video>
       </div>
       <div class="crumb">Home / Services</div>
       <section style="padding-top:28px;padding-bottom:20px">
@@ -1506,9 +1505,11 @@ function indCard(i,idx){
   <p style="margin-top:12px">${i.stack.map(s=>`<span class="pill">${s}</span>`).join('')}</p>
   <div class="ind-price"><span class="mono">Custom-scoped</span><a onclick="event.stopPropagation();openInd(${idx})">See everything we'd build →</a></div></div>`;
 }
-document.getElementById('industryGrid').innerHTML=industries.map(indCard).join('');
-document.getElementById('indChips').innerHTML=industries.map((i,idx)=>
- `<span class="pill" onclick="openInd(${idx})">${i.name}</span>`).join('');
+setTimeout(()=>{
+ const _ig=document.getElementById('industryGrid'),_ic=document.getElementById('indChips');
+ if(_ig)_ig.innerHTML=industries.map(indCard).join('');
+ if(_ic)_ic.innerHTML=industries.map((i,idx)=>`<span class="pill" onclick="openInd(${idx})">${i.name}</span>`).join('');
+},0);
 
 /* ---------- Search ---------- */
 function filterInd(q){
@@ -1874,6 +1875,7 @@ function wkCard(p,i){
   </div></div></article>`}
 
 if(wkGrid){
+ setTimeout(()=>{
  wkFbar.innerHTML=WK_FILTERS.map((f,i)=>`<button class="wk-filter${i?'':' on'}" data-f="${f}">${f}</button>`).join('');
  wkGrid.innerHTML=WK.map(wkCard).join('');
 
@@ -1881,6 +1883,12 @@ if(wkGrid){
    if(c.style.display==='none')return;
    setTimeout(()=>c.classList.remove('out'),wkRM?0:60+i*50)});
  wkEnter();
+
+ const wkClose=c=>{
+   const d=c.querySelector('.wk-detail');
+   d.style.height=d.scrollHeight+'px'; // freeze current px height so the collapse can animate from it
+   requestAnimationFrame(()=>{d.style.height='0px'});
+   c.classList.remove('open');c.querySelector('.wk-x').setAttribute('aria-expanded','false')};
 
  wkFbar.addEventListener('click',e=>{
    const b=e.target.closest('.wk-filter');if(!b)return;
@@ -1891,11 +1899,6 @@ if(wkGrid){
      [...wkGrid.children].forEach(c=>{c.style.display=(f==='All'||c.dataset.tags.split(' ').includes(f))?'':'none'});
      wkEnter()},wkRM?0:280)});
 
- const wkClose=c=>{
-   const d=c.querySelector('.wk-detail');
-   d.style.height=d.scrollHeight+'px'; // freeze current px height so the collapse can animate from it
-   requestAnimationFrame(()=>{d.style.height='0px'});
-   c.classList.remove('open');c.querySelector('.wk-x').setAttribute('aria-expanded','false')};
  wkGrid.addEventListener('click',e=>{
    if(e.target.closest('a'))return;
    const c=e.target.closest('.wk-card');if(!c)return;
@@ -1908,18 +1911,25 @@ if(wkGrid){
        d.removeEventListener('transitionend',te)});
      setTimeout(()=>c.scrollIntoView({behavior:wkRM?'auto':'smooth',block:'nearest'}),120)}});
 
- // tilt + mouse-follow glow (fine pointers only, never while expanded)
+ // tilt + mouse-follow glow — cache getBoundingClientRect per card to avoid forced reflow on every move
  const wkTilt=matchMedia('(pointer:fine)').matches&&!wkRM;
+ let wkAC=null,wkCR=null,wkRaf=null;
  wkGrid.addEventListener('pointermove',e=>{
    const c=e.target.closest('.wk-card');if(!c)return;
-   const r=c.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;
-   c.style.setProperty('--mx',x+'px');c.style.setProperty('--my',y+'px');
-   if(wkTilt&&!c.classList.contains('open')){
-     c.style.setProperty('--ry',((x/r.width)-.5)*5+'deg');
-     c.style.setProperty('--rx',(.5-(y/r.height))*5+'deg')}});
+   if(c!==wkAC){wkAC=c;wkCR=c.getBoundingClientRect()}
+   const r=wkCR,x=e.clientX-r.left,y=e.clientY-r.top;
+   if(wkRaf)cancelAnimationFrame(wkRaf);
+   wkRaf=requestAnimationFrame(()=>{
+     c.style.setProperty('--mx',x+'px');c.style.setProperty('--my',y+'px');
+     if(wkTilt&&!c.classList.contains('open')){
+       c.style.setProperty('--ry',((x/r.width)-.5)*5+'deg');
+       c.style.setProperty('--rx',(.5-(y/r.height))*5+'deg')}})});
  wkGrid.addEventListener('pointerout',e=>{
    const c=e.target.closest('.wk-card');
-   if(c&&!c.contains(e.relatedTarget)){c.style.setProperty('--rx','0deg');c.style.setProperty('--ry','0deg')}});
+   if(c&&!c.contains(e.relatedTarget)){
+     if(wkRaf)cancelAnimationFrame(wkRaf);
+     wkAC=null;wkCR=null;
+     c.style.setProperty('--rx','0deg');c.style.setProperty('--ry','0deg')}});
 
  // animated counters, once, when the stat row first becomes visible
  const wkStats=document.querySelector('.wk-stats');let wkCounted=false;
@@ -1931,11 +1941,12 @@ if(wkGrid){
      (function f(n){const p=Math.min(1,(n-st)/1300),e2=1-Math.pow(1-p,3);
        el.textContent=Math.round(t*e2)+suf;if(p<1)requestAnimationFrame(f)})(st)})};
  new IntersectionObserver((es,o)=>{if(es.some(x=>x.isIntersecting)){wkCounts();o.disconnect()}},{threshold:.3}).observe(wkStats);
+ },0);
 }
 
 const svcNames=[["01","Web"],["02","SEO"],["03","GEO"],["04","Social"],["05","Performance"],["06","Branding"],["07","AI Automation"],["08","Consulting"]];
-document.getElementById('svcNav').innerHTML=svcNames.map(n=>
- `<a class="pill" style="cursor:pointer" onclick="document.getElementById('svc-${n[0]}').scrollIntoView({behavior:'smooth',block:'start'})">${n[0]} · ${n[1]}</a>`).join('');
+setTimeout(()=>{const _sn=document.getElementById('svcNav');if(_sn)_sn.innerHTML=svcNames.map(n=>
+ `<a class="pill" style="cursor:pointer" onclick="document.getElementById('svc-${n[0]}').scrollIntoView({behavior:'smooth',block:'start'})">${n[0]} · ${n[1]}</a>`).join('')},0);
 
 /* ---------- Mobile / metered-connection media budget ---------- */
 /* The full-bleed hero and page-header footage is decorative. On small screens
