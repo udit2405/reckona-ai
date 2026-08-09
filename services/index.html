@@ -47,38 +47,68 @@
 .cat-toolbar h2{font-size:1rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--ink2);font-family:'JetBrains Mono',monospace;margin:0}
 .cat-toolbar span{font-size:.78rem;color:var(--ink2);margin-left:auto}
 
-/* practice section */
-.prac-block{border-bottom:1px solid var(--border);padding:28px 0}
-.prac-block:last-child{border-bottom:none}
-.prac-header{display:flex;align-items:flex-start;gap:20px;margin-bottom:18px}
-.prac-num{font-family:'JetBrains Mono',monospace;font-size:.72rem;font-weight:700;color:var(--brand);background:rgba(68,56,202,.08);border:1px solid rgba(68,56,202,.18);border-radius:999px;padding:4px 11px;white-space:nowrap;flex-shrink:0;margin-top:4px}
+/* practice section — each one is a distinct card */
+#catalogue{display:flex;flex-direction:column;gap:16px;margin-top:20px}
+.prac-block{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:20px;
+  overflow:hidden;
+}
+/* coloured top stripe per practice */
+.prac-block .prac-stripe{
+  height:4px;
+  background:var(--border);
+}
+.prac-block.flagship .prac-stripe{background:var(--signal)}
+.prac-block.brand-geo .prac-stripe{background:var(--signal)}
+.prac-block.brand-auto .prac-stripe{background:#7c3aed}
+.prac-block.brand-web .prac-stripe{background:#0891b2}
+.prac-block.brand-seo .prac-stripe{background:var(--brand)}
+.prac-block.brand-perf .prac-stripe{background:#d97706}
+.prac-block.brand-brand .prac-stripe{background:#db2777}
+.prac-block.brand-social .prac-stripe{background:#16a34a}
+.prac-block.brand-consult .prac-stripe{background:var(--ink2)}
+
+.prac-header{
+  display:flex;align-items:flex-start;gap:16px;
+  padding:20px 20px 16px;
+  border-bottom:1px solid var(--border);
+  background:var(--surface2);
+}
+.prac-num{font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:700;color:var(--brand);background:rgba(68,56,202,.08);border:1px solid rgba(68,56,202,.18);border-radius:999px;padding:4px 11px;white-space:nowrap;flex-shrink:0;margin-top:3px}
 .prac-num.flagship{background:rgba(15,118,110,.1);color:var(--signal);border-color:rgba(15,118,110,.25)}
 .prac-info{flex:1}
-.prac-info h3{font-size:1.22rem;font-weight:600;color:var(--ink);margin:0 0 4px}
-.prac-info p{font-size:.9rem;color:var(--ink2);margin:0}
-.prac-select-all{flex-shrink:0;font-size:.78rem;font-weight:600;color:var(--brand);cursor:pointer;padding:7px 14px;border:1px solid var(--border);border-radius:999px;background:var(--surface);transition:background .15s,border-color .15s;white-space:nowrap;user-select:none}
-.prac-select-all:hover{background:var(--surface2);border-color:var(--ink2)}
+.prac-info h3{font-size:1.1rem;font-weight:700;color:var(--ink);margin:0 0 3px}
+.prac-info p{font-size:.84rem;color:var(--ink2);margin:0;line-height:1.45}
+.prac-select-all{flex-shrink:0;font-size:.75rem;font-weight:600;color:var(--brand);cursor:pointer;padding:6px 13px;border:1px solid rgba(68,56,202,.25);border-radius:999px;background:rgba(68,56,202,.06);transition:background .15s,border-color .15s;white-space:nowrap;user-select:none;align-self:flex-start}
+.prac-select-all:hover{background:rgba(68,56,202,.12)}
 
-/* service item rows */
-.svc-row{display:flex;align-items:center;gap:16px;padding:13px 16px;border-radius:14px;border:1px solid transparent;transition:background .15s,border-color .2s;cursor:pointer;-webkit-tap-highlight-color:transparent}
-.svc-row:hover{background:var(--surface);border-color:var(--border)}
-.svc-row.selected{background:rgba(68,56,202,.05);border-color:rgba(68,56,202,.25)}
-.svc-check{width:22px;height:22px;border:1.5px solid var(--border);border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .2s,border-color .2s;color:transparent;font-size:.9rem}
+/* service item rows — sit inside the card body */
+.svc-list{padding:6px 12px 10px}
+.svc-row{display:flex;align-items:center;gap:14px;padding:12px 8px;border-radius:12px;border:1px solid transparent;transition:background .15s,border-color .2s;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.svc-row:hover{background:rgba(68,56,202,.04);border-color:rgba(68,56,202,.12)}
+.svc-row.selected{background:rgba(68,56,202,.06);border-color:rgba(68,56,202,.28)}
+.svc-row+.svc-row{border-top:1px solid var(--border);border-radius:0;padding-top:13px}
+.svc-row+.svc-row:hover{border-radius:12px;border-top-color:transparent}
+.svc-row.selected+.svc-row,.svc-row+.svc-row.selected{border-top-color:transparent}
+.svc-check{width:20px;height:20px;border:1.5px solid var(--border);border-radius:5px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .2s,border-color .2s;color:transparent;font-size:.8rem}
 .svc-row.selected .svc-check{background:var(--brand);border-color:var(--brand);color:#fff}
 .svc-body{flex:1;min-width:0}
-.svc-name{font-size:.97rem;font-weight:600;color:var(--ink);line-height:1.3;margin:0 0 2px}
-.svc-desc{font-size:.83rem;color:var(--ink2);margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.svc-name{font-size:.94rem;font-weight:600;color:var(--ink);line-height:1.3;margin:0 0 2px}
+.svc-desc{font-size:.8rem;color:var(--ink2);margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .svc-row:hover .svc-desc{white-space:normal}
 .svc-meta{display:flex;flex-direction:column;align-items:flex-end;gap:4px;flex-shrink:0}
-.svc-timeline{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--ink2);background:var(--surface2);border:1px solid var(--border);border-radius:999px;padding:3px 10px;white-space:nowrap}
-.svc-add-btn{font-size:.78rem;font-weight:700;padding:7px 14px;border-radius:999px;border:1px solid var(--border);background:var(--surface);color:var(--ink2);cursor:pointer;transition:background .15s,border-color .15s,color .15s;white-space:nowrap}
+.svc-timeline{font-family:'JetBrains Mono',monospace;font-size:.69rem;color:var(--ink2);background:var(--surface2);border:1px solid var(--border);border-radius:999px;padding:3px 9px;white-space:nowrap}
+.svc-add-btn{font-size:.75rem;font-weight:700;padding:6px 13px;border-radius:999px;border:1px solid var(--border);background:var(--surface);color:var(--ink2);cursor:pointer;transition:background .15s,border-color .15s,color .15s;white-space:nowrap}
 .svc-row.selected .svc-add-btn{background:rgba(68,56,202,.1);border-color:var(--brand);color:var(--brand)}
 @media(max-width:620px){
-  .svc-row{flex-wrap:wrap;gap:10px}
+  .svc-row{flex-wrap:wrap;gap:8px}
   .svc-meta{flex-direction:row;align-items:center}
   .svc-timeline{display:none}
   .svc-desc{white-space:normal}
   .prac-select-all{display:none}
+  .prac-header{padding:16px}
 }
 
 /* ── CART BAR ── */
@@ -292,7 +322,7 @@
 <script>
 /* ── Service data ── */
 const PRACTICES=[
-{id:'geo',cat:'01 · Flagship',flagship:true,
+{id:'geo',cat:'01 · Flagship',flagship:true,brand:'geo',
  name:'GEO — AI Visibility',
  tag:'Be cited, recommended and correctly described inside ChatGPT, Gemini, Claude and Perplexity.',
  link:'/services/geo/',
@@ -303,7 +333,7 @@ const PRACTICES=[
   {id:'geo-content',name:'AI Content Program',desc:'Retrieval-optimised pages, llms.txt, chunk-formatted answer content',tl:'Monthly'},
   {id:'geo-monitor',name:'AI Monitoring & Reputation',desc:'Monthly re-score, hallucination alerts, correction playbooks',tl:'Monthly'},
  ]},
-{id:'seo',cat:'02',
+{id:'seo',cat:'02',brand:'seo',
  name:'SEO — Search Visibility',
  tag:'Compounding organic traffic that you own, not rent.',
  link:'/services/seo/',
@@ -314,7 +344,7 @@ const PRACTICES=[
   {id:'seo-local',name:'Local SEO',desc:'Google Business Profile, citations, review engine, map-pack domination',tl:'Monthly'},
   {id:'seo-links',name:'Link Building / Digital PR',desc:'6–15 DR-40+ placements/mo from real editorial coverage',tl:'Monthly'},
  ]},
-{id:'perf',cat:'03',
+{id:'perf',cat:'03',brand:'perf',
  name:'Performance Marketing',
  tag:'Full-funnel paid media with creative included — tracked to revenue, not vanity clicks.',
  link:'/services/performance/',
@@ -324,7 +354,7 @@ const PRACTICES=[
   {id:'perf-linkedin',name:'LinkedIn Ads',desc:'B2B targeting by title, firm and seniority — ABM and lead gen',tl:'Monthly'},
   {id:'perf-leadgen',name:'Full-Funnel Lead Gen System',desc:'Ads + landing pages + CRM routing + nurture as one measured system',tl:'4–6 wks'},
  ]},
-{id:'web',cat:'04',
+{id:'web',cat:'04',brand:'web',
  name:'Web — Design & Engineering',
  tag:'Sites built to convert — not just to exist. With analytics, SEO foundations and a CMS your team can run.',
  link:'/services/web/',
@@ -334,7 +364,7 @@ const PRACTICES=[
   {id:'web-ecom',name:'Ecommerce Build',desc:'Shopify or headless store, Razorpay, GST invoicing, 50-SKU setup',tl:'6–8 wks'},
   {id:'web-enterprise',name:'Enterprise Corporate Site',desc:'25+ pages, multi-language, security-reviewed, zero-SEO-loss',tl:'8–12 wks'},
  ]},
-{id:'brand',cat:'05',
+{id:'brand',cat:'05',brand:'brand',
  name:'Branding — Identity & Sales Assets',
  tag:'Identity systems and sales assets that make the next conversation easier to win.',
  link:'/services/branding/',
@@ -343,7 +373,7 @@ const PRACTICES=[
   {id:'brand-guide',name:'Full Brand Guide',desc:'Consistency across packaging, site, ads and marketplace listings',tl:'3–4 wks'},
   {id:'brand-deck',name:'Pitch / Sales / Corporate Decks',desc:'Narrative, objection handling and investor or enterprise leave-behinds',tl:'1–2 wks'},
  ]},
-{id:'social',cat:'06',
+{id:'social',cat:'06',brand:'social',
  name:'Social — Content & Community',
  tag:'Authority-building content engines, run on a calendar your team approves once a month.',
  link:'/services/social/',
@@ -352,7 +382,7 @@ const PRACTICES=[
   {id:'social-ig',name:'Instagram Engine',desc:'12–16 posts/mo, Reels, stories, community management',tl:'Monthly'},
   {id:'social-yt',name:'YouTube Engine',desc:'4–6 videos/mo, scripting, Shorts, SEO-optimised titles and descriptions',tl:'Monthly'},
  ]},
-{id:'auto',cat:'07 · Core',flagship:false,
+{id:'auto',cat:'07 · Core',flagship:false,brand:'auto',
  name:'AI Automation',
  tag:'Assistants and agents deployed to your cloud, documented and handed over — with your team trained to run them.',
  link:'/services/ai-automation/',
@@ -363,7 +393,7 @@ const PRACTICES=[
   {id:'auto-dash',name:'Executive Dashboards',desc:'Live KPI cockpit with AI-written weekly commentary and automated data pulls',tl:'3–4 wks'},
   {id:'auto-agents',name:'Sales / Support / HR Assistants',desc:'Role-specific agents integrated with your CRM, HRMS or ERP',tl:'4–6 wks'},
  ]},
-{id:'consult',cat:'08',
+{id:'consult',cat:'08',brand:'consult',
  name:'Consulting & Enablement',
  tag:'Strategy that ends in shipped systems, not shelfware decks.',
  link:'/services/consulting/',
@@ -382,7 +412,8 @@ const selected=new Set();
 function renderCatalogue(){
   const el=document.getElementById('catalogue');
   el.innerHTML=PRACTICES.map(p=>`
-<div class="prac-block" id="prac-${p.id}">
+<div class="prac-block${p.flagship?' flagship':''} brand-${p.brand}" id="prac-${p.id}">
+  <div class="prac-stripe"></div>
   <div class="prac-header">
     <span class="prac-num${p.flagship?' flagship':''}">${p.cat}</span>
     <div class="prac-info">
