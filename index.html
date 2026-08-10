@@ -412,21 +412,19 @@ a.res-row:hover .res-arrow{transform:translateX(5px);color:var(--brand)}
 .wk-card.out{opacity:0;transform:scale(.94);pointer-events:none}
 .wk-card.open{grid-column:1/-1;cursor:default;--rx:0deg;--ry:0deg;--ty:0px}
 /* project art panel */
-.wk-art{position:relative;height:100px;margin:-28px -28px 18px;overflow:hidden;
-  border-radius:19px 19px 0 0;border-bottom:1px solid var(--border);
+.wk-art{position:relative;height:132px;margin:-28px -28px 18px;overflow:hidden;
+  border-radius:19px 19px 0 0;border-bottom:1px solid var(--border);background:var(--surface2)}
+.wk-art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .55s cubic-bezier(.22,1,.36,1)}
+.wk-card:hover .wk-art img{transform:scale(1.07)}
+/* accent scrim carries the project's colour and anchors the index numeral */
+.wk-art::after{content:"";position:absolute;inset:0;pointer-events:none;
   background:
-    radial-gradient(125% 130% at 84% 8%,color-mix(in srgb,var(--wa,var(--brand)) 27%,transparent),transparent 62%),
-    linear-gradient(135deg,color-mix(in srgb,var(--wa,var(--brand)) 14%,var(--surface2)),var(--surface2))}
-.wk-art::before{content:"";position:absolute;inset:0;opacity:.55;
-  background-image:linear-gradient(color-mix(in srgb,var(--wa,var(--brand)) 14%,transparent) 1px,transparent 1px),
-    linear-gradient(90deg,color-mix(in srgb,var(--wa,var(--brand)) 14%,transparent) 1px,transparent 1px);
-  background-size:20px 20px;
-  -webkit-mask-image:linear-gradient(205deg,#000,transparent 70%);mask-image:linear-gradient(205deg,#000,transparent 70%)}
-.wk-wm{position:absolute;right:-12px;bottom:-22px;width:116px;height:116px;color:var(--wa,var(--brand));opacity:.18;
-  transition:transform .45s cubic-bezier(.22,1,.36,1),opacity .3s}
-.wk-card:hover .wk-wm{transform:scale(1.09) rotate(-6deg);opacity:.26}
-.wk-idx{position:absolute;left:24px;top:50%;transform:translateY(-50%);font-family:Fraunces,serif;font-weight:600;
-  font-size:2.4rem;line-height:1;color:var(--wa,var(--brand));opacity:.55;letter-spacing:-.02em}
+    linear-gradient(90deg,color-mix(in srgb,var(--wa,var(--brand)) 72%,transparent) 0%,
+                          color-mix(in srgb,var(--wa,var(--brand)) 26%,transparent) 34%,transparent 62%),
+    linear-gradient(0deg,color-mix(in srgb,var(--surface) 42%,transparent) 0%,transparent 40%)}
+.wk-idx{position:absolute;left:24px;top:50%;transform:translateY(-50%);z-index:2;font-family:Fraunces,serif;font-weight:600;
+  font-size:2.4rem;line-height:1;color:#fff;letter-spacing:-.02em;text-shadow:0 2px 12px rgba(0,0,0,.4)}
 /* mouse-follow glow */
 .wk-card::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .3s;
   background:radial-gradient(340px circle at var(--mx,50%) var(--my,50%),color-mix(in srgb,var(--wa,var(--brand)) 10%,transparent),transparent 65%)}
@@ -1719,7 +1717,7 @@ setTimeout(()=>{vwEl.classList.remove('in');vwSync()},1400);
 
 /* ---------- Work / Projects ---------- */
 const WK=[
-{ind:"Internal AI Platform",tags:["AI","Automation"],t:"AI Portfolio Management System",
+{ind:"Internal AI Platform",img:"portfolio",alt:"Analysts reviewing a data dashboard on a laptop",tags:["AI","Automation"],t:"AI Portfolio Management System",
  one:"One dashboard for leadership to see every project, KPI, owner and timeline — with AI writing the summary.",
  tech:["Claude","Python","Supabase","JavaScript","Cloud"],out:"Manual reporting effort cut across the leadership team.",
  prob:"Project status lived in decks, spreadsheets and people's heads. Leadership burned hours every week chasing updates and reconciling versions before every review meeting.",
@@ -1727,7 +1725,7 @@ const WK=[
  stack:"Claude for AI summaries, Python services on cloud, Supabase for data, a JavaScript dashboard front-end.",
  met:[["1","source of truth for all projects"],["AI","summaries written automatically"],["Hrs/week","of status-chasing removed"]],
  tl:[["Week 1","Audit of existing trackers & KPIs"],["Weeks 2–3","Dashboard + data model build"],["Week 4","AI summaries & rollout"],["Ongoing","Operate & refine"]]},
-{ind:"Learning Platform",tags:["AI","Consulting"],t:"Enterprise AI Adoption Platform",
+{ind:"Learning Platform",img:"adoption",alt:"Facilitator leading a corporate training session",tags:["AI","Consulting"],t:"Enterprise AI Adoption Platform",
  one:"Department-wise GenAI training that turns 'we should use AI' into employees who actually do.",
  tech:["GPT","Gemini","JavaScript","Firebase","Cloud"],out:"AI adoption accelerated across every department.",
  prob:"The company had AI licences but no adoption — employees didn't know which tasks AI could take off their desk, and generic training didn't map to their actual jobs.",
@@ -1735,7 +1733,7 @@ const WK=[
  stack:"GPT and Gemini for in-course exercises, Firebase for auth and progress data, a JavaScript learning front-end.",
  met:[["5","department tracks live"],["Certs","interactive, per module"],["Live","adoption dashboard for leadership"]],
  tl:[["Week 1","Use-case mapping per department"],["Weeks 2–4","Platform & content build"],["Week 5","Pilot cohort"],["Ongoing","New modules quarterly"]]},
-{ind:"Customer Support",tags:["AI","Automation"],t:"AI Chatbots for Business",
+{ind:"Customer Support",img:"chatbot",alt:"Support agents wearing headsets at a contact centre",tags:["AI","Automation"],t:"AI Chatbots for Business",
  one:"Chatbots that qualify leads, answer FAQs and dig through SOPs — on WhatsApp and the website, 24/7.",
  tech:["Claude","OpenAI API","Node.js","WhatsApp","Cloud"],out:"Routine queries answered instantly, without adding headcount.",
  prob:"Customer questions, employee queries and internal 'where is that SOP?' messages all landed on the same few people — slow answers, dropped leads, interrupted work.",
@@ -1743,7 +1741,7 @@ const WK=[
  stack:"Claude and OpenAI APIs over a document knowledge base, Node.js middleware, WhatsApp Business API and website widgets.",
  met:[["24/7","instant first response"],["Leads","qualified before a human joins"],["1","assistant for staff SOP questions"]],
  tl:[["Week 1","Knowledge base assembly"],["Week 2","Bot build & tone tuning"],["Week 3","WhatsApp + site integration"],["Ongoing","Retraining on new docs"]]},
-{ind:"Fitness Industry",tags:["Web","Marketing"],t:"Complete Digital Growth Platform",
+{ind:"Fitness Industry",img:"fitness",alt:"Group fitness class training in a bright gym studio",tags:["Web","Marketing"],t:"Complete Digital Growth Platform",
  one:"A fitness company's entire online customer-acquisition funnel — built end to end by one team.",
  tech:["HTML","CSS","JavaScript","SEO","Ads","CRM","WhatsApp"],out:"The whole acquisition funnel — traffic to member — runs online.",
  prob:"A growing fitness brand had no coherent digital presence: no funnel, scattered ads, leads dying in DMs, zero attribution on what marketing actually worked.",
@@ -1751,7 +1749,7 @@ const WK=[
  stack:"Hand-built site and landing pages, Meta/Google ads, WhatsApp automation flows, CRM and analytics wiring end to end.",
  met:[["Full","funnel: click → lead → member"],["Auto","WhatsApp + email follow-up"],["Tracked","every rupee of ad spend"]],
  tl:[["Weeks 1–2","Site & landing pages"],["Week 3","Tracking + CRM wiring"],["Week 4","Campaigns live"],["Ongoing","Optimise & report"]]},
-{ind:"Consulting",tags:["Web","Marketing","Consulting"],t:"Consulting Company Digital Presence",
+{ind:"Consulting",img:"consulting",alt:"Consultants working through a plan at a whiteboard",tags:["Web","Marketing","Consulting"],t:"Consulting Company Digital Presence",
  one:"Brand, website and lead engine for a consulting firm — from zero online presence to inbound pipeline.",
  tech:["HTML","CSS","JavaScript","SEO","CRM","Automation"],out:"A credible online presence that generates inbound leads.",
  prob:"The firm won work purely on referrals — no site, no content, no way for a prospect who heard the name to verify credibility or reach out.",
@@ -1759,7 +1757,7 @@ const WK=[
  stack:"Custom-built website, on-page and technical SEO, automated lead routing into CRM, analytics on every enquiry path.",
  met:[["0→1","online presence, launched"],["Inbound","leads captured & routed"],["Brand","identity system delivered"]],
  tl:[["Week 1","Brand & positioning"],["Weeks 2–3","Website & SEO build"],["Week 4","Lead automation live"],["Ongoing","Content engine"]]},
-{ind:"Manufacturing",tags:["Automation","Manufacturing"],t:"Manufacturing Automation Suite",
+{ind:"Manufacturing",img:"mfgauto",alt:"Machine operator in a hard hat working an industrial lathe",tags:["Automation","Manufacturing"],t:"Manufacturing Automation Suite",
  one:"Certificates, approvals, inventory and reports — the paperwork layer of a factory, automated.",
  tech:["Python","Apps Script","SQL","Automation","Email"],out:"Hours of repetitive manual work eliminated every week.",
  prob:"Skilled staff at manufacturing companies — including a listed auto-components manufacturer — spent hours on clerical work: test certificates, approval chains, inventory sheets, consolidated reports, all manual and error-prone.",
@@ -1767,7 +1765,7 @@ const WK=[
  stack:"Python generation pipelines, Apps Script glue, SQL data consolidation, automated email delivery.",
  met:[["99%","certificate accuracy"],["Hrs/week","of clerical work removed"],["6+","workflows automated"]],
  tl:[["Week 1","Workflow mapping"],["Weeks 2–3","Automation build"],["Week 4","Parallel-run validation"],["Ongoing","New workflows added"]]},
-{ind:"Human Resources",tags:["Automation","HR"],t:"HR Automation Platform",
+{ind:"Human Resources",img:"hr",alt:"Two people in a job interview across an office table",tags:["Automation","HR"],t:"HR Automation Platform",
  one:"HR ran on spreadsheets. Now attendance, leave, records and reports run themselves.",
  tech:["Apps Script","Python","Excel","Automation","Notifications"],out:"Repetitive HR operations reduced significantly.",
  prob:"Attendance, employee records, leave balances and performance logs lived in disconnected spreadsheets — every report was a manual copy-paste job and errors crept in monthly.",
@@ -1775,7 +1773,7 @@ const WK=[
  stack:"Apps Script and Python workflows over the existing Excel/Sheets data, with automated notifications to staff and managers.",
  met:[["Auto","attendance & leave tracking"],["1-click","monthly HR reports"],["Fewer","manual errors in records"]],
  tl:[["Week 1","Process & data audit"],["Weeks 2–3","Workflow automation"],["Week 4","Handover & training"],["Ongoing","Support"]]},
-{ind:"Business Intelligence",tags:["Automation","AI"],t:"Executive Reporting Automation",
+{ind:"Business Intelligence",img:"bi",alt:"Printed business charts and reports spread across a desk",tags:["Automation","AI"],t:"Executive Reporting Automation",
  one:"Leadership gets dashboards, charts and even presentations — generated automatically, every day.",
  tech:["Power BI","Python","SQL","Excel","Email"],out:"Leadership receives reports automatically every day.",
  prob:"Daily and weekly business reports were compiled by hand from Excel exports — late, inconsistent, and consuming analyst hours that should have gone into actual analysis.",
@@ -1783,7 +1781,7 @@ const WK=[
  stack:"Power BI dashboards fed by Python/SQL pipelines, scheduled email summaries and auto-built decks.",
  met:[["Daily","reports, zero manual effort"],["Auto","generated presentations"],["On-time","every morning, no chasing"]],
  tl:[["Week 1","Report inventory & sources"],["Week 2","Pipeline build"],["Week 3","Dashboards & scheduling"],["Ongoing","New KPIs on request"]]},
-{ind:"FMCG",tags:["AI","Consulting"],t:"GenAI Awareness & Audit Program",
+{ind:"FMCG",img:"genai",alt:"Audience seated in a lecture hall for a corporate session",tags:["AI","Consulting"],t:"GenAI Awareness & Audit Program",
  one:"An enterprise GenAI audit that ended in a roadmap, not a slide deck on a shelf.",
  tech:["Claude","GPT","Google AI","Workshops"],out:"A clear, prioritised AI implementation roadmap.",
  prob:"An FMCG enterprise knew AI mattered but had no honest picture of where it stood — which departments were ready, what to automate first, and what the risks were.",
@@ -1791,7 +1789,7 @@ const WK=[
  stack:"Hands-on evaluation across Claude, GPT and Google AI tooling, structured department interviews, executive workshop delivery.",
  met:[["Dept-wise","readiness scores"],["Ranked","automation opportunities"],["1","actionable roadmap delivered"]],
  tl:[["Week 1","Department interviews"],["Week 2","Maturity & risk assessment"],["Week 3","Roadmap & exec workshop"],["Optional","Implementation phase"]]},
-{ind:"Food Tech",tags:["Web","Food"],t:"Restaurant Ordering Platform",
+{ind:"Food Tech",img:"ordering",alt:"Diners reading a menu at a restaurant table",tags:["Web","Food"],t:"Restaurant Ordering Platform",
  one:"QR ordering to kitchen dashboard to payment — a restaurant's full operations in one system.",
  tech:["JavaScript","Node.js","Firebase","Payments"],out:"Orders flow from table to kitchen with no paper and no shouting.",
  prob:"Order-taking was manual: waiters relaying to the kitchen, billing errors, no view of inventory, and zero data on what sells.",
@@ -1799,7 +1797,7 @@ const WK=[
  stack:"JavaScript front-end, Node.js and Firebase backend, integrated payment gateway.",
  met:[["QR","ordering, straight to kitchen"],["Live","order & inventory tracking"],["Reports","on what actually sells"]],
  tl:[["Weeks 1–2","Core ordering & kitchen flow"],["Week 3","Payments & inventory"],["Week 4","Pilot in service"],["Ongoing","Feature additions"]]},
-{ind:"Consumer Tech",tags:["Web"],t:"Pet Care Marketplace",
+{ind:"Consumer Tech",img:"pet",alt:"Groomer brushing a small dog at a pet salon",tags:["Web"],t:"Pet Care Marketplace",
  one:"Booking, GPS-tracked walks and food delivery subscriptions — a pet-care business, productised.",
  tech:["JavaScript","Node.js","Firebase","GPS","Payments"],out:"A bookable, trackable, subscription-ready service platform.",
  prob:"Pet walking and food delivery ran on phone calls and trust — no booking system, no proof-of-service, no recurring revenue mechanics.",
@@ -1807,7 +1805,7 @@ const WK=[
  met:[["GPS","proof of every walk"],["Subs","recurring revenue built in"],["Auto","booking & notifications"]],
  stack:"JavaScript app with Node.js/Firebase backend, GPS tracking, payment gateway and push notifications.",
  tl:[["Weeks 1–2","Booking & payments"],["Week 3","GPS tracking & subs"],["Week 4","Launch"],["Ongoing","Growth features"]]},
-{ind:"Retail",tags:["Web","Retail","Marketing"],t:"E-Commerce Websites",
+{ind:"Retail",img:"ecom",alt:"Miniature shopping trolley and parcels on a keyboard",tags:["Web","Retail","Marketing"],t:"E-Commerce Websites",
  one:"Multiple conversion-optimised online stores — payments, inventory, coupons, analytics, done.",
  tech:["HTML","CSS","JavaScript","Payments","SEO","Analytics"],out:"Stores that are built to convert, not just to exist.",
  prob:"Retailers needed to sell online but off-the-shelf stores leaked conversions — slow pages, clumsy checkout, no tracking, no marketing hooks.",
@@ -1815,7 +1813,7 @@ const WK=[
  stack:"Custom storefronts with integrated payments, inventory and coupon engines, SEO and analytics wired from day one.",
  met:[["CRO","first checkout design"],["Full","admin & inventory control"],["Wired","for ads & email from day 1"]],
  tl:[["Weeks 1–2","Store & checkout build"],["Week 3","Payments & inventory"],["Week 4","SEO, analytics, launch"],["Ongoing","CRO iterations"]]},
-{ind:"Marketing AI",tags:["AI","Marketing"],t:"AI Content Reporting Software",
+{ind:"Marketing AI",img:"contentai",alt:"Person writing content on a laptop at a white desk",tags:["AI","Marketing"],t:"AI Content Reporting Software",
  one:"Software that reads your marketing content and tells you — automatically — what to fix.",
  tech:["Claude","OpenAI API","Python","SEO","Cloud"],out:"Actionable content reports without an analyst in the loop.",
  prob:"Marketing teams produced content constantly but reviewed it rarely — no consistent scoring, no SEO feedback loop, insights trapped in ad-hoc audits.",
@@ -1823,7 +1821,7 @@ const WK=[
  stack:"Claude and OpenAI models for analysis and scoring, Python pipeline, cloud-hosted with scheduled report delivery.",
  met:[["Auto","content scoring on every piece"],["SEO","gaps flagged with fixes"],["Exec","summaries, no analyst hours"]],
  tl:[["Week 1","Scoring rubric & pipeline"],["Week 2","SEO & insights modules"],["Week 3","Reports & scheduling"],["Ongoing","Model tuning"]]},
-{ind:"D2C Retail",tags:["AI","Marketing"],t:"AI Visibility & GEO Program",
+{ind:"D2C Retail",img:"geo",alt:"Person comparing search results on a phone and laptop",tags:["AI","Marketing"],t:"AI Visibility & GEO Program",
  one:"Getting a brand cited and recommended by ChatGPT, Gemini and Perplexity — not just ranked on Google.",
  tech:["Claude","Schema.org","Python","SEO","Analytics"],out:"Brand now appears in AI-engine answers for its category's buying queries.",
  prob:"The brand ranked fine on Google but was invisible inside ChatGPT, Gemini and Perplexity answers — a growing share of category research now happens inside AI chat, not search results.",
@@ -1831,7 +1829,7 @@ const WK=[
  stack:"Claude for content structuring, Schema.org markup across key pages, a Python tracker polling AI engines weekly, dashboards in the existing reporting stack.",
  met:[["Cited","in AI answers across 3 engines"],["Weekly","AI-visibility tracking dashboard"],["Ranked","content calendar by citation gap"]],
  tl:[["Week 1","AI-visibility audit & citation gaps"],["Weeks 2–3","Schema + content rewrites"],["Week 4","Tracking dashboard live"],["Ongoing","Monthly citation reporting"]]},
-{ind:"Startup / Fundraising",tags:["Web","Consulting"],t:"Investor-First Company Website",
+{ind:"Startup / Fundraising",img:"investor",alt:"Founders presenting to investors in a meeting room",tags:["Web","Consulting"],t:"Investor-First Company Website",
  one:"A company site built to survive the moment a VC associate opens it mid-diligence, not just a marketing page.",
  tech:["Next.js","JavaScript","CMS","Analytics","Cloud"],out:"One site that reads correctly to customers and investors on the same page.",
  prob:"The founder's site was a template — thin on traction, no data-room link, nothing that would survive a 90-second scan before a first investor call.",
@@ -1839,7 +1837,7 @@ const WK=[
  stack:"Next.js front-end, headless CMS for team/press updates, analytics segmented to separate investor referral traffic from customer traffic.",
  met:[["1","site serving two audiences at once"],["Data room","linked directly from the homepage"],["2 wks","positioning to launch"]],
  tl:[["Week 1","Positioning workshop & content audit"],["Week 2","Build & data-room wiring"],["Ongoing","Update alongside the raise"]]},
-{ind:"Finance / Trading",tags:["Web","Finance"],t:"Trading Portfolio Management System",
+{ind:"Finance / Trading",img:"trading",alt:"Trading charts running across multiple monitors",tags:["Web","Finance"],t:"Trading Portfolio Management System",
  one:"A PMS that shows a trader their real exposure across positions in one screen, not five spreadsheets.",
  tech:["JavaScript","Python","Postgres","Charts","Cloud"],out:"Position, P&L and risk visible in one place, updated live.",
  prob:"Positions were tracked across broker exports and manual spreadsheets — P&L and exposure were always a day stale, and reconciling them ate hours every evening.",
@@ -1847,7 +1845,7 @@ const WK=[
  stack:"Python services normalising broker/exchange data into Postgres, a JavaScript dashboard with live charts, scheduled statement exports.",
  met:[["Live","P&L and exposure, not end-of-day"],["1","screen instead of five spreadsheets"],["Auto","statement generation"]],
  tl:[["Weeks 1–2","Data model & broker feed integration"],["Week 3","Dashboard & charting build"],["Week 4","Statements & reconciliation checks"],["Ongoing","New instrument types as needed"]]},
-{ind:"Apparel / Export",tags:["Web","Retail"],t:"Apparel Export Company Website",
+{ind:"Apparel / Export",img:"apparel",alt:"Seamstress measuring a shirt in a garment workshop",tags:["Web","Retail"],t:"Apparel Export Company Website",
  one:"A B2B storefront and catalogue for a Philippines-based apparel exporter selling to buyers who'd never seen the factory.",
  tech:["JavaScript","CMS","SEO","Analytics","Cloud"],out:"International buyers can evaluate the catalogue and place enquiries without a site visit.",
  prob:"The exporter sold entirely through trade shows and agent relationships — buyers researching online found nothing that matched the quality of what the factory actually shipped.",
@@ -1855,7 +1853,7 @@ const WK=[
  stack:"CMS-driven catalogue for the merchandising team to update directly, RFQ form routed to sales, analytics on buyer-country traffic.",
  met:[["RFQ flow","replacing a generic contact form"],["Certs","& compliance docs surfaced upfront"],["Global","SEO for buyer-side search terms"]],
  tl:[["Weeks 1–2","Catalogue structure & content"],["Week 3","Build & RFQ flow"],["Week 4","SEO & launch"],["Ongoing","Seasonal catalogue updates"]]},
-{ind:"Manufacturing / Logistics",tags:["Automation","Manufacturing"],t:"Inventory & Warehousing Tracking System",
+{ind:"Manufacturing / Logistics",img:"warehouse",alt:"Warehouse worker checking stock among tall racking",tags:["Automation","Manufacturing"],t:"Inventory & Warehousing Tracking System",
  one:"Real-time stock levels and bin locations across multiple warehouses, instead of a monthly physical count.",
  tech:["Python","Barcode/QR","Postgres","JavaScript","Cloud"],out:"Stock levels trusted enough to plan production against, without walking the warehouse.",
  prob:"Inventory lived in a spreadsheet updated after physical counts — stockouts and overordering were routine, and nobody could say what was actually on a given shelf without walking the warehouse.",
@@ -1863,7 +1861,7 @@ const WK=[
  stack:"Python backend on Postgres, barcode/QR scanning at intake and dispatch points, a JavaScript dashboard for stock and reorder views.",
  met:[["Live","stock by warehouse & bin location"],["Alerts","before a stockout, not after"],["0","manual monthly recounts needed"]],
  tl:[["Week 1","Warehouse & SKU mapping"],["Weeks 2–3","Scanning workflow & backend build"],["Week 4","Dashboard, alerts & staff training"],["Ongoing","New warehouse rollouts"]]},
-{ind:"Food Delivery",tags:["Web","Food"],t:"Home-Style Meal Delivery Platform",
+{ind:"Food Delivery",img:"mealdelivery",alt:"Prepared meal containers packed for delivery",tags:["Web","Food"],t:"Home-Style Meal Delivery Platform",
  one:"A 'ghar ka khana' marketplace connecting home cooks to subscribers who are tired of restaurant food and swiggy fatigue.",
  tech:["JavaScript","Payments","WhatsApp","CMS","Cloud"],out:"A subscription meal platform launched with cook onboarding and delivery logistics solved, not just a menu page.",
  prob:"The founder had home cooks lined up and subscriber demand validated on WhatsApp groups, but no way to take payments, manage weekly menus, or route delivery at any scale.",
@@ -1871,7 +1869,7 @@ const WK=[
  stack:"JavaScript ordering front-end, payment gateway for subscriptions, WhatsApp Business API for confirmations, admin CMS for cooks to manage weekly menus.",
  met:[["Subscriptions","+ one-off ordering, both live"],["WhatsApp","confirmations & delivery reminders"],["Multi-cook","menu management from day 1"]],
  tl:[["Week 1","Cook onboarding flow & menu structure"],["Weeks 2–3","Ordering, payments & delivery routing"],["Week 4","WhatsApp automation & launch"],["Ongoing","New cook & area rollouts"]]},
-{ind:"Marketing AI",tags:["AI","Marketing"],t:"Trend-Spotter Market Signal Dashboard",
+{ind:"Marketing AI",img:"trends",alt:"Market signal charts rendered on a data dashboard",tags:["AI","Marketing"],t:"Trend-Spotter Market Signal Dashboard",
  one:"Flags which topics are gaining traction in a category before competitors are already posting about them.",
  tech:["Python","Claude","APIs","Charts","Cloud"],out:"The marketing team leads on trends instead of reacting to competitors' posts.",
  prob:"The team found out about category trends by watching competitors publish first — no systematic way to scan what was actually gaining traction versus what just felt trendy.",
@@ -1911,8 +1909,8 @@ function wkCard(p,i){
  const [acc,ico]=wkArtOf(p);
  return `<article class="wk-card out" data-tags="${p.tags.join(' ')}" style="--wa:${acc}">
   <div class="wk-art">
+   <img src="/assets/work/${p.img}.webp" alt="${p.alt||p.t}" loading="lazy" decoding="async" width="800" height="426">
    <span class="wk-idx">${String(i+1).padStart(2,'0')}</span>
-   <svg class="wk-wm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ico}</svg>
   </div>
   <div class="wk-top"><span class="pill">${p.ind}</span>
    <button class="wk-x" aria-expanded="false" aria-label="Toggle project details">+</button></div>
