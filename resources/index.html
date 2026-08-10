@@ -81,7 +81,36 @@
 
 .pillar-card{position:relative;overflow:hidden;padding:32px 34px;border-radius:20px;background:linear-gradient(155deg,color-mix(in srgb,var(--brand) 7%,var(--surface)),var(--surface) 60%);border-color:color-mix(in srgb,var(--brand) 28%,var(--border));transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease}
 .pillar-card::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:linear-gradient(90deg,var(--brand),var(--signal))}
-.pillar-card::after{content:"";position:absolute;right:-70px;top:-70px;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--brand) 20%,transparent),transparent 70%);pointer-events:none}
+.pillar-card::after{content:"";position:absolute;right:0;top:0;bottom:0;width:46%;pointer-events:none;
+  background:linear-gradient(272deg,transparent 0%,color-mix(in srgb,var(--surface) 55%,transparent) 34%,var(--surface) 78%)}
+.pillar-photo{position:absolute;right:0;top:0;bottom:0;width:46%;object-fit:cover;pointer-events:none;
+  opacity:.62;transition:transform .5s cubic-bezier(.22,1,.36,1),opacity .3s;
+  -webkit-mask-image:linear-gradient(272deg,#000 30%,transparent 88%);
+  mask-image:linear-gradient(272deg,#000 30%,transparent 88%)}
+.pillar-card:hover .pillar-photo{transform:scale(1.04);opacity:.74}
+:root[data-theme="dark"] .pillar-photo{opacity:.44}
+:root[data-theme="dark"] .pillar-card:hover .pillar-photo{opacity:.58}
+.pillar-card>*:not(.pillar-photo){position:relative;z-index:1}
+@media(max-width:720px){.pillar-photo,.pillar-card::after{width:100%;opacity:.16}
+  :root[data-theme="dark"] .pillar-photo{opacity:.12}}
+
+/* ══ STUDY CARDS: sector photo band ══ */
+a.card.study-card{position:relative;display:flex;flex-direction:column;overflow:hidden;padding:0}
+.study-card .study-art{display:block;position:relative;height:116px;flex:none;overflow:hidden;
+  background:var(--surface2);border-bottom:1px solid var(--border)}
+.study-card .study-body{display:flex}
+.study-art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .55s cubic-bezier(.22,1,.36,1)}
+.study-card:hover .study-art img{transform:scale(1.07)}
+.study-art::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,color-mix(in srgb,var(--brand) 34%,transparent) 0%,transparent 52%),
+             linear-gradient(0deg,color-mix(in srgb,var(--surface) 62%,transparent) 0%,transparent 46%)}
+.study-art .pill{position:absolute;left:14px;top:12px;z-index:2;background:rgba(9,9,12,.62);
+  color:#fff;border-color:rgba(255,255,255,.26);backdrop-filter:blur(6px)}
+.study-body{padding:18px 20px 20px;display:flex;flex-direction:column;flex:1}
+.study-body h3{font-family:Fraunces,serif;font-weight:500;font-size:1.12rem;line-height:1.32;margin:0 0 6px}
+.study-body p{font-size:.88rem;margin:0 0 14px;flex:1}
+.study-body .go{margin-top:auto}
 .pillar-card:hover{transform:translateY(-4px);box-shadow:0 14px 34px color-mix(in srgb,var(--brand) 14%,transparent);border-color:color-mix(in srgb,var(--brand) 45%,var(--border))}
 .pillar-card h3{position:relative}
 .pillar-card:hover .go{transform:translateX(5px)}
@@ -119,6 +148,7 @@
 
 <section class="section-tight">
   <a class="card pillar-card" href="/resources/generative-engine-optimization-guide/" style="display:block">
+    <img class="pillar-photo" src="/assets/resources/pillar.webp" alt="" loading="lazy" decoding="async" width="800" height="409">
     <span class="pill up">GEO · Pillar guide</span>
     <h3 style="font-family:Fraunces,serif;font-weight:500;font-size:1.6rem;margin-top:12px">The Complete Guide to Generative Engine Optimization (2026)</h3>
     <p style="margin-top:8px">What GEO is, how AI engines choose which brands to recommend, and the 90-day playbook we run for clients.</p>
@@ -160,17 +190,50 @@
     <span class="pill up" style="white-space:nowrap;flex:none">11 studies · Q3 2026</span>
   </div>
   <div class="grid g3">
-    <a class="card" href="/resources/ai-visibility-indian-brands-study/" data-cat="research geo" data-kw="study chatgpt 50 indian brands invisible visibility master"><span class="pill">GEO · Master study</span><h3 style="margin-top:10px">50 Indian brands. 34 were invisible.</h3><p style="font-size:.9rem">The flagship cross-sector study that started the series. · 8 min</p><span class="go">Read →</span></a>
-    <a class="card" href="/resources/ai-visibility-bfsi-study/" data-cat="research geo" data-kw="study chatgpt bfsi finance insurance nbfc brands invisible visibility"><span class="pill">GEO · BFSI</span><h3 style="margin-top:10px">25 Indian BFSI brands. 17 were invisible.</h3><p style="font-size:.9rem">NBFCs, insurers and brokerages — the compliance trap that made most invisible. · 8 min</p><span class="go">Read →</span></a>
-    <a class="card" href="/resources/ai-visibility-healthcare-study/" data-cat="research geo" data-kw="study chatgpt hospital healthcare chains brands invisible visibility"><span class="pill">GEO · Healthcare</span><h3 style="margin-top:10px">20 Indian hospital chains. 13 were invisible.</h3><p style="font-size:.9rem">A 10% pass rate in a category where AI errors have clinical consequences. · 8 min</p><span class="go">Read →</span></a>
-    <a class="card" href="/resources/ai-visibility-real-estate-study/" data-cat="research geo" data-kw="study chatgpt real estate developer brands invisible visibility"><span class="pill">GEO · Real Estate</span><h3 style="margin-top:10px">20 Indian developers. 14 were invisible.</h3><p style="font-size:.9rem">Crores spent on hoardings. Zero AI footprint. Why project marketing missed the brand layer. · 8 min</p><span class="go">Read →</span></a>
-    <a class="card" href="/resources/ai-visibility-edtech-study/" data-cat="research geo" data-kw="study chatgpt edtech education brands invisible visibility"><span class="pill">GEO · EdTech</span><h3 style="margin-top:10px">20 Indian edtech brands. 12 were invisible.</h3><p style="font-size:.9rem">Billions raised. Instagram mastered. AI presence: almost zero. · 8 min</p><span class="go">Read →</span></a>
-    <a class="card" href="/resources/ai-visibility-logistics-study/" data-cat="research geo" data-kw="study chatgpt logistics courier supply chain brands invisible visibility"><span class="pill">GEO · Logistics</span><h3 style="margin-top:10px">20 Indian logistics companies. 14 were invisible.</h3><p style="font-size:.9rem">When procurement uses AI to shortlist, B2B brands built for RFQ forms are invisible. · 8 min</p><span class="go">Read →</span></a>
-    <a class="card" href="/resources/ai-visibility-manufacturing-study/" data-cat="research geo" data-kw="study chatgpt manufacturing b2b industrial brands invisible visibility"><span class="pill">GEO · Manufacturing</span><h3 style="margin-top:10px">25 Indian manufacturers. 18 were invisible.</h3><p style="font-size:.9rem">The worst pass rate of any sector: 8%. India's China+1 moment meets an AI blind spot. · 9 min</p><span class="go">Read →</span></a>
-    <a class="card" href="/resources/ai-visibility-d2c-brands-study/" data-cat="research geo" data-kw="study chatgpt d2c consumer brands invisible visibility instagram"><span class="pill">GEO · D2C</span><h3 style="margin-top:10px">25 Indian D2C brands. 16 were invisible.</h3><p style="font-size:.9rem">The Instagram playbook built followers. AI presence: another story. · 8 min</p><span class="go">Read →</span></a>
-    <a class="card" href="/resources/ai-visibility-hospitality-study/" data-cat="research geo" data-kw="study chatgpt hotel hospitality brands invisible visibility ota"><span class="pill">GEO · Hospitality</span><h3 style="margin-top:10px">20 Indian hotel brands. 13 were invisible.</h3><p style="font-size:.9rem">OTA rankings and AI recommendations are different games — most chains only played one. · 8 min</p><span class="go">Read →</span></a>
-    <a class="card" href="/resources/ai-visibility-qsr-study/" data-cat="research geo" data-kw="study chatgpt qsr restaurant chain brands invisible visibility zomato"><span class="pill">GEO · QSR</span><h3 style="margin-top:10px">20 Indian QSR brands. 14 were invisible.</h3><p style="font-size:.9rem">Zomato won the AI discovery layer. Restaurant chains are paying commission twice. · 8 min</p><span class="go">Read →</span></a>
-    <a class="card" href="/resources/ai-visibility-legal-study/" data-cat="research geo" data-kw="study chatgpt law firm legal professional services invisible visibility"><span class="pill">GEO · Legal</span><h3 style="margin-top:10px">15 Indian law firms. 10 were invisible.</h3><p style="font-size:.9rem">Corporate clients research on AI first. Most firms misread bar council rules as a content ban. · 8 min</p><span class="go">Read →</span></a>
+    <a class="card study-card" href="/resources/ai-visibility-indian-brands-study/" data-cat="research geo" data-kw="study chatgpt 50 indian brands invisible visibility master">
+      <span class="study-art"><img src="/assets/resources/study.webp" alt="Analyst working through printed data reports" loading="lazy" decoding="async" width="800" height="426"><span class="pill">GEO · Master study</span></span>
+      <span class="study-body"><h3>50 Indian brands. 34 were invisible.</h3><p>The flagship cross-sector study that started the series. · 8 min</p><span class="go">Read →</span></span>
+    </a>
+    <a class="card study-card" href="/resources/ai-visibility-bfsi-study/" data-cat="research geo" data-kw="study chatgpt bfsi finance insurance nbfc brands invisible visibility">
+      <span class="study-art"><img src="/assets/industries/finance.webp" alt="Finance team reviewing figures at a meeting table" loading="lazy" decoding="async" width="800" height="426"><span class="pill">GEO · BFSI</span></span>
+      <span class="study-body"><h3>25 Indian BFSI brands. 17 were invisible.</h3><p>NBFCs, insurers and brokerages — the compliance trap that made most invisible. · 8 min</p><span class="go">Read →</span></span>
+    </a>
+    <a class="card study-card" href="/resources/ai-visibility-healthcare-study/" data-cat="research geo" data-kw="study chatgpt hospital healthcare chains brands invisible visibility">
+      <span class="study-art"><img src="/assets/industries/hospital.webp" alt="Clinical staff consulting in a modern hospital" loading="lazy" decoding="async" width="800" height="426"><span class="pill">GEO · Healthcare</span></span>
+      <span class="study-body"><h3>20 Indian hospital chains. 13 were invisible.</h3><p>A 10% pass rate in a category where AI errors have clinical consequences. · 8 min</p><span class="go">Read →</span></span>
+    </a>
+    <a class="card study-card" href="/resources/ai-visibility-real-estate-study/" data-cat="research geo" data-kw="study chatgpt real estate developer brands invisible visibility">
+      <span class="study-art"><img src="/assets/industries/realestate.webp" alt="Modern residential apartment buildings at dusk" loading="lazy" decoding="async" width="800" height="426"><span class="pill">GEO · Real Estate</span></span>
+      <span class="study-body"><h3>20 Indian developers. 14 were invisible.</h3><p>Crores spent on hoardings. Zero AI footprint. Why project marketing missed the brand layer. · 8 min</p><span class="go">Read →</span></span>
+    </a>
+    <a class="card study-card" href="/resources/ai-visibility-edtech-study/" data-cat="research geo" data-kw="study chatgpt edtech education brands invisible visibility">
+      <span class="study-art"><img src="/assets/industries/education.webp" alt="Teacher taking questions in a bright classroom" loading="lazy" decoding="async" width="800" height="426"><span class="pill">GEO · EdTech</span></span>
+      <span class="study-body"><h3>20 Indian edtech brands. 12 were invisible.</h3><p>Billions raised. Instagram mastered. AI presence: almost zero. · 8 min</p><span class="go">Read →</span></span>
+    </a>
+    <a class="card study-card" href="/resources/ai-visibility-logistics-study/" data-cat="research geo" data-kw="study chatgpt logistics courier supply chain brands invisible visibility">
+      <span class="study-art"><img src="/assets/industries/logistics.webp" alt="Cargo trucks loading at a distribution centre" loading="lazy" decoding="async" width="800" height="426"><span class="pill">GEO · Logistics</span></span>
+      <span class="study-body"><h3>20 Indian logistics companies. 14 were invisible.</h3><p>When procurement uses AI to shortlist, B2B brands built for RFQ forms are invisible. · 8 min</p><span class="go">Read →</span></span>
+    </a>
+    <a class="card study-card" href="/resources/ai-visibility-manufacturing-study/" data-cat="research geo" data-kw="study chatgpt manufacturing b2b industrial brands invisible visibility">
+      <span class="study-art"><img src="/assets/industries/manufacturing.webp" alt="Robotic welding arms on an assembly line" loading="lazy" decoding="async" width="800" height="426"><span class="pill">GEO · Manufacturing</span></span>
+      <span class="study-body"><h3>25 Indian manufacturers. 18 were invisible.</h3><p>The worst pass rate of any sector: 8%. India's China+1 moment meets an AI blind spot. · 9 min</p><span class="go">Read →</span></span>
+    </a>
+    <a class="card study-card" href="/resources/ai-visibility-d2c-brands-study/" data-cat="research geo" data-kw="study chatgpt d2c consumer brands invisible visibility instagram">
+      <span class="study-art"><img src="/assets/industries/retail.webp" alt="Shopper carrying bags through a retail store" loading="lazy" decoding="async" width="800" height="426"><span class="pill">GEO · D2C</span></span>
+      <span class="study-body"><h3>25 Indian D2C brands. 16 were invisible.</h3><p>The Instagram playbook built followers. AI presence: another story. · 8 min</p><span class="go">Read →</span></span>
+    </a>
+    <a class="card study-card" href="/resources/ai-visibility-hospitality-study/" data-cat="research geo" data-kw="study chatgpt hotel hospitality brands invisible visibility ota">
+      <span class="study-art"><img src="/assets/industries/hospitality.webp" alt="Interior of a modern hotel suite" loading="lazy" decoding="async" width="800" height="426"><span class="pill">GEO · Hospitality</span></span>
+      <span class="study-body"><h3>20 Indian hotel brands. 13 were invisible.</h3><p>OTA rankings and AI recommendations are different games — most chains only played one. · 8 min</p><span class="go">Read →</span></span>
+    </a>
+    <a class="card study-card" href="/resources/ai-visibility-qsr-study/" data-cat="research geo" data-kw="study chatgpt qsr restaurant chain brands invisible visibility zomato">
+      <span class="study-art"><img src="/assets/industries/restaurant.webp" alt="Chef cooking over a flame in a restaurant kitchen" loading="lazy" decoding="async" width="800" height="426"><span class="pill">GEO · QSR</span></span>
+      <span class="study-body"><h3>20 Indian QSR brands. 14 were invisible.</h3><p>Zomato won the AI discovery layer. Restaurant chains are paying commission twice. · 8 min</p><span class="go">Read →</span></span>
+    </a>
+    <a class="card study-card" href="/resources/ai-visibility-legal-study/" data-cat="research geo" data-kw="study chatgpt law firm legal professional services invisible visibility">
+      <span class="study-art"><img src="/assets/industries/legal.webp" alt="Gavel, scales of justice and law books on a desk" loading="lazy" decoding="async" width="800" height="426"><span class="pill">GEO · Legal</span></span>
+      <span class="study-body"><h3>15 Indian law firms. 10 were invisible.</h3><p>Corporate clients research on AI first. Most firms misread bar council rules as a content ban. · 8 min</p><span class="go">Read →</span></span>
+    </a>
   </div>
 </section>
 
