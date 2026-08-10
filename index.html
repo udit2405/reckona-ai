@@ -193,8 +193,26 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--ink)}
 @media(max-width:660px){.tl-grid{grid-template-columns:1fr}}
 .tl-card{--tc:var(--brand);position:relative;display:flex;flex-direction:column;text-align:left;
   background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:22px;
-  font:inherit;color:inherit;cursor:pointer;overflow:hidden;
+  font:inherit;color:inherit;cursor:pointer;overflow:hidden;isolation:isolate;
   transition:transform .25s cubic-bezier(.22,1,.36,1),box-shadow .25s,border-color .25s}
+/* generated card background: accent mesh + a motif drawn from the tool itself */
+.tl-bg{position:absolute;inset:0;z-index:0;pointer-events:none;border-radius:inherit;overflow:hidden}
+.tl-bg::before{content:"";position:absolute;inset:0;
+  background:
+    radial-gradient(70% 90% at 100% 0%,color-mix(in srgb,var(--tc) 20%,transparent),transparent 62%),
+    radial-gradient(55% 70% at 78% 18%,color-mix(in srgb,var(--tc) 13%,transparent),transparent 70%),
+    radial-gradient(90% 60% at 0% 100%,color-mix(in srgb,var(--tc) 7%,transparent),transparent 68%);
+  transition:opacity .35s;opacity:.9}
+.tl-bg svg{position:absolute;right:-14px;top:-10px;width:154px;height:128px;color:var(--tc);
+  opacity:.17;transition:transform .5s cubic-bezier(.22,1,.36,1),opacity .35s;
+  -webkit-mask-image:linear-gradient(215deg,#000 25%,transparent 82%);
+  mask-image:linear-gradient(215deg,#000 25%,transparent 82%)}
+.tl-card:hover .tl-bg svg{transform:translate(-5px,4px) scale(1.07);opacity:.26}
+.tl-card:hover .tl-bg::before{opacity:1}
+.tl-card>*:not(.tl-bg){position:relative;z-index:1}
+:root[data-theme="dark"] .tl-bg::before{opacity:.5}
+:root[data-theme="dark"] .tl-bg svg{opacity:.13}
+:root[data-theme="dark"] .tl-card:hover .tl-bg svg{opacity:.2}
 .tl-card::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:var(--tc);
   transform:scaleX(0);transform-origin:left;transition:transform .35s cubic-bezier(.22,1,.36,1)}
 .tl-card:hover{transform:translateY(-5px);border-color:color-mix(in srgb,var(--tc) 42%,var(--border));
@@ -942,6 +960,7 @@ a.res-row:hover .res-arrow{transform:translateX(5px);color:var(--brand)}
           <div class="tl-ghead"><h2>Diagnose</h2><span>Score where you stand today</span></div>
           <div class="tl-grid">
             <button class="tl-card" data-tool="geo" data-acc="teal" type="button">
+              <span class="tl-bg" aria-hidden="true"><svg viewBox="0 0 154 128" fill="none" stroke="currentColor" stroke-width="2"><circle cx="112" cy="34" r="18"/><circle cx="112" cy="34" r="34"/><circle cx="112" cy="34" r="50"/><path d="M112 19.5l3.7 8.8 8.8 3.7-8.8 3.7-3.7 8.8-3.7-8.8-8.8-3.7 8.8-3.7 3.7-8.8Z" fill="currentColor" stroke="none"/></svg></span>
               <span class="tl-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 2 5 5 2-5 2-2 5-2-5-5-2 5-2 2-5Z"/><path d="M19 15l.8 1.9 1.9.8-1.9.8-.8 1.9-.8-1.9-1.9-.8 1.9-.8.8-1.9Z"/></svg></span>
               <h3>AI Visibility (GEO) Score</h3>
               <p>How likely ChatGPT, Gemini and Perplexity are to cite you when buyers ask about your category.</p>
@@ -949,6 +968,7 @@ a.res-row:hover .res-arrow{transform:translateX(5px);color:var(--brand)}
               <span class="tl-meta">6 questions · 30 sec<span class="tl-go">Run tool →</span></span>
             </button>
             <button class="tl-card" data-tool="ready" data-acc="violet" type="button">
+              <span class="tl-bg" aria-hidden="true"><svg viewBox="0 0 154 128" fill="none" stroke="currentColor" stroke-width="2"><path d="M60 84 96 60l32 16M96 60l8-36M60 84 40 52M104 24l30 10"/><circle cx="96" cy="60" r="7.5" fill="currentColor" stroke="none"/><circle cx="60" cy="84" r="5"/><circle cx="128" cy="76" r="5"/><circle cx="104" cy="24" r="5"/><circle cx="40" cy="52" r="4"/><circle cx="134" cy="34" r="4"/></svg></span>
               <span class="tl-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M16.9 16.9l2.2 2.2M19.1 4.9 17 7M7 17l-2.1 2.1"/></svg></span>
               <h3>AI Readiness Assessment</h3>
               <p>How much of your day-to-day operations could realistically be automated inside a year.</p>
@@ -956,6 +976,7 @@ a.res-row:hover .res-arrow{transform:translateX(5px);color:var(--brand)}
               <span class="tl-meta">5 questions · 30 sec<span class="tl-go">Run tool →</span></span>
             </button>
             <button class="tl-card" data-tool="roi" data-acc="indigo" type="button">
+              <span class="tl-bg" aria-hidden="true"><svg viewBox="0 0 154 128" fill="none" stroke="currentColor" stroke-width="2"><path d="M30 96 58 70l20 14 26-40 30-22V112H30Z" fill="currentColor" stroke="none" opacity=".2"/><path d="M30 96 58 70l20 14 26-40 30-22" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="134" cy="22" r="5.5" fill="currentColor" stroke="none"/></svg></span>
               <span class="tl-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 15 4-5 3 3 5-7"/></svg></span>
               <h3>Marketing ROI Calculator</h3>
               <p>Whether your current spend is actually turning a profit once conversion and customer value are in.</p>
@@ -969,6 +990,7 @@ a.res-row:hover .res-arrow{transform:translateX(5px);color:var(--brand)}
           <div class="tl-ghead"><h2>Plan &amp; create</h2><span>Size the spend, draft the copy</span></div>
           <div class="tl-grid">
             <button class="tl-card" data-tool="budget" data-acc="amber" type="button">
+              <span class="tl-bg" aria-hidden="true"><svg viewBox="0 0 154 128" fill="none" stroke="currentColor" stroke-width="2"><rect x="44" y="72" width="16" height="42" rx="4" fill="currentColor" stroke="none" opacity=".45"/><rect x="70" y="52" width="16" height="62" rx="4" fill="currentColor" stroke="none" opacity=".65"/><rect x="96" y="30" width="16" height="84" rx="4" fill="currentColor" stroke="none"/><rect x="122" y="60" width="16" height="54" rx="4" fill="currentColor" stroke="none" opacity=".4"/></svg></span>
               <span class="tl-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="13" rx="2.5"/><path d="M2 10.5h20"/><path d="M6 15h4"/></svg></span>
               <h3>Marketing Budget Calculator</h3>
               <p>What companies at your revenue and growth ambition actually spend, benchmarked for India.</p>
@@ -976,6 +998,7 @@ a.res-row:hover .res-arrow{transform:translateX(5px);color:var(--brand)}
               <span class="tl-meta">3 inputs · instant<span class="tl-go">Run tool →</span></span>
             </button>
             <button class="tl-card" data-tool="head" data-acc="pink" type="button">
+              <span class="tl-bg" aria-hidden="true"><svg viewBox="0 0 154 128" fill="none" stroke="currentColor" stroke-width="2"><rect x="36" y="28" width="106" height="14" rx="7" fill="currentColor" stroke="none"/><rect x="36" y="54" width="76" height="9" rx="4.5" fill="currentColor" stroke="none" opacity=".55"/><rect x="36" y="72" width="94" height="9" rx="4.5" fill="currentColor" stroke="none" opacity=".38"/><rect x="36" y="90" width="56" height="9" rx="4.5" fill="currentColor" stroke="none" opacity=".24"/></svg></span>
               <span class="tl-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V5h16v2"/><path d="M9 5v14"/><path d="M7 19h4"/><path d="M15 12h5"/><path d="M17.5 12v7"/><path d="M16 19h3"/></svg></span>
               <h3>Headline Generator</h3>
               <p>Five proven headline frameworks applied to what you sell and who buys it.</p>
@@ -983,6 +1006,7 @@ a.res-row:hover .res-arrow{transform:translateX(5px);color:var(--brand)}
               <span class="tl-meta">3 inputs · instant<span class="tl-go">Run tool →</span></span>
             </button>
             <button class="tl-card" data-tool="meta" data-acc="cyan" type="button">
+              <span class="tl-bg" aria-hidden="true"><svg viewBox="0 0 154 128" fill="none" stroke="currentColor" stroke-width="2"><rect x="34" y="24" width="108" height="44" rx="9" stroke-width="2.2"/><rect x="45" y="35" width="56" height="7" rx="3.5" fill="currentColor" stroke="none"/><rect x="45" y="49" width="84" height="6" rx="3" fill="currentColor" stroke="none" opacity=".45"/><rect x="34" y="78" width="108" height="36" rx="9" stroke-width="2.2" opacity=".4"/><rect x="45" y="89" width="46" height="6" rx="3" fill="currentColor" stroke="none" opacity=".38"/></svg></span>
               <span class="tl-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4" width="19" height="16" rx="2.5"/><path d="M2.5 9h19"/><path d="M6 13h8"/><path d="M6 16.5h11"/></svg></span>
               <h3>Meta Description Generator</h3>
               <p>Click-worthy meta descriptions written to the length Google actually displays.</p>
