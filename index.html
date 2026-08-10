@@ -182,6 +182,87 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--ink)}
 /* TOOLS */
 .tool-result{margin-top:20px;padding:20px 22px;border-radius:14px;background:var(--surface2);border:1px solid var(--border);display:none}
 .tool-result.show{display:block;animation:rise .3s ease-out}
+
+/* ══ TOOLS: LAUNCHER GRID ══ */
+.tl-groups{display:flex;flex-direction:column;gap:34px;margin-top:34px}
+.tl-ghead{display:flex;align-items:baseline;gap:12px;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.tl-ghead h2{margin:0;font-size:1.05rem;font-weight:700}
+.tl-ghead span{font-size:.83rem;color:var(--ink2)}
+.tl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:1000px){.tl-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:660px){.tl-grid{grid-template-columns:1fr}}
+.tl-card{--tc:var(--brand);position:relative;display:flex;flex-direction:column;text-align:left;
+  background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:22px;
+  font:inherit;color:inherit;cursor:pointer;overflow:hidden;
+  transition:transform .25s cubic-bezier(.22,1,.36,1),box-shadow .25s,border-color .25s}
+.tl-card::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:var(--tc);
+  transform:scaleX(0);transform-origin:left;transition:transform .35s cubic-bezier(.22,1,.36,1)}
+.tl-card:hover{transform:translateY(-5px);border-color:color-mix(in srgb,var(--tc) 42%,var(--border));
+  box-shadow:0 14px 34px color-mix(in srgb,var(--tc) 15%,transparent)}
+.tl-card:hover::before{transform:scaleX(1)}
+.tl-card:focus-visible{outline:2px solid var(--tc);outline-offset:3px}
+.tl-icon{width:44px;height:44px;border-radius:13px;display:grid;place-items:center;margin-bottom:15px;
+  background:color-mix(in srgb,var(--tc) 12%,var(--surface2));
+  border:1px solid color-mix(in srgb,var(--tc) 26%,transparent);color:var(--tc)}
+.tl-icon svg{width:21px;height:21px}
+.tl-card h3{font-size:1.02rem;margin:0 0 5px;font-family:Fraunces,serif;font-weight:500}
+.tl-card p{font-size:.87rem;color:var(--ink2);margin:0 0 14px;line-height:1.5;flex:1}
+.tl-out{font-size:.8rem;color:var(--ink);background:var(--surface2);border:1px solid var(--border);
+  border-radius:10px;padding:9px 12px;margin-bottom:14px;line-height:1.45}
+.tl-out b{color:var(--tc);font-weight:700}
+.tl-meta{display:flex;align-items:center;gap:10px;font-size:.75rem;color:var(--ink2);
+  font-family:'JetBrains Mono',monospace}
+.tl-go{margin-left:auto;font-family:Inter,sans-serif;font-weight:700;font-size:.83rem;color:var(--tc);
+  display:inline-flex;align-items:center;gap:5px;transition:gap .2s}
+.tl-card:hover .tl-go{gap:9px}
+
+/* per-tool accents, with lighter variants so they stay legible on dark */
+.tl-card[data-acc="teal"],.tm-mask[data-acc="teal"]{--tc:#0F766E}
+.tl-card[data-acc="violet"],.tm-mask[data-acc="violet"]{--tc:#7C3AED}
+.tl-card[data-acc="indigo"],.tm-mask[data-acc="indigo"]{--tc:#4438CA}
+.tl-card[data-acc="amber"],.tm-mask[data-acc="amber"]{--tc:#B45309}
+.tl-card[data-acc="pink"],.tm-mask[data-acc="pink"]{--tc:#DB2777}
+.tl-card[data-acc="cyan"],.tm-mask[data-acc="cyan"]{--tc:#0891B2}
+:root[data-theme="dark"] .tl-card[data-acc="teal"],:root[data-theme="dark"] .tm-mask[data-acc="teal"]{--tc:#5EEAD4}
+:root[data-theme="dark"] .tl-card[data-acc="violet"],:root[data-theme="dark"] .tm-mask[data-acc="violet"]{--tc:#C4B5FD}
+:root[data-theme="dark"] .tl-card[data-acc="indigo"],:root[data-theme="dark"] .tm-mask[data-acc="indigo"]{--tc:#A5B4FC}
+:root[data-theme="dark"] .tl-card[data-acc="amber"],:root[data-theme="dark"] .tm-mask[data-acc="amber"]{--tc:#FCD34D}
+:root[data-theme="dark"] .tl-card[data-acc="pink"],:root[data-theme="dark"] .tm-mask[data-acc="pink"]{--tc:#F9A8D4}
+:root[data-theme="dark"] .tl-card[data-acc="cyan"],:root[data-theme="dark"] .tm-mask[data-acc="cyan"]{--tc:#67E8F9}
+.tm-head .tl-icon{background:color-mix(in srgb,var(--tc) 12%,var(--surface2));
+  border-color:color-mix(in srgb,var(--tc) 26%,transparent);color:var(--tc)}
+
+/* ══ TOOLS: MODAL ══ */
+.tm-mask{position:fixed;inset:0;z-index:400;background:rgba(10,10,14,.5);backdrop-filter:blur(5px);
+  opacity:0;pointer-events:none;transition:opacity .28s;display:grid;place-items:center;padding:20px}
+.tm-mask.on{opacity:1;pointer-events:auto}
+.tm{width:min(620px,100%);max-height:min(86vh,880px);display:flex;flex-direction:column;
+  background:var(--bg);border:1px solid var(--border);border-radius:22px;overflow:hidden;
+  box-shadow:0 30px 80px rgba(0,0,0,.32);transform:translateY(18px) scale(.97);
+  transition:transform .35s cubic-bezier(.22,1,.36,1)}
+.tm-mask.on .tm{transform:none}
+.tm-head{display:flex;align-items:center;gap:14px;padding:20px 22px;border-bottom:1px solid var(--border);flex:none}
+.tm-head .tl-icon{margin:0;width:40px;height:40px;border-radius:12px}
+.tm-head h2{margin:0;font-size:1.1rem;flex:1;line-height:1.3}
+.tm-head p{margin:2px 0 0;font-size:.82rem;color:var(--ink2);font-weight:400}
+.tm-x{width:36px;height:36px;border-radius:999px;border:1px solid var(--border);background:var(--surface2);
+  color:var(--ink2);font-size:1rem;cursor:pointer;display:grid;place-items:center;flex:none;
+  transition:background .18s,color .18s}
+.tm-x:hover{background:var(--border);color:var(--ink)}
+.tm-body{overflow-y:auto;padding:22px;-webkit-overflow-scrolling:touch}
+.tm-panel{display:none}
+.tm-panel.on{display:block}
+.tm-panel>form>label:first-child{margin-top:0}
+.tm-panel .btn{width:100%;justify-content:center;margin-top:18px}
+@media(max-width:560px){.tm{max-height:92vh;border-radius:18px}.tm-body{padding:18px}}
+
+/* ══ TOOLS: ON-REQUEST STRIP ══ */
+.tl-req{margin-top:34px;background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:24px}
+.tl-req h3{font-size:1rem;margin:0 0 4px}
+.tl-req>p{font-size:.87rem;color:var(--ink2);margin:0 0 16px}
+.tl-req-list{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:16px}
+.tl-req-list span{font-size:.82rem;font-weight:600;color:var(--ink2);background:var(--surface2);
+  border:1px solid var(--border);border-radius:999px;padding:7px 15px}
 .score-big{font-family:Fraunces,serif;font-weight:500;font-size:2.7rem;color:var(--ink)}
 /* PAGE HEADER VIDEO BAND */
 .pagehead{position:relative;overflow:hidden;
@@ -853,11 +934,75 @@ a.res-row:hover .res-arrow{transform:translateX(5px);color:var(--brand)}
     <div class="crumb">Home / Free Tools</div>
     <section style="padding-top:28px">
       <h1>Free tools</h1>
-      <p class="lead" style="max-width:600px;margin-top:14px">No email walls on results. If the numbers worry you, you know where to find us.</p>
+      <p class="lead" style="max-width:620px;margin-top:14px">Six calculators and scorecards you can run right now. No sign-up, no email wall on the results. If the numbers worry you, you know where to find us.</p>
 
-      <div class="grid g2" style="margin-top:36px">
+      <div class="tl-groups">
 
-        <div class="card" id="geo-tool"><h3>AI Visibility (GEO) Score</h3>
+        <div>
+          <div class="tl-ghead"><h2>Diagnose</h2><span>Score where you stand today</span></div>
+          <div class="tl-grid">
+            <button class="tl-card" data-tool="geo" data-acc="teal" type="button">
+              <span class="tl-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 2 5 5 2-5 2-2 5-2-5-5-2 5-2 2-5Z"/><path d="M19 15l.8 1.9 1.9.8-1.9.8-.8 1.9-.8-1.9-1.9-.8 1.9-.8.8-1.9Z"/></svg></span>
+              <h3>AI Visibility (GEO) Score</h3>
+              <p>How likely ChatGPT, Gemini and Perplexity are to cite you when buyers ask about your category.</p>
+              <span class="tl-out">You get a <b>score out of 100</b> plus the single highest-impact fix</span>
+              <span class="tl-meta">6 questions · 30 sec<span class="tl-go">Run tool →</span></span>
+            </button>
+            <button class="tl-card" data-tool="ready" data-acc="violet" type="button">
+              <span class="tl-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M16.9 16.9l2.2 2.2M19.1 4.9 17 7M7 17l-2.1 2.1"/></svg></span>
+              <h3>AI Readiness Assessment</h3>
+              <p>How much of your day-to-day operations could realistically be automated inside a year.</p>
+              <span class="tl-out">You get a <b>readiness band</b> and where to start automating</span>
+              <span class="tl-meta">5 questions · 30 sec<span class="tl-go">Run tool →</span></span>
+            </button>
+            <button class="tl-card" data-tool="roi" data-acc="indigo" type="button">
+              <span class="tl-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 15 4-5 3 3 5-7"/></svg></span>
+              <h3>Marketing ROI Calculator</h3>
+              <p>Whether your current spend is actually turning a profit once conversion and customer value are in.</p>
+              <span class="tl-out">You get <b>ROI, CAC and payback</b> on your real numbers</span>
+              <span class="tl-meta">4 inputs · instant<span class="tl-go">Run tool →</span></span>
+            </button>
+          </div>
+        </div>
+
+        <div>
+          <div class="tl-ghead"><h2>Plan &amp; create</h2><span>Size the spend, draft the copy</span></div>
+          <div class="tl-grid">
+            <button class="tl-card" data-tool="budget" data-acc="amber" type="button">
+              <span class="tl-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="13" rx="2.5"/><path d="M2 10.5h20"/><path d="M6 15h4"/></svg></span>
+              <h3>Marketing Budget Calculator</h3>
+              <p>What companies at your revenue and growth ambition actually spend, benchmarked for India.</p>
+              <span class="tl-out">You get a <b>monthly and annual range</b> to budget against</span>
+              <span class="tl-meta">3 inputs · instant<span class="tl-go">Run tool →</span></span>
+            </button>
+            <button class="tl-card" data-tool="head" data-acc="pink" type="button">
+              <span class="tl-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V5h16v2"/><path d="M9 5v14"/><path d="M7 19h4"/><path d="M15 12h5"/><path d="M17.5 12v7"/><path d="M16 19h3"/></svg></span>
+              <h3>Headline Generator</h3>
+              <p>Five proven headline frameworks applied to what you sell and who buys it.</p>
+              <span class="tl-out">You get <b>5 ready headlines</b> across different angles</span>
+              <span class="tl-meta">3 inputs · instant<span class="tl-go">Run tool →</span></span>
+            </button>
+            <button class="tl-card" data-tool="meta" data-acc="cyan" type="button">
+              <span class="tl-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4" width="19" height="16" rx="2.5"/><path d="M2.5 9h19"/><path d="M6 13h8"/><path d="M6 16.5h11"/></svg></span>
+              <h3>Meta Description Generator</h3>
+              <p>Click-worthy meta descriptions written to the length Google actually displays.</p>
+              <span class="tl-out">You get <b>3 variants</b>, each length-checked for SERPs</span>
+              <span class="tl-meta">3 inputs · instant<span class="tl-go">Run tool →</span></span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- tool modal: one form at a time, launched from the cards above -->
+    <div class="tm-mask" id="toolModal" role="dialog" aria-modal="true" aria-labelledby="tmTitle">
+      <div class="tm">
+        <div class="tm-head">
+          <span class="tl-icon" id="tmIcon" aria-hidden="true"></span>
+          <div style="flex:1"><h2 id="tmTitle"></h2><p id="tmSub"></p></div>
+          <button class="tm-x" id="tmClose" aria-label="Close tool">✕</button>
+        </div>
+        <div class="tm-body">
+        <div class="tm-panel" data-tool="geo">
           <p style="font-size:.92rem">Answer 6 questions; get your GEO readiness score and top fix. <a href="tools/ai-rank-tracker/">Or build a real AI rank-tracking panel →</a></p>
           <form onsubmit="return geoScore(event)">
             <label>Does your brand have a Wikipedia/Wikidata presence?</label>
@@ -876,8 +1021,7 @@ a.res-row:hover .res-arrow{transform:translateX(5px);color:var(--brand)}
           </form>
           <div class="tool-result" id="geoRes" role="status"></div>
         </div>
-
-        <div class="card"><h3>Marketing ROI Calculator</h3>
+        <div class="tm-panel" data-tool="roi">
           <p style="font-size:.92rem">Is your current marketing actually profitable?</p>
           <form onsubmit="return roiCalc(event)">
             <label>Monthly marketing spend (₹)</label><input type="number" id="r1" value="200000" min="0">
@@ -888,8 +1032,7 @@ a.res-row:hover .res-arrow{transform:translateX(5px);color:var(--brand)}
           </form>
           <div class="tool-result" id="roiRes" role="status"></div>
         </div>
-
-        <div class="card"><h3>Headline Generator</h3>
+        <div class="tm-panel" data-tool="head">
           <p style="font-size:.92rem">Five proven frameworks applied to your offer.</p>
           <form onsubmit="return headlines(event)">
             <label>What do you sell?</label><input id="h1" placeholder="e.g., interior design for offices">
@@ -899,8 +1042,7 @@ a.res-row:hover .res-arrow{transform:translateX(5px);color:var(--brand)}
           </form>
           <div class="tool-result" id="hRes"></div>
         </div>
-
-        <div class="card"><h3>Meta Description Generator</h3>
+        <div class="tm-panel" data-tool="meta">
           <p style="font-size:.92rem">SEO-length-checked, click-worthy meta descriptions.</p>
           <form onsubmit="return metaGen(event)">
             <label>Page topic</label><input id="m1" placeholder="e.g., corporate catering services in Mumbai">
@@ -910,8 +1052,7 @@ a.res-row:hover .res-arrow{transform:translateX(5px);color:var(--brand)}
           </form>
           <div class="tool-result" id="mRes"></div>
         </div>
-
-        <div class="card"><h3>Business AI Readiness Assessment</h3>
+        <div class="tm-panel" data-tool="ready">
           <p style="font-size:.92rem">How much of your ops could AI take over this year? <a href="tools/ai-readiness/">Get the full report →</a></p>
           <form onsubmit="return aiReady(event)">
             <label>Team size</label><select id="a1"><option value="5">1–20</option><option value="10">21–100</option><option value="15">100+</option></select>
@@ -927,8 +1068,7 @@ a.res-row:hover .res-arrow{transform:translateX(5px);color:var(--brand)}
           </form>
           <div class="tool-result" id="aRes"></div>
         </div>
-
-        <div class="card"><h3>Marketing Budget Calculator</h3>
+        <div class="tm-panel" data-tool="budget">
           <p style="font-size:.92rem">Benchmark budget for Indian companies by stage.</p>
           <form onsubmit="return budgetCalc(event)">
             <label>Annual revenue (₹ Cr)</label><input type="number" id="b1" value="25" min="0.1" step="0.1">
@@ -940,10 +1080,18 @@ a.res-row:hover .res-arrow{transform:translateX(5px);color:var(--brand)}
           </form>
           <div class="tool-result" id="bRes"></div>
         </div>
+        </div>
       </div>
+    </div>
 
-      <div class="card" style="margin-top:24px"><h3>Also available on request (run by our team, free, 48-hr turnaround)</h3>
-        <p><span class="pill">Website Speed Check</span><span class="pill">Full SEO Audit (lite)</span><span class="pill">Landing Page Teardown</span><span class="pill">LinkedIn Post Pack</span><span class="pill">Blog Outline Pack</span> — <a href="#audit">request via the free audit form →</a></p></div>
+      <div class="tl-req">
+        <h3>Run by our team, on request</h3>
+        <p>Free, with a 48-hour turnaround — these need a human, so we do them for you.</p>
+        <div class="tl-req-list">
+          <span>Website Speed Check</span><span>Full SEO Audit (lite)</span><span>Landing Page Teardown</span><span>LinkedIn Post Pack</span><span>Blog Outline Pack</span>
+        </div>
+        <a class="btn ghost sm" href="#audit">Request via the free audit form →</a>
+      </div>
     </section>
   </div>
 </div>
@@ -1627,6 +1775,38 @@ function jumpInd(){
 
 /* ---------- Tools ---------- */
 const inr=n=>'₹'+Math.round(n).toLocaleString('en-IN');
+
+/* ── Free tools: launcher → modal ── */
+(function(){
+ const TM={geo:['AI Visibility (GEO) Score','6 questions · takes about 30 seconds','#0F766E'],
+  ready:['AI Readiness Assessment','5 questions · takes about 30 seconds','#7C3AED'],
+  roi:['Marketing ROI Calculator','4 inputs · result is instant','#4438CA'],
+  budget:['Marketing Budget Calculator','3 inputs · result is instant','#D97706'],
+  head:['Headline Generator','3 inputs · result is instant','#DB2777'],
+  meta:['Meta Description Generator','3 inputs · result is instant','#0891B2']};
+ const mask=document.getElementById('toolModal');if(!mask)return;
+ const title=document.getElementById('tmTitle'),sub=document.getElementById('tmSub'),
+       icon=document.getElementById('tmIcon'),closeBtn=document.getElementById('tmClose');
+ let lastFocus=null;
+ function open(slug,btn){
+  const t=TM[slug];if(!t)return;
+  lastFocus=btn||null;
+  title.textContent=t[0];sub.textContent=t[1];
+  icon.innerHTML=btn?btn.querySelector('.tl-icon').innerHTML:'';
+  if(btn)mask.setAttribute('data-acc',btn.dataset.acc||'indigo');
+  mask.querySelectorAll('.tm-panel').forEach(p=>p.classList.toggle('on',p.dataset.tool===slug));
+  mask.classList.add('on');document.body.style.overflow='hidden';
+  setTimeout(()=>{const f=mask.querySelector('.tm-panel.on input,.tm-panel.on select');if(f)f.focus()},340);
+ }
+ function close(){
+  mask.classList.remove('on');document.body.style.overflow='';
+  if(lastFocus)lastFocus.focus();
+ }
+ document.querySelectorAll('.tl-card').forEach(b=>b.addEventListener('click',()=>open(b.dataset.tool,b)));
+ closeBtn.addEventListener('click',close);
+ mask.addEventListener('click',e=>{if(e.target===mask)close()});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&mask.classList.contains('on'))close()});
+})();
 
 function geoScore(e){e.preventDefault();
   const s=['g1','g2','g3','g4','g5','g6'].reduce((t,id)=>t+ +document.getElementById(id).value,0);
