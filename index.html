@@ -730,7 +730,7 @@ a.res-row:hover .res-arrow{transform:translateX(5px);color:var(--brand)}
   <div class="container">
     <div class="pagehead">
       <div class="pagehead-media" aria-hidden="true">
-        <video autoplay muted loop playsinline preload="none" poster="assets/svc-poster.webp" src="assets/svc-bg.mp4"></video>
+        <video autoplay muted loop playsinline preload="none" poster="assets/svc-poster.webp" data-src="assets/svc-bg.mp4"></video>
       </div>
       <div class="crumb">Home / Services</div>
       <section style="padding-top:28px;padding-bottom:20px">
@@ -1481,7 +1481,10 @@ function route(){
     const si=document.getElementById('indSearch'); if(si){si.value='';filterInd('');}}
   requestAnimationFrame(()=>scrollTo(0,0));
   // Background videos on hidden pages never start autoplay — kick the active one.
+  // Off-route videos carry data-src so they cost nothing until you land there;
+  // autoplay would otherwise override preload="none" and download them upfront.
   document.querySelectorAll('#p-'+h+' video').forEach(v=>{
+    if(!v.src&&v.dataset.src)v.src=v.dataset.src;
     const go=()=>{const t=v.play();if(t&&t.catch)t.catch(()=>{})};
     if(v.readyState>=2)go(); else v.addEventListener('canplay',go,{once:true});
   });
