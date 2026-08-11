@@ -134,11 +134,19 @@ a.card.study-card{position:relative;display:flex;flex-direction:column;overflow:
 #artGrid .card[data-c="leadership"] {--cc:#BE123C}
 #artGrid .card[data-c="hr"]         {--cc:#4D7C0F}
 #artGrid .card[data-c="branding"]   {--cc:#C026D3}
-:root[data-theme="dark"] #artGrid .card[data-c="consulting"]{--cc:#94A3B8}
-:root[data-theme="dark"] #artGrid .card[data-c="seo"]{--cc:#A5B4FC}
-:root[data-theme="dark"] #artGrid .card[data-c="geo"]{--cc:#5EEAD4}
-:root[data-theme="dark"] #artGrid .card[data-c="hr"]{--cc:#A3E635}
-:root[data-theme="dark"] #artGrid .card[data-c="leadership"]{--cc:#FDA4AF}
+/* Dark variants. The site ships dark-only, so every category needs one —
+   the 600-weight hues above sit at 2.7–4.4:1 on --surface and fail AA. */
+:root[data-theme="dark"] #artGrid .card[data-c="consulting"] {--cc:#94A3B8}
+:root[data-theme="dark"] #artGrid .card[data-c="seo"]        {--cc:#A5B4FC}
+:root[data-theme="dark"] #artGrid .card[data-c="geo"]        {--cc:#5EEAD4}
+:root[data-theme="dark"] #artGrid .card[data-c="hr"]         {--cc:#A3E635}
+:root[data-theme="dark"] #artGrid .card[data-c="leadership"] {--cc:#FDA4AF}
+:root[data-theme="dark"] #artGrid .card[data-c="automation"] {--cc:#C4B5FD}
+:root[data-theme="dark"] #artGrid .card[data-c="performance"]{--cc:#FCD34D}
+:root[data-theme="dark"] #artGrid .card[data-c="growth"]     {--cc:#6EE7A8}
+:root[data-theme="dark"] #artGrid .card[data-c="social"]     {--cc:#F9A8D4}
+:root[data-theme="dark"] #artGrid .card[data-c="web"]        {--cc:#67E8F9}
+:root[data-theme="dark"] #artGrid .card[data-c="branding"]   {--cc:#F0ABFC}
 
 /* the pill carries the colour; a left rule reinforces it on hover */
 #artGrid .card[data-c] .pill{background:color-mix(in srgb,var(--cc) 12%,var(--surface2));

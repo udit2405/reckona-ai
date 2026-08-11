@@ -2082,16 +2082,16 @@ const wkRM=matchMedia('(prefers-reduced-motion:reduce)').matches;
 
 /* per-tag accent colour + watermark icon for the card art panel */
 const WK_ART={
- AI:['#7C3AED','<path d="m12 3 2 5 5 2-5 2-2 5-2-5-5-2 5-2 2-5Z"/><path d="M19 14.5l.9 2.1 2.1.9-2.1.9-.9 2.1-.9-2.1-2.1-.9 2.1-.9.9-2.1Z"/>'],
- Automation:['#0891B2','<circle cx="12" cy="12" r="3.2"/><path d="M12 2v3.2M12 18.8V22M2 12h3.2M18.8 12H22M4.9 4.9l2.3 2.3M16.8 16.8l2.3 2.3M19.1 4.9l-2.3 2.3M7.2 16.8l-2.3 2.3"/>'],
- Web:['#2563EB','<rect x="2" y="4" width="20" height="16" rx="2.5"/><path d="M2 9.5h20"/><path d="M5.3 6.7h.01M8 6.7h.01"/>'],
- Marketing:['#DB2777','<path d="m3 11 15-6v14L3 13v-2Z"/><path d="M7 13.6V18a2 2 0 0 0 4 0v-3"/><path d="M20 9.5a3 3 0 0 1 0 5"/>'],
- Manufacturing:['#EA580C','<path d="M2 20h20"/><path d="M4 20V9l6 4V9l6 4V6l4-2v16"/><path d="M8 20v-3.5M14 20v-3.5"/>'],
- HR:['#16A34A','<circle cx="9" cy="8" r="3.4"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16.5 5.2a3.4 3.4 0 0 1 0 6.6"/><path d="M18 20a6.6 6.6 0 0 0-2.6-5.2"/>'],
- Consulting:['#4338CA','<circle cx="12" cy="12" r="9"/><path d="m15.6 8.4-2.1 5.1-5.1 2.1 2.1-5.1 5.1-2.1Z"/>'],
- Food:['#E11D48','<path d="M7 2v9a3 3 0 0 0 6 0V2"/><path d="M10 2v20"/><path d="M18 2c-1.5 2-2 4-2 7v4h4V9c0-3-.5-5-2-7Z"/><path d="M18 15v7"/>'],
- Retail:['#C026D3','<path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4H6Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/>'],
- Finance:['#1D4ED8','<path d="M3 21h18M3 10h18"/><path d="m12 3 9 7H3l9-7Z"/><path d="M6.5 10v11M12 10v11M17.5 10v11"/>']
+ AI:['#C4B5FD','<path d="m12 3 2 5 5 2-5 2-2 5-2-5-5-2 5-2 2-5Z"/><path d="M19 14.5l.9 2.1 2.1.9-2.1.9-.9 2.1-.9-2.1-2.1-.9 2.1-.9.9-2.1Z"/>'],
+ Automation:['#67E8F9','<circle cx="12" cy="12" r="3.2"/><path d="M12 2v3.2M12 18.8V22M2 12h3.2M18.8 12H22M4.9 4.9l2.3 2.3M16.8 16.8l2.3 2.3M19.1 4.9l-2.3 2.3M7.2 16.8l-2.3 2.3"/>'],
+ Web:['#93C5FD','<rect x="2" y="4" width="20" height="16" rx="2.5"/><path d="M2 9.5h20"/><path d="M5.3 6.7h.01M8 6.7h.01"/>'],
+ Marketing:['#F9A8D4','<path d="m3 11 15-6v14L3 13v-2Z"/><path d="M7 13.6V18a2 2 0 0 0 4 0v-3"/><path d="M20 9.5a3 3 0 0 1 0 5"/>'],
+ Manufacturing:['#FDBA74','<path d="M2 20h20"/><path d="M4 20V9l6 4V9l6 4V6l4-2v16"/><path d="M8 20v-3.5M14 20v-3.5"/>'],
+ HR:['#6EE7A8','<circle cx="9" cy="8" r="3.4"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16.5 5.2a3.4 3.4 0 0 1 0 6.6"/><path d="M18 20a6.6 6.6 0 0 0-2.6-5.2"/>'],
+ Consulting:['#A5B4FC','<circle cx="12" cy="12" r="9"/><path d="m15.6 8.4-2.1 5.1-5.1 2.1 2.1-5.1 5.1-2.1Z"/>'],
+ Food:['#FDA4AF','<path d="M7 2v9a3 3 0 0 0 6 0V2"/><path d="M10 2v20"/><path d="M18 2c-1.5 2-2 4-2 7v4h4V9c0-3-.5-5-2-7Z"/><path d="M18 15v7"/>'],
+ Retail:['#F0ABFC','<path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4H6Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/>'],
+ Finance:['#7DD3FC','<path d="M3 21h18M3 10h18"/><path d="m12 3 9 7H3l9-7Z"/><path d="M6.5 10v11M12 10v11M17.5 10v11"/>']
 };
 /* prefer the vertical tag over the capability tag so the palette spreads across the grid */
 const WK_VERT=['Manufacturing','Food','Retail','Finance','HR','Consulting','Marketing'];

@@ -213,6 +213,7 @@ footer .ft-b{font-size:.85rem;color:var(--ink);font-weight:600;margin-bottom:6px
 /* CARD ACCENT + COMPARE TABLE */
 .card.accent{border-top:3px solid var(--brand)}
 .compare th.us,.compare td.us{background:color-mix(in srgb,var(--brand) 7%,var(--surface));color:var(--ink);font-weight:600}
-.compare th.us b{background:var(--brand);color:#fff;font-size:.62rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 11px;border-radius:999px;display:inline-block}
+/* --brand is a light lavender on dark, so the label text must be dark, not #fff */
+.compare th.us b{background:var(--brand);color:var(--bg);font-size:.62rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 11px;border-radius:999px;display:inline-block}
 .compare td.bad{color:var(--danger)}
 .compare td.good{color:var(--signal);font-weight:600}
