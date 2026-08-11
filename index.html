@@ -180,6 +180,23 @@ label{display:block;font-size:.84rem;font-weight:600;margin:15px 0 6px}
 input,select,textarea{width:100%;padding:12px 15px;border:1px solid var(--border);border-radius:10px;background:var(--surface);color:var(--ink);font:inherit;font-size:.95rem;transition:border-color .15s}
 input:focus,select:focus,textarea:focus{outline:none;border-color:var(--ink)}
 /* TOOLS */
+/* ══ PROBLEM CARDS: photo revealed top-right, text stays on flat surface ══ */
+.prob-card{--pc:var(--brand);position:relative;overflow:hidden;isolation:isolate}
+.prob-bg{position:absolute;inset:0;z-index:0;pointer-events:none;border-radius:inherit;overflow:hidden}
+.prob-bg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;
+  opacity:.4;transition:transform .55s cubic-bezier(.22,1,.36,1),opacity .35s;
+  -webkit-mask-image:linear-gradient(212deg,#000 2%,rgba(0,0,0,.5) 28%,transparent 54%);
+  mask-image:linear-gradient(212deg,#000 2%,rgba(0,0,0,.5) 28%,transparent 54%)}
+.prob-card:hover .prob-bg img{transform:scale(1.06);opacity:.54}
+.prob-bg::after{content:"";position:absolute;inset:0;
+  background:
+    radial-gradient(70% 86% at 100% 0%,color-mix(in srgb,var(--pc) 30%,transparent),transparent 60%),
+    linear-gradient(212deg,transparent 0%,transparent 28%,color-mix(in srgb,var(--surface) 74%,transparent) 46%,var(--surface) 64%),
+    linear-gradient(0deg,var(--surface) 0%,color-mix(in srgb,var(--surface) 82%,transparent) 24%,transparent 50%)}
+.prob-card>*:not(.prob-bg){position:relative;z-index:1}
+:root[data-theme="dark"] .prob-bg img{opacity:.28}
+:root[data-theme="dark"] .prob-card:hover .prob-bg img{opacity:.4}
+
 .tool-result{margin-top:20px;padding:20px 22px;border-radius:14px;background:var(--surface2);border:1px solid var(--border);display:none}
 .tool-result.show{display:block;animation:rise .3s ease-out}
 
@@ -626,9 +643,9 @@ a.res-row:hover .res-arrow{transform:translateX(5px);color:var(--brand)}
       <div class="eyebrow">The Problem</div>
       <h2>The playbook that built your business is quietly expiring.</h2>
       <div class="grid g3" style="margin-top:28px">
-        <div class="card reveal"><span class="ic ic-num">01</span><h3>Search is fracturing</h3><p>ChatGPT, Gemini and Perplexity now answer your buyers directly. If AI doesn't cite you, you don't exist in that conversation — and your traffic charts won't warn you until it's late.</p></div>
-        <div class="card reveal"><span class="ic ic-num">02</span><h3>Marketing is fragmented</h3><p>A freelancer for the website, another for ads, an intern on Instagram. Nobody owns the number. You're paying five people to miss one target.</p></div>
-        <div class="card reveal"><span class="ic ic-num">03</span><h3>Ops still run on manual</h3><p>Quotes, follow-ups, reports, invoices — hours of skilled time on work an AI agent does in seconds. Your competitors are automating it this quarter.</p></div>
+        <div class="card reveal prob-card" style="--pc:#0F766E"><span class="prob-bg" aria-hidden="true"><img src="/assets/problem/search.webp" alt="" loading="lazy" decoding="async" width="640" height="354"></span><span class="ic ic-num">01</span><h3>Search is fracturing</h3><p>ChatGPT, Gemini and Perplexity now answer your buyers directly. If AI doesn't cite you, you don't exist in that conversation — and your traffic charts won't warn you until it's late.</p></div>
+        <div class="card reveal prob-card" style="--pc:#D97706"><span class="prob-bg" aria-hidden="true"><img src="/assets/problem/fragmented.webp" alt="" loading="lazy" decoding="async" width="640" height="354"></span><span class="ic ic-num">02</span><h3>Marketing is fragmented</h3><p>A freelancer for the website, another for ads, an intern on Instagram. Nobody owns the number. You're paying five people to miss one target.</p></div>
+        <div class="card reveal prob-card" style="--pc:#7C3AED"><span class="prob-bg" aria-hidden="true"><img src="/assets/problem/manual.webp" alt="" loading="lazy" decoding="async" width="640" height="354"></span><span class="ic ic-num">03</span><h3>Ops still run on manual</h3><p>Quotes, follow-ups, reports, invoices — hours of skilled time on work an AI agent does in seconds. Your competitors are automating it this quarter.</p></div>
       </div>
     </div>
   </section>
