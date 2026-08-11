@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 <head>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -101,7 +101,6 @@ nav a.nl:hover,nav a.nl.active{color:var(--ink);background:var(--surface2)}
 .btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--border)}
 .btn.ghost:hover{border-color:var(--ink);opacity:1}
 @media(max-width:640px){.btn+.btn{margin-top:10px}}
-#themeBtn{background:none;border:1px solid var(--border);border-radius:999px;color:var(--ink);cursor:pointer;padding:7px 12px;font-size:.9rem}
 /* HERO */
 .hero{padding:210px 0 130px;position:relative;overflow:hidden}
 .hero-media{position:absolute;inset:0;z-index:0;background:url(assets/hero-poster.webp) center/cover}
@@ -593,7 +592,6 @@ a.res-row:hover .res-arrow{transform:translateX(5px);color:var(--brand)}
   <a class="nl" href="#tools">Free Tools</a>
   <a class="nl" href="/resources/">Resources</a>
   <a class="nl" href="/about/">About</a>
-  <button id="themeBtn" onclick="toggleTheme()" aria-label="Toggle theme">◐</button>
   <a class="btn sm" href="#book">Book a Call</a>
   <button id="navToggle" class="nav-toggle" onclick="toggleMobileNav()" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav"><span></span><span></span><span></span></button>
 </nav>
@@ -1514,12 +1512,6 @@ document.addEventListener('click',e=>{
   const mn=document.getElementById('mobileNav'),nt=document.getElementById('navToggle');
   if(mn.classList.contains('open')&&!mn.contains(e.target)&&!nt.contains(e.target))closeMobileNav();
 });
-
-/* ---------- Theme ---------- */
-function toggleTheme(){
-  const r=document.documentElement;
-  r.setAttribute('data-theme',r.getAttribute('data-theme')==='dark'?'light':'dark');
-}
 
 /* ---------- Scroll reveal ---------- */
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});

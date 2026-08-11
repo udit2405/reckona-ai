@@ -9,6 +9,13 @@
   --brand:#A5B4FC;--signal:#5EEAD4;--border:#26262F;
   --glass:rgba(16,16,20,.72);
 }}
+/* The site ships dark-only, so the attribute must win over system preference.
+   Higher specificity than the media query above, hence dark regardless of OS. */
+:root[data-theme="dark"]{
+  --bg:#101014;--surface:#17171D;--surface2:#1E1E26;--ink:#EFEDE6;--ink2:#9B978C;
+  --brand:#A5B4FC;--signal:#5EEAD4;--border:#26262F;
+  --glass:rgba(16,16,20,.72);
+}
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--ink);font-size:17px;line-height:1.75;-webkit-font-smoothing:antialiased}
 ::selection{background:var(--brand);color:var(--bg)}

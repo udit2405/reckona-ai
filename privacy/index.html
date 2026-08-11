@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 <head>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-6SJJLB7S6Y"></script>
@@ -47,7 +47,6 @@
   <a class="nl" href="/#tools">Free Tools</a>
   <a class="nl" href="/resources/">Resources</a>
   <a class="nl" href="/about/">About</a>
-  <button id="themeBtn" class="btn ghost sm" aria-label="Toggle theme" style="padding:8px 12px">◐</button>
   <a class="btn sm keep" href="/#book">Book a Call</a>
   <button id="navToggle" class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav"><span></span><span></span><span></span></button>
 </nav>
@@ -150,11 +149,8 @@
 </footer>
 <script>
 (function(){
-  var r=document.documentElement, s=localStorage.getItem('theme');
-  if(s)r.setAttribute('data-theme',s);
-  else r.setAttribute('data-theme',matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');
-  var b=document.getElementById('themeBtn');
-  if(b)b.onclick=function(){var n=r.getAttribute('data-theme')==='dark'?'light':'dark';r.setAttribute('data-theme',n);localStorage.setItem('theme',n)};
+  var r=document.documentElement;
+  r.setAttribute('data-theme','dark');
   var m=document.getElementById('navToggle'), mm=document.getElementById('mobileNav');
   if(m&&mm){
     m.onclick=function(){var o=mm.classList.toggle('open');m.classList.toggle('open',o);m.setAttribute('aria-expanded',o)};
